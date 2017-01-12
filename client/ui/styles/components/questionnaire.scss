@@ -1,0 +1,49 @@
+.survey{
+  font-family: MESFont5, sans-serif;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.96);
+  min-height: 200px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.20);
+  margin-top: -35px;
+  margin-bottom: 40px;
+}
+
+#rate-left-s{
+  margin-right: 10px;
+}
+
+#row-s{
+  text-align: inherit;
+  display: inherit;
+  width: 80%;
+  margin-bottom: 25px;
+}
+
+#row-s-end{
+  text-align: inherit;
+  display: inherit;
+  width: 80%;
+  margin-bottom: 35px;
+}
+
+#row-s-title{
+  text-align: inherit;
+  display: inherit;
+  width: 80%;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+#rating-s{
+  margin-top: 10px;
+}
+
+.radio-block{
+  text-align: center;
+}
+
+input[type="radio"]{
+  margin-right: 15px;
+  margin-left: 15px;
+}

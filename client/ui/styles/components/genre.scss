@@ -1,0 +1,104 @@
+@import "../_imports/colors";
+
+.modalgenre {
+  margin-top: 5px;
+  width: 63vw;
+  min-width: 100pt;
+  background-color: inherit;
+  text-align: center;
+  z-index: 10;
+  margin-bottom: -90px;
+}
+
+.modalcenter {
+  padding-top: 10pt;
+  padding-bottom: 10pt;
+}
+
+.caption-normal {
+  padding-bottom: 0;
+  p {
+    color: white;
+    min-width: 100px;
+    margin-top: -28%;
+    font-family: MESFont5, sans-serif;
+    font-size: 1vw;
+    text-transform: uppercase;
+  }
+
+  &.my-thumb-small {
+    padding: 0;
+    margin-left: 2px;
+    margin-right: 2px;
+
+    p {
+      margin-bottom: 0;
+      margin-top: -35%;
+      font-size: 0.6vw;
+      width: 5vw;
+      min-width: 60px;
+    }
+    &.selected {
+      padding: 0;
+      margin: 0;
+      margin-left: 2px;
+      margin-right: 2px;
+      box-shadow: 0 2px 15px $base_color;
+      transition: all 0.3s;
+      p {
+        color: $base_color;
+      }
+    }
+  }
+
+  &:hover {
+    p {
+      color: $base_color;
+      transition: all 0.4s;
+    }
+  }
+  &.selected {
+    padding: 2px;
+    margin: 7px;
+    background-color: $base_color;
+    p {
+      color: $base_color;
+    }
+  }
+}
+
+.genre {
+  transition: all 0.3s;
+  width: 9vw;
+  margin-bottom: 5pt;
+  min-width: 120px;
+  &:hover {
+    box-shadow: 0 0 10px rgba(38, 207, 227, 0.76);
+    transition: all 0.3s;
+  }
+}
+
+.thumbGenre {
+  display: inline-block;
+  margin-top: 2.5pt;
+  margin-bottom: 2.5pt;
+  background-color: inherit;
+  border: none;
+}
+
+.listGenreTop {
+  margin-left: 2%;
+  margin-right: 2%;
+  text-align: center;
+  margin-top: 90px;
+}
+
+.small {
+  width: 5vw;
+  min-width: 60px;
+}
+
+.choose_genre{
+  margin-top: 24px;
+  margin-bottom: 16px;
+}

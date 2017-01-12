@@ -1,0 +1,130 @@
+/*
+ * Created with ♥ by Gianluca Chiap (@forgiangi)
+ */
+@import "../_imports/dimensions";
+@import "../_imports/colors";
+
+.questionnaire-page {
+  padding-top: 70px;
+  color: white;
+  h3{
+    font-family: MESFont5, sans-serif;
+    text-align: center;
+    margin-left: -3.5vw;
+    margin-bottom: 20px !important;
+    margin-top: 21px;
+  }
+  #listMovies {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.41);
+    margin-bottom: 45px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    li {
+      margin-bottom: 0;
+    }
+  }
+
+  .row {
+    margin: 0 auto;
+    min-width: 100%;
+    h1 {
+      margin-top: 10px;
+      margin-bottom: 85px;
+    }
+  }
+
+  .rec-list {
+    font-size: 22px;
+    h1{
+      font-size: 20px !important;
+      margin-bottom: 4px;
+      margin-top: -4px;
+    }
+  }
+
+  .movieContainer {
+    margin-top: 2px;
+  }
+
+  #thumbmovies {
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+
+  #thumbMoviesDimension {
+    width: 8vw;
+    height: 12vw;
+  }
+
+  .questionnaire {
+    margin-left: -30px;
+    margin-top: 10px;
+    h4 {
+      margin-bottom: 40px;
+    }
+    h5 {
+      font-family: MESFont5,sans-serif;
+      margin-bottom: 50px;
+      margin-top: -55px;
+      font-size: 20px;
+      color: #9c9c9c;
+      text-align: left;
+    }
+  }
+
+  .question {
+    p {
+      text-align: left;
+      font-family: MESFont5, sans-serif;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .star {
+    margin-top: 0px;
+    margin-bottom: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+    border: 1.2pt solid $base_color;
+    color: $base_color;
+    background-color: inherit;
+    &:focus {
+      outline: none !important;
+    }
+    &:hover {
+      color: white;
+      border: none;
+      background-color: $base_color_hover;
+      transition: all .3s;
+    }
+    &:active {
+      color: white;
+      border: none;
+      background-color: $green_MES;
+    }
+
+    &.selected {
+      color: white;
+      border: none;
+      background-color: $green_MES;
+    }
+
+    &.not-selected {
+      color: white;
+      border: none;
+      background-color: #73828b;
+    }
+
+    .question {
+      background-color: #1ec6a3;
+    }
+
+  }
+
+}
+

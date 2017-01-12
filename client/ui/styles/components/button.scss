@@ -1,0 +1,382 @@
+@import "../_imports/colors";
+
+.btn-default {
+  transition:all .2s;
+  color: white;
+  background-color: $base_color;
+  border-color: transparent;
+
+  &:focus{
+    outline: none !important;
+  }
+
+  &:hover{
+    color: white;
+    background-color: $base_color_hover;
+    border-color: transparent;
+    min-width: 90px;
+    transition: all .3s;
+  }
+  &:active{
+    color: white;
+    min-width: 90px;
+    background-color: $base_color_hover;
+    border-color: transparent;
+  }
+}
+
+.btn {
+  font-family: MESFont2, sans-serif;
+  margin: 10px;
+  min-width: 80px;
+  height: 40px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), 0 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: inherit;
+  &:focus{
+    outline: none !important;
+  }
+}
+
+.button_ini{
+  transition:all .2s;
+  border: 3px solid rgba(white, 0.3);
+  color: rgba(white, 0.3);
+  background-color: inherit;
+  min-width: 110px;
+  height: 45px;
+  margin-top: 3px;
+  &:hover{
+    color: white;
+    min-width: 120px;
+    background-color: $base_color;
+    border: 3px solid $base_color;
+    transition:all .2s;
+  }
+}
+
+
+#button_next{
+  transition:all .2s;
+  border: 3px solid $base_color;
+  color: $base_color;
+  background-color: inherit;
+  min-width: 110px;
+  height: 45px;
+  &:hover{
+    color: white;
+    min-width: 120px;
+    background-color: $base_color;
+    border: 3px solid $base_color;
+    transition:all .2s;
+  }
+}
+
+
+#buttonLogOut{
+  transition:all .3s;
+  background-color: inherit;
+  border: 1.2pt solid $red_MES;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  font-size: 9px;
+  color: $red_MES;
+  box-shadow: none;
+  margin-top: 5px;
+  margin-bottom: 70px;
+
+  &:hover{
+    background-color: $red2_MES;
+    color: white;
+    border-color: $red2_MES;
+    transition:all .3s;
+  }
+}
+
+#buttonLogOut_nav{
+  transition:all .3s;
+  background-color: inherit;
+  border: 1.2pt solid $red_MES;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  font-size: 9px;
+  color: $red_MES;
+  box-shadow: none;
+  margin-top: 5px;
+
+  &:hover{
+    background-color: $red2_MES;
+    color: white;
+    border-color: $red2_MES;
+    transition:all .3s;
+  }
+}
+
+
+
+#button_next_rate{
+  position: absolute;
+  transition: all .3s;
+  margin-top: 10pt;
+  margin-right: 5px;
+  margin-left: 5px;
+  text-align: center;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: inherit;
+  border: 1.2pt solid $red_MES;
+  font-size: 14px;
+  color: $red_MES;
+  &:hover {
+    background-color: $red_MES;
+    color: white;
+    border-color: $red_MES;
+    transition: all .3s;
+  }
+  &:active {
+    background-color: $red_MES;
+    color: white;
+    border-color: $red_MES;
+    transition: all .3s;
+  }
+  &:focus{
+    outline: none !important;
+  }
+}
+
+#buttonSeeAll{
+  background-color: inherit;
+  border: 1.2pt solid $base_color;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  font-size: 9px;
+  color: $base_color;
+  box-shadow: none;
+  position: absolute;
+  margin-top: -6px;
+  margin-left: 10px;
+
+  &:hover{
+    background-color: $base_color;
+    color: white;
+    border-color: $base_color;
+    transition:all .3s;
+  }
+}
+
+.button_skip{
+  transition: all .3s;
+  text-align: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: inherit;
+  border: 1.2pt solid $green_MES;
+  font-size: 9px;
+  color: $green_MES;
+  &:hover {
+    background-color: $green_MES;
+    color: white;
+    border-color: $green_MES;
+    transition: all .3s;
+  }
+  &:active {
+    background-color: $green_MES;
+    color: white;
+    border-color: $green_MES;
+    transition: all .3s;
+  }
+  &:focus{
+    outline: none !important;
+  }
+}
+
+#loadmore {
+  transition:all .3s;
+  background-color: inherit;
+  box-shadow: none;
+  border: 1.5pt solid $base_color;
+  color: $base_color;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 200px;
+  border-radius: 50%;
+  height: 110px;
+  width: 110px;
+  font-size: 14px;
+  &:hover{
+    color: $base_color_hover;
+    border-color: $base_color_hover;
+    transition:all .3s;
+  }
+}
+
+.button_adv{
+  transition:all .3s;
+  background-color: inherit;
+  border: 1.2pt solid $green_MES;
+  border-radius: 50%;
+  height: 4vw;
+  width: 4vw;
+  font-size: 0.7vw;
+  min-width: 40px;
+  min-height: 40px;
+  color: $green_MES;
+  box-shadow: none;
+  margin-bottom: 20px;
+  &:hover{
+    background-color: $green_MES;
+    color: white;
+    border-color: $green_MES;
+    transition:all .3s;
+  }
+}
+
+.adv_years{
+  position: absolute;
+  transition: all .3s;
+  margin-left: -40px;
+  margin-top: 5px;
+  text-align: center;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: inherit;
+  border: 1.2pt solid $green_MES;
+  font-size: 7px;
+  color: $green_MES;
+  box-shadow: none;
+  &:hover{
+    background-color: $green_MES;
+    color: white;
+    border-color: $green_MES;
+    transition:all .3s;
+  }
+}
+
+.adv_years_done{
+  position: inherit;
+  margin-left: 0;
+}
+
+.closeModal {
+  transition:all .3s;
+  z-index: 40;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  font-size: 19px;
+  position: absolute;
+  text-align: center;
+  border: 1.5pt solid #5f5f5f;
+  color: #5f5f5f;
+  top: 10px;
+  right: 10px;
+  &:hover{
+    transition:all .3s;
+    background-color: #5f5f5f;
+    color: black;
+  }
+}
+
+.button_value_feature{
+  text-transform: uppercase;
+  margin-top: -20px;
+  background-color: inherit;
+  position: relative;
+  border-radius: 50%;
+  height: 3vw;
+  width: 3vw;
+  min-width: 25px;
+  min-height: 25px;
+  font-size: 0.5vw;
+  color: white;
+  box-shadow: none;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  font-family: MESFont,sans-serif;
+  &:focus{
+    outline: none !important;
+  }
+  &:hover{
+    color: #000000;
+  }
+}
+
+.c_vl{
+  color: $green_MES;
+  border: 1.2pt solid $green_MES;
+  &:hover{
+    background-color: $green_MES;
+    transition:all .3s;
+  }
+  &.selected{
+    color: black;
+    background-color: $green_MES;
+  }
+}
+
+.c_l{
+  color: #48EF73;
+  border: 1.2pt solid #48EF73;
+  &:hover{
+    background-color: #48EF73;
+    transition:all .3s;
+  }
+  &.selected{
+    color: black;
+    background-color: #48EF73;
+  }
+}
+
+.c_m{
+  color: #F2EE61;
+  border: 1.2pt solid #F2EE61;
+  &:hover{
+    background-color: #F2EE61;
+    transition:all .3s;
+  }
+  &.selected{
+    color: black;
+    background-color: #F2EE61;
+  }
+}
+
+.c_h{
+  color: #ef7c53;
+  border: 1.2pt solid #ef7c53;
+  &:hover{
+    background-color: #ef7c53;
+    transition:all .3s;
+  }
+  &.selected{
+    color: black;
+    background-color: #ef7c53;
+  }
+}
+
+.c_vh{
+  color: #BC393F;
+  border: 1.2pt solid #BC393F;
+  &:hover{
+    background-color: #BC393F;
+    transition:all .3s;
+  }
+  &.selected{
+    color: black;
+    background-color: #BC393F;
+  }
+}
+
+.button4_genre{
+  margin-bottom: 5px;
+  margin-top: 8px;
+}
+
+
+.button-margin{
+margin-top: 60px !important;
+}

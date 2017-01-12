@@ -1,0 +1,11 @@
+{
+   "extends": [
+        "airbnb"
+    ],
+
+    "rules": {
+        // Override any settings from the "parent" configuration
+        "comma-dangle": 0
+    }
+
+}

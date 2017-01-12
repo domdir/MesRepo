@@ -1,0 +1,76 @@
+@import "../_imports/colors";
+
+.timeLine {
+  margin-top: 20px;
+  text-align: center;
+  margin-bottom: -1.5vw;
+  li {
+    display: inline;
+  }
+}
+
+.timeLine_search{
+  margin-bottom: 4vw;
+  .time_Button{
+    background-color: transparent;
+  }
+}
+
+.timeLine_ini{
+  margin-bottom: 15px;
+}
+
+.infotime{
+  margin-top: -50px;
+  margin-bottom: -43px;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  font-family: MESFont5, sans-serif;
+  border-bottom: 1px solid #bcb7be;
+  min-width: 100%;
+  h6{
+    font-size: 14px;
+    text-transform: none;
+    margin-bottom: 40px;
+  }
+}
+
+.time_Button_s{
+  background-color: transparent;
+
+}
+
+.time_Button{
+  position: relative;
+  background-color: black;
+  border: 1.2pt solid white;
+  border-radius: 50%;
+  height: 3vw;
+  width: 3vw;
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 50px;
+  max-height: 50px;
+  font-size: 1vw;
+  color: white;
+  box-shadow: none;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  font-family: MESFont5,sans-serif;
+  &:focus{
+    outline: none !important;
+  }
+  &:hover{
+    background-color: $green_MES;
+    color: white;
+    transition:all .3s;
+  }
+  &.selected{
+    background-color: $base_color;
+    &:hover{
+      background-color: $green_MES;
+      border: 1.2pt solid white;
+    }
+  }
+}

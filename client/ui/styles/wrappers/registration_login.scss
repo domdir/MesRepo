@@ -1,0 +1,74 @@
+@import "../_imports/colors";
+
+.row {
+  text-align: center;
+  display: table;
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+
+#spacerow {
+  margin-top: 10pt;
+}
+
+.col-sm-offset-3 {
+  float: left;
+  margin-left: 0;
+}
+
+.col-sm-6 {
+  width: 350px;
+}
+
+.formauth {
+  background-color: rgba(43, 42, 44, 0.6);
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.20);
+  padding-left: 10pt;
+  padding-right: 10pt;
+  padding-top: 10pt;
+  padding-bottom: 20pt;
+}
+
+.form-control {
+  font-family: MESFont2, sans-serif;
+  text-align: center;
+  color: white;
+  border: 0.5px solid rgba(245, 245, 245, 0);
+  margin-bottom: 15px;
+  height: 50px;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.20);
+  border-radius: 0px;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=time],
+input[type=date],
+input[type=datetime-local],
+input[type=tel],
+input[type=number],
+input[type=search],
+textarea.materialize-textarea {
+  margin-top: 25px;
+  font-size: 15px;
+  height: 50px;
+  background-color: inherit;
+}
+
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border: 0.5px solid rgba(245, 245, 245, 0);
+  border-bottom: 1px solid $base_color;
+  box-shadow: 0 1px 0 0 rgba(82, 201, 255, 0.25);
+}

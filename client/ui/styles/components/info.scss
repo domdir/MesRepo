@@ -1,0 +1,88 @@
+@import "../_imports/colors";
+
+.dropdownMenu1 {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 206, 39, 0.81);
+  text-align: center;
+  border-radius: 50%;
+  min-width: inherit;
+  margin-bottom: -50px;
+  &:hover {
+    color: white;
+    background-color: $base_color_hover;
+    border-color: transparent;
+    min-width: inherit;
+    transition: all .3s;
+  }
+  &:active {
+    color: white;
+    min-width: inherit;
+    background-color: $base_color_hover;
+    border-color: transparent;
+  }
+}
+
+#dropdown-menu1 {
+  background: rgba(0, 0, 0, 0.91);
+  border-radius: 2px;
+  padding: 20px;
+}
+
+.dropdownMenu1 ul {
+  margin-left: -1px;
+  margin-top: -1px;
+}
+
+#dropdown-menu1 > li > a {
+  white-space: inherit;
+  color: white;
+  font-Family: MESFont5, sans-serif;
+}
+
+
+.container_feature {
+  margin-left: -17px;
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-size: 0.7vw;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  ul{
+    margin-bottom: 25px;
+  }
+}
+
+.adv_search{
+  position: relative;
+  min-height: 1px;
+  padding-right: 10vw;
+  padding-left: 10vw;
+  width: 100%;
+  h2{
+    font-family: MESFont5, sans-serif;
+    padding-bottom: 10pt;
+    border-bottom: 1px solid #bcb7be;
+    margin-bottom: 30px;
+    color: rgb(240, 241, 245);
+  }
+}
+
+#dropdown-menu2 {
+  background: rgba(0, 0, 0, 0.91);
+  border-radius: 2px;
+  font-size: 1vw;
+  min-width: inherit;
+  text-transform: none;
+}
+
+#dropdown-menu2 > li > a {
+  text-transform: inherit;
+  white-space: inherit;
+  color: white;
+}
+
+.dropdownMenu2 {
+  margin-bottom: -25px;
+}

@@ -1,0 +1,67 @@
+@import "../_imports/colors";
+
+.mask_avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 5px solid #ddd;
+  overflow: hidden;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  margin-left: 5px;
+  margin-right: 5px;
+
+  &:hover {
+    transition: all .3s;
+    border: 3px solid $base_color;
+    box-shadow: 0 0 50px rgba(38, 207, 227, 0.76);
+  }
+  &.selected {
+    border: 3px solid $base_color;
+    box-shadow: 0 0 50px rgba(38, 207, 227, 0.76);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+#list-inline-MES {
+  margin-left: inherit;
+}
+
+.nav_avatar {
+  transition: all .3s;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 30pt;
+  height: 30pt;
+  border-radius: 50%;
+  border: 2px solid #000000;
+  /*&:hover {
+    transition: all .3s;
+    border: 2px solid $base_color;
+    box-shadow: 0 0 10px rgba(38, 207, 227, 0.76);
+  }*/
+}
+
+.profileImg{
+  text-align: center;
+}
+
+#profilePos{
+  transition: all .3s;
+  margin-top: -120px;
+  width: 100pt;
+  height: 100pt;
+  border-radius: 50%;
+  border: 4px solid $navbar_base;
+  &:hover {
+    transition: all .3s;
+    border: 0px solid #000000;
+    box-shadow: 0 0 50px rgb(0, 0, 0);
+  }
+}

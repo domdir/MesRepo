@@ -1,0 +1,108 @@
+@import "../_imports/colors";
+
+.fixed_footer {
+  width: 100%;
+  min-height: 245px;
+  background: $navbar_base;
+  //left: 0;
+  //bottom: 0;
+  //z-index: -100;
+  //margin-top: 300px;
+  //margin-bottom: 0;
+
+  .content {
+    width: 85%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .row .col-md-2{
+    color: #ffffff;
+    font-family: MESFont5, sans-serif;
+
+    a{
+      color: #ffffff;
+      text-decoration: none;
+
+      &:hover{
+        color: #26C6DA;
+        transition:all .3s;
+      }
+    }
+    h5{
+      color: #636363;
+      font-size: 10px;
+      font-family: MESFont5, sans-serif;
+    }
+
+  }
+}
+
+.content {
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+
+.fixed_footer .row ul {
+  list-style: none;
+  font-size: 14px;
+  padding: 0;
+}
+
+.fixed_footer .row ul li {
+  padding: 0;
+  line-height: 18px;
+  margin: 5px 0;
+}
+
+.fixed_footer .row h5 {
+  margin-bottom: 20px;
+  font-size: large;
+}
+
+.fixed_footer .row {
+  width: 100%;
+  text-align: inherit;
+  margin-bottom: 0px;
+}
+
+//LOGO RECMUSIC
+.footer-logo {
+  width: 200px;
+  height: 40px;
+
+}
+#logorec {
+  height: 33px;
+  margin-top: -9px;
+  margin-right: -2px;
+}
+
+.fixed_footer .footer-logo > a {
+  font-family: MESFont, sans-serif;
+  background-size: 100% 100%;
+  color: #FFFFFF;
+  text-decoration: none;
+  float: left;
+  font-size: 18px;
+  padding-right: 9pt;
+  padding-top: 4pt;
+  margin-top: 12pt;
+  line-height: 1;
+
+}
+.fixed_footer .footer-logo > a:hover {
+  color: #26C6DA;
+}
+
+//logopoli
+#polilogo {
+  float: left;
+  width: 120px;
+  margin-top: 15pt;
+  margin-left: -34pt;
+}
+#vuoto{
+  margin-right: -20px;
+}

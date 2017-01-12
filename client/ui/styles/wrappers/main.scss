@@ -1,0 +1,57 @@
+@import "../_imports/dimensions";
+@import "../_imports/colors";
+
+$body-bg: transparent;
+
+@font-face {
+  font-family: MESFont;
+  src: url('/font/AvenirLTStd-Medium.otf');
+}
+
+@font-face {
+  font-family: MESFont2;
+  src: url('/font/Raleway/Raleway-Regular.ttf');
+}
+
+@font-face {
+  font-family: MESFont3;
+  src: url('/font/Raleway/Raleway-ExtraLight.ttf');
+}
+
+@font-face {
+  font-family: MESFont4;
+  src: url('/font/zanzibar.ttf');
+}
+
+@font-face {
+  font-family: MESFont5;
+  src: url('/font/AvenirLTStd-Light.otf');
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+}
+
+html, body, #react-root, #s_main_wrapper {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  //-webkit-font-smoothing: antialiased;
+  //background-color: rgb(240, 241, 245);
+  background: $navbar_base;
+  font-family: MESFont, sans-serif;
+  color: black;
+  overflow: scroll;
+}
+
+main{
+  margin-top: $nav-bar-height;
+  height: 100%;
+}
+
+
+.wrapper{
+  min-height: 100%;
+}

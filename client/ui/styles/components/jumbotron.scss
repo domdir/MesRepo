@@ -1,0 +1,124 @@
+.jumbotron {
+  background-color: inherit;
+  margin-bottom: -20px;
+  margin-top: 60px;
+}
+
+.jumbotron h1, .jumbotron .h1 {
+  color: white;
+}
+
+#jumbostart{
+  margin-top: 10px;
+  margin-bottom: -3.5vw;
+}
+
+#jumboini {
+  margin-top: 20px;
+}
+
+.jini{
+  margin-bottom: -40px;
+}
+
+.jumboprofile{
+  background-color: black;
+  margin-top: -40px;
+  margin-bottom: -145px;
+}
+
+#jumbopersonal1 {
+  background-image: url('/images/barpersonal1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  margin-bottom: 47px;
+  height: 300px;
+  text-transform: uppercase;
+}
+
+#jumbopersonal1::before {
+  content: '';
+  position: absolute;
+  z-index: 10;
+  background-image: -webkit-linear-gradient(#000, transparent);
+  background-image: -moz-linear-gradient(#000, transparent);
+  background-image: -o-linear-gradient(#000, transparent);
+  background-image: linear-gradient(#000, transparent);
+  height: 170px;
+  width: 100%;
+  top: 0;
+}
+
+#jumbopersonal2 {
+  background-image: url('/images/barpersonal2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  margin-bottom: 47px;
+  height: 300px;
+  text-transform: uppercase;
+}
+
+#jumbopersonal2::before {
+  content: '';
+  position: absolute;
+  z-index: 10;
+  background-image: -webkit-linear-gradient(#000, transparent);
+  background-image: -moz-linear-gradient(#000, transparent);
+  background-image: -o-linear-gradient(#000, transparent);
+  background-image: linear-gradient(#000, transparent);
+  height: 170px;
+  width: 100%;
+  top: 0;
+}
+
+#jumbopersonal3 {
+  background-image: url('/images/barpersonal3.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  margin-bottom: 47px;
+  height: 300px;
+  text-transform: uppercase;
+}
+
+#jumbopersonal3::before {
+  content: '';
+  position: absolute;
+  z-index: 10;
+  background-image: -webkit-linear-gradient(#000, transparent);
+  background-image: -moz-linear-gradient(#000, transparent);
+  background-image: -o-linear-gradient(#000, transparent);
+  background-image: linear-gradient(#000, transparent);
+  height: 170px;
+  width: 100%;
+  top: 0;
+}
+
+#jumbopersonal4 {
+  background-image: url('/images/barpersonal4.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  margin-bottom: 47px;
+  height: 300px;
+  text-transform: uppercase;
+}
+
+#jumbopersonal4::before {
+  content: '';
+  position: absolute;
+  z-index: 10;
+  background-image: -webkit-linear-gradient(#000, transparent);
+  background-image: -moz-linear-gradient(#000, transparent);
+  background-image: -o-linear-gradient(#000, transparent);
+  background-image: linear-gradient(#000, transparent);
+  height: 170px;
+  width: 100%;
+  top: 0;
+}
+
+.container_name {
+  margin-top: 50px;
+}
