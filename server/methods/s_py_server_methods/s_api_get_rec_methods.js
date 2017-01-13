@@ -22,7 +22,7 @@ Meteor.methods({
       return
     }
 
-    Meteor.http.call("GET", "http://recmusicapiopenshift-obscuretest.rhcloud.com/get_rec?" +
+    Meteor.http.call("GET", "http://localhost:8052/get_rec?" +
       "rec_request_list=" + recType +
       "&for_who=" + this.userId,
       (error, result) => {
@@ -86,7 +86,7 @@ Meteor.methods({
         break;
       }
     }
-    Meteor.http.call("GET", "http://recmusicapiopenshift-obscuretest.rhcloud.com/" + rec_type + "?" +
+    Meteor.http.call("GET", "http://localhost:8052/" + rec_type + "?" +
       "num_of_rec=" + num_of_rec +
       "&for_who=" + this.userId,
       (error, result) => {
@@ -145,7 +145,7 @@ Meteor.methods({
       }
     }
 
-    Meteor.http.call("GET", "http://recmusicapiopenshift-obscuretest.rhcloud.com/get_tag_rec?" +
+    Meteor.http.call("GET", "http://localhost:8052/get_tag_rec?" +
       "num_of_rec=" + numOfRec +
       "&for_who=" + this.userId,
       (error, result) => {
@@ -185,7 +185,7 @@ Meteor.methods({
       }
     }
 
-    Meteor.http.call("GET", "http://recmusicapiopenshift-obscuretest.rhcloud.com/get_genre_rec?" +
+    Meteor.http.call("GET", "http://localhost:8052/get_genre_rec?" +
       "num_of_rec=" + numOfRec +
       "&for_who=" + this.userId,
       (error, result) => {
@@ -226,7 +226,7 @@ Meteor.methods({
       }
     }
 
-    Meteor.http.call("GET", "http://recmusicapiopenshift-obscuretest.rhcloud.com/get_feature_rec?" +
+    Meteor.http.call("GET", "http://localhost:8052/get_feature_rec?" +
       "num_of_rec=" + numOfRec +
       "&for_who=" + this.userId,
       (error, result) => {

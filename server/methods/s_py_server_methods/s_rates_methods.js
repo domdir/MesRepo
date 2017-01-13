@@ -7,7 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import { errors } from '/both/errors/ErrorList'
 import { throwError } from '/both/errors/ErrorManager'
 
-const base_server_url = 'http://recmusicapiopenshift-obscuretest.rhcloud.com';
+const base_server_url = 'http://localhost:8052/';
 
 Meteor.methods( {
 
@@ -49,7 +49,7 @@ Meteor.methods( {
       endDate.getDate();
       const deltaInSeconds = (endDate - start_date) / 1000;
 
-      Meteor.http.call( "POST", 'http://recmusicapiopenshift-obscuretest.rhcloud.com/save_rate', {
+      Meteor.http.call( "POST", 'http://localhost:8052/save_rate', {
          data: {
             "time_stamp": new Date().getTime(),
             "seen_by": userId,
@@ -79,7 +79,7 @@ Meteor.methods( {
 
       Future = Npm.require( 'fibers/future' );
       var myFuture = new Future();
-      let base = "http://recmusicapiopenshift-obscuretest.rhcloud.com";
+      let base = "http://localhost:8052/";
 
       Meteor.http.call( "GET",
         `${base}/movies_seen_by?user_id=${this.userId}&limit=${limit}&show_skipped=0`, ( error, result ) => {

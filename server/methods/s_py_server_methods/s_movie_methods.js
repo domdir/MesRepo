@@ -5,7 +5,7 @@
 import { errors } from '/both/errors/ErrorList'
 import { throwError } from '/both/errors/ErrorManager'
 
-const base_server_url = "http://recmusicapiopenshift-obscuretest.rhcloud.com/";
+const base_server_url = "http://localhost:8052/";
 
 Meteor.methods({
 

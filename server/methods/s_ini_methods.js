@@ -38,7 +38,7 @@ Meteor.methods({
            $set: {fav_genres: genres}
         }
       );
-      Meteor.http.call("POST", 'http://recmusicapiopenshift-obscuretest.rhcloud.com/save_genres_liked', {
+      Meteor.http.call("POST", 'http://localhost:8052/save_genres_liked', {
            data: {
               "user_id": userId,
               "genres_liked": genres
@@ -93,7 +93,7 @@ Meteor.methods({
             questionsArray.push(questions[key]);
          }
       }
-      Meteor.http.call("POST", 'http://recmusicapiopenshift-obscuretest.rhcloud.com/save_quest', {
+      Meteor.http.call("POST", 'http://localhost:8052/save_quest', {
            data: {
               "user_id": this.userId,
               "questions": questionsArray
