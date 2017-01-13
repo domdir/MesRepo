@@ -68,7 +68,7 @@ export default class ThumbTrailerProfile extends Component {
         <div className="thumbnail thumbmovies_profile" onClick={this.onHandleClick.bind(this)}>
            <div className="caption" id="captionthumb" title={this.props.movie_title}>
               <img id="thumbMoviesDimension2"
-                   src={"http://localhost:8052/get_img?imdb_id="+this.props.imdb_id}
+                   src={"http://52.213.117.40:8052/get_img?imdb_id="+this.props.imdb_id}
                    onLoad={this.handleImageLoaded.bind(this)}
                    onError={this.handleImageErrored.bind(this)}/>
               <p className="thumbDescription">Title: {this.truncateString(this.props.movie_title)}</p>
