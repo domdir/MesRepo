@@ -11,7 +11,9 @@
     "react-addons-pure-render-mixin": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-modal": "^1.1.0",
-    "react-mounter": "^1.1.0"
+    "react-mounter": "^1.1.0",
+    "react-webcam": "0.0.14"
+
   },
   "devDependencies": {
     "eslint": "^2.5.3",
