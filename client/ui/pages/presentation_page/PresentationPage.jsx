@@ -25,7 +25,7 @@ export default PresentationPage = ()=> (
                                             MOVIES FOR <span style={{color: 'rgba(38, 198, 218, 0.9)'}}> YOU</span>
                                             </span></h2>
                                 <br />
-                                <h5>Mise-En-Scéne is a no-profit project developed by Politecnico di Milano,
+                                <h5>Mise-En-ScÃ©ne is a no-profit project developed by Politecnico di Milano,
                                     with the goal to investigates the use of automatically extracted visual features of
                                     videos in
                                     the context of recommender systems and brings some novel contributions in the
@@ -99,9 +99,9 @@ export default PresentationPage = ()=> (
                                 </h4>
                                 <p>
                                     To generate recommendations using our Low-Level stylistic visual features,
-                                    we adopted a classical “k-nearest neighbor” content-based algorithm.
+                                    we adopted a classical â€œk-nearest neighborâ€� content-based algorithm.
                                     This method was initially tested with an offline evaluation.
-                                    Now we'll compare the “k-nearest neighbor” content-based algorithm based on three
+                                    Now we'll compare the â€œk-nearest neighborâ€� content-based algorithm based on three
                                     different information: Features, Genres and Tags.
                                     <br />
                                     <br />
