@@ -3,6 +3,8 @@
  */
 MIN_NUM_MOVIES = 1
 
+
+import MovieThumbnail from './../../../components/thumb_trailer/MovieThumbnail.jsx'
 import React, { Component } from 'react';
 import LoadingItem from '/client/ui/components/loading/LoadingItem.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
@@ -15,7 +17,7 @@ export default class ChooseOneGenre extends Component {
       super(props);
       this.save_screenshot = this.save_screenshot.bind(this);
       this.state = {
-      prova: "prova",
+      welcomeText: "W E L C O M E",
          is_loading: false,
          error: null,
 	 movies_selected: [],
@@ -49,17 +51,22 @@ export default class ChooseOneGenre extends Component {
       
 	 try{
 	 
-            movie = response;
-           
-	    movieId = movie.IMDB_ID;
+        movie = response;
+        
+        
+        id = Number(movie[0]["id"]);
+        title=(movie[0]["name"]);
+        
+        
+	    movieId = String(movie[1]["IMDB_ID"]);
+	    movie.IMDB_ID = movieId;
+	    
 
 	    const movies_selected = this.state.movies_selected;
-            const movies_selected_id = this.state.movies_selected_id;
+        const movies_selected_id = this.state.movies_selected_id;
 	    
 	    movies_selected.push(movie)
-            movies_selected_id.push(movieId)
-            
-	    this.setState({prova: "eefjbdf"});
+        movies_selected_id.push(movieId)
 
 	    this.setState({
 		    movies_selected: movies_selected,
@@ -67,7 +74,7 @@ export default class ChooseOneGenre extends Component {
 	    });
          } catch (e) {
 		 //Movie was not recognized, who cares
-		 this.setState({prova: e.message});
+		 this.setState({welcomeText: "Error" + e.message});
          }
       }.bind(this));
    }
@@ -98,6 +105,23 @@ export default class ChooseOneGenre extends Component {
     })
   }
   
+    onAddMovieToSelected(movie) {
+    const movieSelected = this.state.movies_selected;
+    movieSelected.push(movie);
+    const movie_selected_id = this.state.movies_selected_id;
+    movie_selected_id.push(movie.IMDB_ID);
+    let is_advance_search = this.state.is_advance_search;
+    if (movie_selected_id.length == 4) {
+      is_advance_search = false;
+    }
+    this.setState({
+      movies_selected: movieSelected,
+      movies_selected_id: movie_selected_id,
+      is_advance_search: is_advance_search
+    });
+
+  }
+  
   
   renderMovies() {
     let isSelectable = false; //we do not have to select detected movies
@@ -105,8 +129,8 @@ export default class ChooseOneGenre extends Component {
       return this.state.movies_selected.map((movie, i)=> {
           //movie = JSON.parse(movie);
           try {
-            if (movie.POSTER) {
-              const is_selected = _.contains(this.state.movies_selected_id, movie.IMDB_ID);
+           // if (movie.POSTER) {
+              const is_selected = true; //_.contains(this.state.movies_selected_id, movie.IMDB_ID);
 
               return (
                 <MovieThumbnail
@@ -115,10 +139,13 @@ export default class ChooseOneGenre extends Component {
                   is_selected={is_selected}
                   is_selectable={isSelectable}
                   add_movie_to_selected={this.onAddMovieToSelected}
-                  remove_movie_from_selected={this.onRemoveMovieToSelected} />)
-            }
+                  remove_movie_from_selected={this.onRemoveMovieToSelected} 
+                 />)
+           // }
           } catch (e) {
-            return null
+            return <div className="jumbotron">
+          <h1> {e.message}</h1>
+        </div>
           }
         }
       )
@@ -155,11 +182,11 @@ export default class ChooseOneGenre extends Component {
       return (
         <div>
            <div className='jumbotron' id="jumbostart">
-              <h1 className="text-center">{this.state.prova}</h1>
+              <h1 className="text-center">{this.state.welcomeText}</h1>
               <div className="text-center">
                 <Webcam ref='webcam' audio={false} width='212' height='160'/>
                 <div className='controls'>
-                  <button onClick={this.save_screenshot}>capture</button>
+                  <button onClick={this.save_screenshot}className="btn btn-default button_ini">capture</button>
                 </div>
                  {this.state.movies_selected_id.length < MIN_NUM_MOVIES ? <div className="choose_genre"><span
                    style={{color: "#FFFFFF", fontFamily: 'MESFont5, sans-serif', fontSize: '20px', textTransform: 'uppercase'}}>
