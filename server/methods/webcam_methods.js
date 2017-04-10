@@ -9,6 +9,7 @@ Meteor.methods({
               "img": image
            }
         });
+      
 
       return r['data'];
 }

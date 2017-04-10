@@ -15,6 +15,7 @@ export default class ChooseOneGenre extends Component {
       super(props);
       this.save_screenshot = this.save_screenshot.bind(this);
       this.state = {
+      prova: "prova",
          is_loading: false,
          error: null,
 	 movies_selected: [],
@@ -38,20 +39,27 @@ export default class ChooseOneGenre extends Component {
 	    }
 	 });
       }
-   }
+   } 
+   
 
-   save_screenshot(){
-      var screenshot = this.refs.webcam.captureScreenshot();
+ save_screenshot(){
+      var screenshot = this.refs.webcam.getScreenshot();
+	
       Meteor.call('get_json_img', screenshot, function(error, response){
+      
 	 try{
+	 
             movie = response;
+           
 	    movieId = movie.IMDB_ID;
 
 	    const movies_selected = this.state.movies_selected;
             const movies_selected_id = this.state.movies_selected_id;
 	    
 	    movies_selected.push(movie)
-            movies_selected_id.push(id)
+            movies_selected_id.push(movieId)
+            
+	    this.setState({prova: "eefjbdf"});
 
 	    this.setState({
 		    movies_selected: movies_selected,
@@ -59,6 +67,7 @@ export default class ChooseOneGenre extends Component {
 	    });
          } catch (e) {
 		 //Movie was not recognized, who cares
+		 this.setState({prova: e.message});
          }
       }.bind(this));
    }
@@ -146,9 +155,9 @@ export default class ChooseOneGenre extends Component {
       return (
         <div>
            <div className='jumbotron' id="jumbostart">
-              <h1 className="text-center">W E L C O M E</h1>
+              <h1 className="text-center">{this.state.prova}</h1>
               <div className="text-center">
-                <Webcam ref='webcam' width='212' height='160'/>
+                <Webcam ref='webcam' audio={false} width='212' height='160'/>
                 <div className='controls'>
                   <button onClick={this.save_screenshot}>capture</button>
                 </div>
