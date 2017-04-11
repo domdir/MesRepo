@@ -47,24 +47,24 @@ export default class ChooseOneGenre extends Component {
  save_screenshot(){
       var screenshot = this.refs.webcam.getScreenshot();
 	
-      Meteor.call('get_json_img', screenshot, function(error, response){
+      Meteor.call('get_json_movie_by_image', screenshot, function(error, response){
       
 	 try{
 	 
-        movie = response;
+	 
+        movie = JSON.parse(String(response[0]));
         
-        
-        id = Number(movie[0]["id"]);
-        title=(movie[0]["name"]);
-        
-        
-	    movieId = String(movie[1]["IMDB_ID"]);
+        title=String(movie['TITLE']);
+	    movieId = movie['IMDB_ID'];
+	    
+	    //this.setState({welcomeText: "TRY" + movieId + title});
 	    movie.IMDB_ID = movieId;
 	    
-
 	    const movies_selected = this.state.movies_selected;
         const movies_selected_id = this.state.movies_selected_id;
 	    
+	    index=movies_selected_id.indexOf(movieId)
+	    if (index==-1){
 	    movies_selected.push(movie)
         movies_selected_id.push(movieId)
 
@@ -72,9 +72,10 @@ export default class ChooseOneGenre extends Component {
 		    movies_selected: movies_selected,
 		    movies_selected_id: movies_selected_id
 	    });
+	    }
          } catch (e) {
 		 //Movie was not recognized, who cares
-		 this.setState({welcomeText: "Error" + e.message});
+		 //this.setState({welcomeText: "Error" + e.message});
          }
       }.bind(this));
    }
@@ -152,7 +153,7 @@ export default class ChooseOneGenre extends Component {
     } else {
       if (!this.state.error_server) {
         return <div className="jumbotron">
-          <h1> No Movies</h1>
+          <h1> No Movies </h1>
         </div>
       } else {
         return null;
@@ -184,7 +185,7 @@ export default class ChooseOneGenre extends Component {
            <div className='jumbotron' id="jumbostart">
               <h1 className="text-center">{this.state.welcomeText}</h1>
               <div className="text-center">
-                <Webcam ref='webcam' audio={false} width='212' height='160'/>
+                <Webcam ref='webcam' audio={false} width='260' height='190'/>
                 <div className='controls'>
                   <button onClick={this.save_screenshot}className="btn btn-default button_ini">capture</button>
                 </div>

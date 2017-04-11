@@ -28,7 +28,7 @@ export default class ExplanationRates extends Component {
             <div>
                 <div>
                     <div className='jumbotron'>
-                        <h1 className="text-center">N O W &nbsp; R A T E <br /> T H E &nbsp; M O V I E S</h1>
+                        <h1 className="text-center">N O W &nbsp; R A T E <br /> T H E &nbsp;T R A I L E R S</h1>
 
                         <div className="row">
                             <div className="col-sm-6 col-sm-offset-3">

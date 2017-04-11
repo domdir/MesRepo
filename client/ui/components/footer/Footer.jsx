@@ -71,8 +71,10 @@ export default class Footer extends React.Component {
                  <div className="col-xs-6 col-sm-4 col-md-2">
                     <h5>D E V E L O P E R S</h5>
                     <ul>
-                       <li>Donini Alessandro</li>
-                       <li>Chiap Gianluca</li>
+                   	   <li>Anghileri Davide</li>
+                       <li>Paladini Antonio </li>
+                       <li>Donini Alessandro </li>
+                       <li>Chiap Gianluca </li>
                     </ul>
                  </div>
                  <div className="col-xs-6 col-sm-4 col-md-2">
