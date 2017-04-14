@@ -42,7 +42,7 @@ export default class EndIni extends Component {
               <h1 className="text-center">T H A N K &nbsp; Y O U</h1>
               <h2 className="text-center">
                     <span style={{color: "#FFFFFF", fontFamily: 'MESFont5, sans-serif'}}>
-                        The initialization is finished ! <br /><br />E N J O Y</span></h2>
+                        <br /><br />E N J O Y</span></h2>
               <br />
               <br />
            </div>

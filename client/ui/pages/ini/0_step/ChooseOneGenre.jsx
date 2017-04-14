@@ -1,7 +1,7 @@
 /*
  * Created with ♥ by Gianluca Chiap (@forgiangi)
  */
-MIN_NUM_MOVIES = 1
+MIN_NUM_MOVIES = 3
 
 
 import MovieThumbnail from './../../../components/thumb_trailer/MovieThumbnail.jsx'
@@ -9,6 +9,8 @@ import React, { Component } from 'react';
 import LoadingItem from '/client/ui/components/loading/LoadingItem.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 import Webcam from 'react-webcam';
+import { Line, Circle } from 'rc-progress';
+
 
 
 export default class ChooseOneGenre extends Component {
@@ -17,7 +19,8 @@ export default class ChooseOneGenre extends Component {
       super(props);
       this.save_screenshot = this.save_screenshot.bind(this);
       this.state = {
-      welcomeText: "W E L C O M E",
+      welcomeText: "W E L C O M E" , //this.props.currentUser.user_name
+       title : "",
          is_loading: false,
          error: null,
 	 movies_selected: [],
@@ -50,12 +53,15 @@ export default class ChooseOneGenre extends Component {
       Meteor.call('get_json_movie_by_image', screenshot, function(error, response){
       
 	 try{
-	 
+	 	
 	 
         movie = JSON.parse(String(response[0]));
         
         title=String(movie['TITLE']);
 	    movieId = movie['IMDB_ID'];
+	    year = movie['YEAR'];
+	    genres = movie ['GENRES'];
+	    length = movie ['LENGTH'];
 	    
 	    //this.setState({welcomeText: "TRY" + movieId + title});
 	    movie.IMDB_ID = movieId;
@@ -69,12 +75,16 @@ export default class ChooseOneGenre extends Component {
         movies_selected_id.push(movieId)
 
 	    this.setState({
+	    	welcomeText : title + "  (" + year + ")  "  + length + "min.",
 		    movies_selected: movies_selected,
 		    movies_selected_id: movies_selected_id
 	    });
 	    }
          } catch (e) {
 		 //Movie was not recognized, who cares
+		 this.setState({
+		    welcomeText: "Movie not recognized, try again!",
+	    });
 		 //this.setState({welcomeText: "Error" + e.message});
          }
       }.bind(this));
@@ -135,6 +145,7 @@ export default class ChooseOneGenre extends Component {
 
               return (
                 <MovieThumbnail
+                  
                   key={i}
                   movie={movie}
                   is_selected={is_selected}
@@ -163,11 +174,7 @@ export default class ChooseOneGenre extends Component {
    
   
   render() {
-      title = "TAKE A PICTURE OF YOUR FAVORITE MOVIES COVERS";
-
-      if (this.state.genre_selected) {
-         title = " Thank you, press next "
-      }
+    
 
       if (this.props.currentUser) {
          
@@ -181,17 +188,19 @@ export default class ChooseOneGenre extends Component {
       }
 
       return (
-        <div>
+        <div>   
            <div className='jumbotron' id="jumbostart">
-              <h1 className="text-center">{this.state.welcomeText}</h1>
+           <div  id="Welcome_container">
+              <span id="Welcome_center"  >{this.state.welcomeText}</span></div>
               <div className="text-center">
-                <Webcam ref='webcam' audio={false} width='260' height='190'/>
+                <Webcam  ref='webcam' audio={false} width='260' height='190'/>
                 <div className='controls'>
-                  <button onClick={this.save_screenshot}className="btn btn-default button_ini">capture</button>
+                  <button onClick={this.save_screenshot}className="btn btn-primary ">capture</button>
                 </div>
                  {this.state.movies_selected_id.length < MIN_NUM_MOVIES ? <div className="choose_genre"><span
-                   style={{color: "#FFFFFF", fontFamily: 'MESFont5, sans-serif', fontSize: '20px', textTransform: 'uppercase'}}>
-                       {title}</span></div>
+                   style={{color: "#FFFFFF", fontFamily: 'MESFont5, sans-serif', fontSize: '20px'}}>
+                      TAKE A PICTURE OF 3 MOVIES COVERS</span><div id = "progress">
+           <Line percent={this.state.movies_selected_id.length*33} trailWidth="1" trailColor="#494949" strokeWidth="1" strokeColor="#399000" /></div></div>
                    : <button onClick={this.onHandleNext.bind(this)}
                              className="btn btn-default button_ini">N E X T</button>}
               </div>

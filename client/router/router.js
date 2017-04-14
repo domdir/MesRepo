@@ -6,6 +6,7 @@ export const routesPath = {
 
    INDEX: "/",
    AUTH_BASE_ROUTE: "/auth",
+   DEM_ROUTE: "/demographic",
    INI_BASE_ROUTE: "/ini",
    LOGOUT_ROUTE: "/logout",
    HOME_PAGE_GROUP_ROUTE: "/home",
@@ -34,6 +35,9 @@ export const routesParam = {
 
    LOGIN: "login",
    SIGN_UP: "sign_up",
+   VERSION2_INI_STEP_0: "/20",
+   VERSION2_INI_STEP_1: "/21",
+   VERSION2_INI_STEP_2: "/22",
    INI_STEP_0: "/0",
    INI_STEP_1: "/1",
    INI_STEP_2: "/2",

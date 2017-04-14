@@ -58,13 +58,14 @@ export default class MovieThumbnail extends Component {
         <div className="thumbnail" id={!this.props.is_selected ? "thumbmovies":  "thumbmovies-selected"}
              onClick={this.onClick.bind(this)}>
            <div className="caption" id="captionthumb">
-              <img id="thumbMoviesDimension" title={this.props.movie.TITLE}
+              <img id="thumbMoviesDimension" title={this.props.title}
                    src={"http://localhost:8052/get_img?imdb_id="+this.props.movie.IMDB_ID}
                    onLoad={this.handleImageLoaded.bind(this)}
                    onError={this.handleImageErrored.bind(this)}/>
            </div>
 
         </div>
+                   
       )
    }
 }
