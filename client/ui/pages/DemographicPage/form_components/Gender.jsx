@@ -45,7 +45,7 @@ export default class Gender extends React.Component {
   
   render() {
     const {gender,error_msg} = this.state
-    return  <div>
+    return  <div className="gender_div">
        <span className="gender_title_text">Gender: </span>
           <input type="radio" checked={gender == "male"} 
 onClick={this.setGender} value="male" />  <span className="gender_text"> Male </span>
