@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {routesPath, routesParam} from '/client/router/router';
 import SevenStars from '/client/ui/components/rate/SevenStars.jsx'
-import questions from '/client/ui/components/questions/questions.jsx'
+import Questions from '/client/ui/components/questions/Questions.jsx'
 
 
 export default class PersonalityPage extends React.Component {
@@ -30,7 +30,7 @@ render() {
                             color: '#FFFFFF',
                             textShadow: '0px 2px 5px rgba(37, 35, 40, 0.5)'
                         }}>
-					<h1>Extraverted - Enthusiastic</h1></span>
+					<h1><Questions questionId="1"/></h1></span>
 					<div>
                             <SevenStars onHandleVote={this.metodo} rate_title=""/>
                         </div>

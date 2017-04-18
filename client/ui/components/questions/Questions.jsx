@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
 
-export default class questions extends React.Component {
+import Star from './Star.jsx'
+
+export default class Questions extends React.Component {
    constructor(props) {
       super(props);
-
-      this.state = {
-         selected: null
+	this.state = {
+         questionMessage: null
       };
+      
    }
+
    render() {
-	   var list=questionList
-	   this.selected=this.props.questionId
-	   questionText=list[this.selected].message
+      var questionList = questionsList.map((rate, i) => {
+         if (rate._id == this.props.questionId) {
+            this.state.questionMessage=rate.message
+         }
+      });
+
       return (
         <h1>
-           {this.questionText}
+		{this.state.questionMessage}
         </h1>
       )
    }
@@ -30,6 +36,6 @@ export default class questions extends React.Component {
    {_id: 7, message: "Sympathetic - Warm"},
    {_id: 8, message: "Disorganized - Careless"},
    {_id: 9, message: "Calm - Emotionally stable"},
-   {_id: 10, message: "Conventional - Uncreative"},
+   {_id: 10, message: "Conventional - Uncreative"}
 
 ];
