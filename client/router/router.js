@@ -7,6 +7,7 @@ export const routesPath = {
    INDEX: "/",
    AUTH_BASE_ROUTE: "/auth",
    DEM_ROUTE: "/demographic",
+   PERSONALITY_ROUTE: "/personality",
    INI_BASE_ROUTE: "/ini",
    LOGOUT_ROUTE: "/logout",
    HOME_PAGE_GROUP_ROUTE: "/home",

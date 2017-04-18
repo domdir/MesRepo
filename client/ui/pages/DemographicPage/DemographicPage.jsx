@@ -6,7 +6,6 @@ import SignUpPassword from './form_components/SignUpPassword.jsx';
 import LoadingWrapper from '/client/ui/components/loading/LoadingWrapper.jsx'
 import {routesPath, routesParam} from '/client/router/router';
 
-
 export default class DemographicPage extends React.Component {
     constructor(props) {
         super(props);
@@ -57,8 +56,8 @@ export default class DemographicPage extends React.Component {
         this.setState({questionnaire_done: true, error_message: null});
         
 		//SAVE DATA INTO DB
-        
-        FlowRouter.go(routesPath.INI_BASE_ROUTE + routesParam.INI_STEP_0);
+        FlowRouter.go(routesPath.PERSONALITY_ROUTE);
+        //FlowRouter.go(routesPath.INI_BASE_ROUTE + routesParam.INI_STEP_0);
          
     }
 
