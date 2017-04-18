@@ -19,12 +19,13 @@ export default class  extends React.Component {
         }
     };
 
-    /*
-     since the age is the first field the gain focus after rendering
-     */
-    componentDidMount() {
-        ReactDOM.findDOMNode(this.refs.ref_age).focus();
-    }
+   /*
+    * since the age is the first field the gain focus after rendering
+    *
+    *	componentDidMount() {
+    *    ReactDOM.findDOMNode(this.refs.ref_age).focus();
+    *	}
+    */
 
    
     checkAge(callBack) {
@@ -45,7 +46,7 @@ export default class  extends React.Component {
     render() {
         return (
             <div id="1">
-                 <span className="form-demQuestionnaire-age-text">Date of Birth: </span><input type="date" placeholder="Age" ref="ref_age"
+                 <span className="age_title">Date of Birth: </span><input type="date" placeholder="Age" ref="ref_age"
                        className="form-demQuestionnaire-age"/>
                 <div className="colorError">
                     {(this.state.age_error_message && !this.state.is_valid_age)

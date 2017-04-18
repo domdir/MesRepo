@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 
 import Age from './form_components/Age.jsx';
-import SignUpUserName from './form_components/SignUpUserName.jsx';
+import Gender from './form_components/Gender.jsx';
+//import Country from './form_components/Country.jsx';
 import SignUpPassword from './form_components/SignUpPassword.jsx';
 import LoadingWrapper from '/client/ui/components/loading/LoadingWrapper.jsx'
 import {routesPath, routesParam} from '/client/router/router';
@@ -24,7 +25,7 @@ export default class DemographicPage extends React.Component {
         
         this.checkErrors((res) => {
             this.setState({is_processing: false, error_message: null});
-          if (res.age) {
+          if (res.age && res.gender) {
                this.onSubmitQuestionnaireValidForm(res);
         }
      });
@@ -32,20 +33,21 @@ export default class DemographicPage extends React.Component {
 
     checkErrors(callBack) {
        var credentials = {
-            "age": null
+            "age": null,
+            "gender": null
         };
         this.refs.age.checkAge((res) => {
             credentials.age = res;
-  /*          this.refs.signup_userName.checkUserName((res) => {
-   *             credentials.user_name = res;
-   *            this.refs.signup_psw.checkPsw((res) => {
+            this.refs.gender.checkGender((res) => {
+                credentials.gender = res;
+   /*            this.refs.signup_psw.checkPsw((res) => {
    *                credentials.psw = res;
    *
    *                 this.setState({is_processing: false});
    *            });
-   * 
-   *         })
    */ 
+           })
+    
                     callBack(credentials);
         });
     }
@@ -77,6 +79,10 @@ export default class DemographicPage extends React.Component {
                                         
                             <form onSubmit={this.onFormQuestionnaireSubmit.bind(this)} noValidate>
                                 <Age ref="age"/>
+                                <Gender ref="gender"/>
+                               
+                                
+                                
                                 <LoadingWrapper loading_style="loader-bars" is_processing={this.state.is_processing}>
                                     <input className="btn-questionnaire btn-default" type="submit" value="FINISH"/>
                                 </LoadingWrapper>

@@ -3,7 +3,7 @@
   
   color: white;
   border: 0.5px solid rgba(245, 245, 245, 0);
-  margin-left: 80px;
+
   height: 50px;
   box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.20);
   border-radius: 0px;
@@ -18,7 +18,16 @@ input[type=date]::-webkit-inner-spin-button {
 
 }
 
-.form-demQuestionnaire-age-text{
+.age_title{
   color: white;
-margin-right: 80px;
+  float: left;
+margin-top: 40px;
+}
+
+.gender_title_text{
+  color: white;
+  float: left;
+}
+.gender_text{
+  color: white;
 }
