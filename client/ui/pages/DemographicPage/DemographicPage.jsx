@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import Age from './form_components/Age.jsx';
 import Gender from './form_components/Gender.jsx';
 //import Country from './form_components/Country.jsx';
+import Questions from './form_components/Questions.jsx';
 import SignUpPassword from './form_components/SignUpPassword.jsx';
 import LoadingWrapper from '/client/ui/components/loading/LoadingWrapper.jsx'
 import {routesPath, routesParam} from '/client/router/router';
@@ -34,21 +35,21 @@ export default class DemographicPage extends React.Component {
     checkErrors(callBack) {
        var credentials = {
             "age": null,
-            "gender": null
+            "gender": null,
+            "questions": null
         };
         this.refs.age.checkAge((res) => {
             credentials.age = res;
-            this.refs.gender.checkGender((res) => {
-                credentials.gender = res;
-   /*            this.refs.signup_psw.checkPsw((res) => {
-   *                credentials.psw = res;
-   *
-   *                 this.setState({is_processing: false});
-   *            });
-   */ 
+            	this.refs.gender.checkGender((res) => {
+             	credentials.gender = res;
+   		            this.refs.questions.autoCompleteQuestions((res) => {
+   	                credentials.questions = res;
+   	                
+                    this.setState({is_processing: false});
+               });
+   
            })
-    
-                    callBack(credentials);
+        	callBack(credentials);
         });
     }
 
@@ -80,6 +81,7 @@ export default class DemographicPage extends React.Component {
                             <form onSubmit={this.onFormQuestionnaireSubmit.bind(this)} noValidate>
                                 <Age ref="age"/>
                                 <Gender ref="gender"/>
+                                <Questions ref="questions"/>
                                
                                 
                                 

@@ -9,13 +9,74 @@
   border-radius: 0px;
   
 }
+
+.form-demQuestionnaire-questions-number {
+  font-family: MESFont2, sans-serif;
+margin-top: 10px !important;
+margin-right: 20px;
+  color: white;
+  //border: 0.5px solid rgba(245, 245, 245, 0);
+  height: 25px !important;
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.20);
+  border-radius: 0px;
+    width: 40px;
+    border: 1px solid #CCC;
+  
+}
+
+.form-demQuestionnaire-questions-text {
+  font-family: MESFont2, sans-serif;
+margin-top: 0px !important;
+margin-right: 20px;
+  color: white;
+  //border: 0.5px solid rgba(245, 245, 245, 0);
+  height: 25px !important;
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.20);
+  border-radius: 0px;
+    width: 120px;
+    border: 1px solid #CCC;
+  
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 input[type=date]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     display: none;
 }
 
+
+
 #1{
 
+}
+
+.gender_div{
+margin-top: 10px;
+}
+
+
+.question_div{
+margin-top: 20px;
+}
+
+.question_div2{
+margin-top: 25px;
+}
+
+.question_title{
+  color: white;
+  float: left;
+  width: 200px;
+  margin-top: 0px;
+}
+.question_measure{
+  color: white;
+  margin-top: 10px;
 }
 
 .age_title{
