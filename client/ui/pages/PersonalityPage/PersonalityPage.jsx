@@ -21,9 +21,15 @@ export default class PersonalityPage extends React.Component {
 		}
     }
 render() {
+	const movieBackgrounds=[
+	"/video/personality/1.mp4",
+	"/video/personality/2.mp4"
+	];
         return (
 		<div className="row" id="spacerow">
-               
+		<video autoPlay loop poster="/img/bg-init.jpg" id="bgvid">
+          <source src={movieBackgrounds[this.state.questionId-1]} type="video/mp4" />
+        </video>
                     <span style={{
                             color: '#FFFFFF',
                             textShadow: '0px 2px 5px rgba(37, 35, 40, 0.5)'
