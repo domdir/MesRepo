@@ -81,7 +81,7 @@ export default class DemographicPage extends React.Component {
                         <LoadingWrapper loading_style="loader-spinning" processing_message="test"
                                         is_processing={this.state.questionnaire_done}>
                                         
-                            <form onSubmit={this.onFormQuestionnaireSubmit.bind(this)} noValidate>
+                            <form className="form-demQuestionnaire" onSubmit={this.onFormQuestionnaireSubmit.bind(this)} noValidate>
                                 <Age ref="age"/>
                                 <Gender ref="gender"/>
                                 <Questions ref="questions"/>

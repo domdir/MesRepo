@@ -11,6 +11,9 @@ export default class DemWrapper extends Component {
    render() {
       return (
         <div className="wrapper">
+        <video autoPlay loop poster="/img/bg-init.jpg" id="bgvid">
+          <source src="/video/MES_video.mp4" type="video/mp4" />
+        </video>
            <DemographicPage/>
         </div>
       )
