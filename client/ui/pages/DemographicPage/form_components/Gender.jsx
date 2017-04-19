@@ -2,7 +2,6 @@
  * Created with ♥ by Anghileri Davide
  */
 import React, {Component} from 'react'
-import ReactDOM from 'react-dom';
 
 /*
  Contains the gender element for the questionnaire form

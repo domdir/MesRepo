@@ -7,6 +7,9 @@ import Questions from './form_components/Questions.jsx';
 import SignUpPassword from './form_components/SignUpPassword.jsx';
 import LoadingWrapper from '/client/ui/components/loading/LoadingWrapper.jsx'
 import {routesPath, routesParam} from '/client/router/router';
+import SelectTest from './form_components/pippocomp.jsx';
+
+
 
 
 export default class DemographicPage extends React.Component {
@@ -84,9 +87,7 @@ export default class DemographicPage extends React.Component {
                                 <Age ref="age"/>
                                 <Gender ref="gender"/>
                                 <Questions ref="questions"/>
-                               
-                                
-                                
+								<SelectTest/>
                                 <LoadingWrapper loading_style="loader-bars" is_processing={this.state.is_processing}>
                                     <input className="btn-questionnaire btn-default" type="submit" value="FINISH"/>
                                 </LoadingWrapper>
