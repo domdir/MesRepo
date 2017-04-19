@@ -8,6 +8,7 @@ import SignUpPassword from './form_components/SignUpPassword.jsx';
 import LoadingWrapper from '/client/ui/components/loading/LoadingWrapper.jsx'
 import {routesPath, routesParam} from '/client/router/router';
 
+
 export default class DemographicPage extends React.Component {
     constructor(props) {
         super(props);
@@ -65,9 +66,10 @@ export default class DemographicPage extends React.Component {
     }
 
     render() {
+    
         return (
             <div className="row" id="spacerow">
-               
+                
                     <h1>
             <span style={{
                             color: '#FFFFFF',
