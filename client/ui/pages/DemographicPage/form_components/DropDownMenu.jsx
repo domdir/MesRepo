@@ -21,7 +21,6 @@ export default class SelectTest extends Component {
     return (
     	<Select
         options={ this.state.options }
-        multi
         clearable={ false }
         openOnFocus
         onChange={ this.onChange.bind(this) }
@@ -39,7 +38,7 @@ export default class SelectTest extends Component {
   componentWillMount(){
 	  var optionsTemp=[];
     for (var i=0; i<10; i++) {
-    	optionsTemp.push({label:'optionwithreallylonglabelofawesome '+i, value:'option'+i});
+    	optionsTemp.push({label:'Italy', value:'option'+i});
     }
 	this.setState({
 		options: optionsTemp

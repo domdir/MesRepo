@@ -67,7 +67,7 @@ export default class SignUpPage extends React.Component {
                     error_message: error.reason
                 });
             } else {
-                FlowRouter.go(routesPath.DEM_ROUTE);
+                FlowRouter.go(routesPath.INI_BASE_ROUTE + routesPath.DEM_ROUTE);
             }
         });
     }

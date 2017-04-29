@@ -94,7 +94,8 @@ export default class LoginPage extends Component {
                     error_message: "The email and password you entered don't match"
                 });
             } else {
-                FlowRouter.go("/profile");
+                //FlowRouter.go("/profile");
+				FlowRouter.go("/webcam");
             }
         });
     }

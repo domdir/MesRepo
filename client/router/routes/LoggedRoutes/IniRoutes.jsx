@@ -16,7 +16,6 @@ const iniRoutes = FlowRouter.group( {
    prefix: routesPath.INI_BASE_ROUTE,
    name: routesName.INI_GROUP_NAME,
    triggersEnter: [triggers.mustBeLogged]
-
 } );
 
 iniRoutes.route( routesPath.INDEX, {
@@ -24,7 +23,7 @@ iniRoutes.route( routesPath.INDEX, {
    action: function () {
       mount( AppLayout, {
          main_content: () => (
-           <IniWrapper ini_step={routesParam.INI_STEP_0} />
+           <IniWrapper ini_step={routesParam.DEM_ROUTE} />
          )
       } )
    }

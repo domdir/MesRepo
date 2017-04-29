@@ -1,0 +1,19 @@
+@import "../_imports/colors";
+
+.pageCenter {
+    width: 500px;
+    height: 100px;
+    position: relative;
+    top: 175px;
+    left:400px;
+}
+.lineCenter{
+    text-align: center;
+}
+.verticalCenter{
+    padding: 70px 0;
+}
+.lineCenterAbsolute{
+    text-align: center;
+    top: 400px;
+}

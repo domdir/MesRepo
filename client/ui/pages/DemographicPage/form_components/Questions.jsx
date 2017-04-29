@@ -37,13 +37,16 @@ export default class  extends React.Component {
              <span className="question_title">How many hours per week do you watch movies? </span><input type="number" placeholder="0" ref="ref_question1"
                        className="form-demQuestionnaire-questions-number"/> <span className="question_measure">Hours.</span> </div>
               <div className="question_div">
-             <span className="question_title">How many times per month do you go to the cinema? </span><input type="number" placeholder="0" ref="ref_question2"
+             <span className="question_title">How many times per year do you go to the cinema? </span><input type="number" placeholder="0" ref="ref_question2"
                        className="form-demQuestionnaire-questions-number"/> <span className="question_measure">Times.</span> </div>
              <div className="question_div2">
              <span className="question_title">Your Twitter name    (starting with @):</span><input type="text" placeholder="@TwitterName" ref="ref_question3"
                        className="form-demQuestionnaire-questions-text"/></div>
              <div className="question_div2">
              <span className="question_title">Your Facebook ID: </span><input type="number" placeholder="FacebookID" ref="ref_question4"
+                       className="form-demQuestionnaire-questions-text"/> </div>
+			<div className="question_div2">
+             <span className="question_title">Your Instagram ID: </span><input type="number" placeholder="InstagramID" ref="ref_question4"
                        className="form-demQuestionnaire-questions-text"/> </div>
              
                 <div className="colorError">

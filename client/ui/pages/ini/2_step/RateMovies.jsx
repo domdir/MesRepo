@@ -57,6 +57,7 @@ export class RateMovies extends React.Component {
                FlowRouter.setParams({ini_step: "3"});
             }
          })
+		 
       } else {
          let currentMovieToRate = this.props.ini_movies;
          if (currentMovieToRate) {

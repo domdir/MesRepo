@@ -7,8 +7,13 @@ export const routesPath = {
    INDEX: "/",
    AUTH_BASE_ROUTE: "/auth",
    DEM_ROUTE: "/demographic",
-   PERSONALITY_ROUTE: "/personality",
+   PERSONALITY_QUEST_ROUTE: "/personality_questionnaire",
+   PERSONALITY_PROFILE_ROUTE: "/personality_profile",
+   CATALOG: "/choose_from_catalog",
+   PREWEBCAM: "/webcam",
+   WEBCAM: "/interaction_with_system",
    INI_BASE_ROUTE: "/ini",
+   QUEST_BASE_ROUTE: "/survey",
    LOGOUT_ROUTE: "/logout",
    HOME_PAGE_GROUP_ROUTE: "/home",
    PROFILE_GROUP_ROUTE: "/profile",
@@ -28,6 +33,7 @@ export const routesName = {
    HOME_PAGE_GROUP_ROUTE_NAME: "homePageBaseRoute",
    PROFILE_GROUP_ROUTE_NAME: "ProfileBaseRoute",
    INI_GROUP_NAME: "iniGroup",
+   QUEST_GROUP_NAME: "questGroup",
    INI_BASE_ROUTE_NAME: "IniBaseRoute"
 };
 

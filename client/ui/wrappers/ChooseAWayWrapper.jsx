@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import PersonalityQuestionnaire from '/client/ui/pages/PersonalityPage/PersonalityQuestionnaire.jsx'
-import AuthTitle from '/client/ui/wrappers/auth_wrapper/AuthTitle.jsx';
+import Catalog from '/client/ui/pages/PersonalityPage/Catalog.jsx'
 import {routesParam} from '/client/router/router.js'
 
-export default class PersonalityWrapper extends Component {
+export default class CatalogWrapper extends Component {
 
    constructor(props) {
       super(props);
@@ -14,7 +13,7 @@ export default class PersonalityWrapper extends Component {
    render() {
     return (      
         <div className="wrapper">
-           <PersonalityQuestionnaire/>
+           <ChooseAWay/>
         </div>
       )
    }

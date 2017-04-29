@@ -1,30 +1,22 @@
 /*
  * Created with ♥ by Gianluca Chiap (@forgiangi)
  */
-MIN_NUM_MOVIES = 3
 
-
-import MovieThumbnail from './../../../components/thumb_trailer/MovieThumbnail.jsx'
 import React, { Component } from 'react';
-import LoadingItem from '/client/ui/components/loading/LoadingItem.jsx';
+import LoadingItem from '/client/ui/components/loading/LoadingItem.jsx'
+import GenreThumbnail from './GenreThumbnail.jsx'
 import { createContainer } from 'meteor/react-meteor-data';
-import Webcam from 'react-webcam';
-import { Line, Circle } from 'rc-progress';
-
-
 
 export default class ChooseOneGenre extends Component {
 
    constructor(props) {
       super(props);
-      this.save_screenshot = this.save_screenshot.bind(this);
+      this.add_genre_to_selected = this.add_genre_to_selected.bind(this);
+      this.remove_genre_from_selected = this.remove_genre_from_selected.bind(this);
       this.state = {
-      welcomeText: "W E L C O M E" , //this.props.currentUser.user_name
-       title : "",
          is_loading: false,
-         error: null,
-	 movies_selected: [],
-         movies_selected_id: []
+         genre_selected: null,
+         error: null
       };
    }
 
@@ -32,149 +24,61 @@ export default class ChooseOneGenre extends Component {
 
    }
 
-   onHandleNext() {
-      if (this.state.movies_selected_id.length >= MIN_NUM_MOVIES) {
-         Meteor.call("s_save_movies_chosen", this.state.movies_selected, (err, res)=> {
-            if (res) {
-               Meteor.call("s_set_ini_step", 2, err=> {
-               if (!err) {
-                  FlowRouter.setParams({ ini_step: "2" });
-	       }
-	       });
-	    }
-	 });
-      }
-   } 
-   
-
- save_screenshot(){
-      var screenshot = this.refs.webcam.getScreenshot();
-	
-      Meteor.call('get_json_movie_by_image', screenshot, function(error, response){
-      
-	 try{
-	 	
-	 
-        movie = JSON.parse(String(response[0]));
-        
-        title=String(movie['TITLE']);
-	    movieId = movie['IMDB_ID'];
-	    year = movie['YEAR'];
-	    genres = movie ['GENRES'];
-	    length = movie ['LENGTH'];
-	    
-	    //this.setState({welcomeText: "TRY" + movieId + title});
-	    movie.IMDB_ID = movieId;
-	    
-	    const movies_selected = this.state.movies_selected;
-        const movies_selected_id = this.state.movies_selected_id;
-	    
-	    index=movies_selected_id.indexOf(movieId)
-	    if (index==-1){
-	    movies_selected.push(movie)
-        movies_selected_id.push(movieId)
-
-	    this.setState({
-	    	welcomeText : title + "  (" + year + ")  "  + length + "min.",
-		    movies_selected: movies_selected,
-		    movies_selected_id: movies_selected_id
-	    });
-	    }
-         } catch (e) {
-		 //Movie was not recognized, who cares
-		 this.setState({
-		    welcomeText: "Movie not recognized, try again!",
-	    });
-		 //this.setState({welcomeText: "Error" + e.message});
-         }
-      }.bind(this));
+   add_genre_to_selected(genre_name) {
+      this.setState({
+         genre_selected: genre_name
+      });
    }
 
-  onRemoveMovieToSelected(movie) {
-    const moviesSelectedId = this.state.movies_selected_id;
-
-    var index = moviesSelectedId.indexOf(movie.IMDB_ID);
-    if (index > -1) {
-      moviesSelectedId.splice(index, 1);
-    }
-
-    let index_1 = null;
-
-    const moviesSelected = this.state.movies_selected;
-
-    moviesSelected.forEach((m, i)=> {
-      if (m.IMDB_ID == movie.IMDB_ID) {
-        index_1 = i
+   remove_genre_from_selected(genre_name) {
+      if (genre_name == this.state.genre_selected) {
+         this.setState({
+            genre_selected: null
+         });
       }
-    });
-    moviesSelected.splice(index_1, 1);
+   }
 
+   renderGenres() {
 
-    this.setState({
-      movies_selected_id: moviesSelectedId,
-      movies_selected: moviesSelected
-    })
-  }
-  
-    onAddMovieToSelected(movie) {
-    const movieSelected = this.state.movies_selected;
-    movieSelected.push(movie);
-    const movie_selected_id = this.state.movies_selected_id;
-    movie_selected_id.push(movie.IMDB_ID);
-    let is_advance_search = this.state.is_advance_search;
-    if (movie_selected_id.length == 4) {
-      is_advance_search = false;
-    }
-    this.setState({
-      movies_selected: movieSelected,
-      movies_selected_id: movie_selected_id,
-      is_advance_search: is_advance_search
-    });
-
-  }
-  
-  
-  renderMovies() {
-    let isSelectable = false; //we do not have to select detected movies
-    if (this.state.movies_selected.length) {
-      return this.state.movies_selected.map((movie, i)=> {
-          //movie = JSON.parse(movie);
-          try {
-           // if (movie.POSTER) {
-              const is_selected = true; //_.contains(this.state.movies_selected_id, movie.IMDB_ID);
-
-              return (
-                <MovieThumbnail
-                  
-                  key={i}
-                  movie={movie}
-                  is_selected={is_selected}
-                  is_selectable={isSelectable}
-                  add_movie_to_selected={this.onAddMovieToSelected}
-                  remove_movie_from_selected={this.onRemoveMovieToSelected} 
-                 />)
-           // }
-          } catch (e) {
-            return <div className="jumbotron">
-          <h1> {e.message}</h1>
-        </div>
-          }
-        }
-      )
-    } else {
-      if (!this.state.error_server) {
-        return <div className="jumbotron">
-          <h1> No Movies </h1>
-        </div>
-      } else {
-        return null;
+      const genres = [];
+      for (key in genres_list) {
+         if (genres_list.hasOwnProperty(key)) {
+            genres.push(genres_list[key])
+         }
       }
-    }
-  }
-   
-  
-  render() {
-    
+      return genres.map((genre, i)=> {
+         const is_selected = this.state.genre_selected == genre.name;
+
+         return <GenreThumbnail
+           key={i}
+           genre_name={genre.name}
+           src={genre.img}
+           is_selected={is_selected}
+           add_genre_to_selected={this.add_genre_to_selected}
+           remove_genre_from_selected={this.remove_genre_from_selected} />
+      })
+   }
+
+   onHandleNext() {
+      if (this.state.genre_selected) {
+         Meteor.call("s_save_genres", [this.state.genre_selected], (err, res)=> {
+            if (!err) {
+               Meteor.call("s_set_ini_step", 1, err=> {
+                  if (!err) {
+                     FlowRouter.setParams({ini_step: "1"});
+                  }
+               })
+            }
+         });
+      }
+   }
+
+   render() {
+      title = "CHOOSE YOUR FAVORITE GENRE";
+
+      if (this.state.genre_selected) {
+         title = " Thank you, press next "
+      }
 
       if (this.props.currentUser) {
          
@@ -188,39 +92,23 @@ export default class ChooseOneGenre extends Component {
       }
 
       return (
-        <div>   
+        <div>
            <div className='jumbotron' id="jumbostart">
-           <div  id="Welcome_container">
-              <span id="Welcome_center"  >{this.state.welcomeText}</span></div>
+              <h1 className="text-center">W E L C O M E </h1>
               <div className="text-center">
-                <Webcam  ref='webcam' audio={false} width='260' height='190'/>
-                <div className='controls'>
-                  <button onClick={this.save_screenshot}className="btn btn-primary ">capture</button>
-                </div>
-                 {this.state.movies_selected_id.length < MIN_NUM_MOVIES ? <div className="choose_genre"><span
-                   style={{color: "#FFFFFF", fontFamily: 'MESFont5, sans-serif', fontSize: '20px'}}>
-                      TAKE A PICTURE OF 3 MOVIES COVERS</span><div id = "progress">
-           <Line percent={this.state.movies_selected_id.length*33} trailWidth="1" trailColor="#494949" strokeWidth="1" strokeColor="#399000" /></div></div>
+                 {!this.state.genre_selected ? <div className="choose_genre"><span
+                   style={{color: "#FFFFFF", fontFamily: 'MESFont5, sans-serif', fontSize: '20px', textTransform: 'uppercase'}}>
+                       {title}</span></div>
                    : <button onClick={this.onHandleNext.bind(this)}
                              className="btn btn-default button_ini">N E X T</button>}
               </div>
-          </div>
-
-          <div className="movieContainer">
-            {this.state.error_server ?
-              <div className="jumbotron"><h1>{this.state.error_server}</h1></div> : null}
-
-            <div className="container" id="container_mes">
-              <div id="listMovies">
-                <li>
-                  {!this.state.is_loading ? this.renderMovies() :
-                    <LoadingItem loading_style="loader-spinning" />}
-                </li>
-              </div>
-            </div>
-          </div>
+           </div>
 
            <div className="row">
+
+              <div className="modalgenre">
+                 {this.renderGenres()}
+              </div>
               {this.state.error ? <div className="jumbotron">
                  <h1> {this.state.error}</h1>
               </div> : null}
@@ -235,7 +123,6 @@ export default createContainer( () => {
    let currentUser = null;
    if (handleUser.ready()) {
       currentUser = Meteor.user();
-
    }
    return {
       currentUser

@@ -2,12 +2,15 @@ import React, {Component} from 'react'
 
 import Age from './form_components/Age.jsx';
 import Gender from './form_components/Gender.jsx';
+import Nationality from './form_components/Nationality.jsx'
 //import Country from './form_components/Country.jsx';
 import Questions from './form_components/Questions.jsx';
 import SignUpPassword from './form_components/SignUpPassword.jsx';
 import LoadingWrapper from '/client/ui/components/loading/LoadingWrapper.jsx'
 import {routesPath, routesParam} from '/client/router/router';
-import SelectTest from './form_components/pippocomp.jsx';
+import SelectTest from './form_components/DropDownMenu.jsx';
+import { createContainer } from 'meteor/react-meteor-data';
+
 
 
 
@@ -63,11 +66,15 @@ export default class DemographicPage extends React.Component {
         this.setState({questionnaire_done: true, error_message: null});
         
 		//SAVE DATA INTO DB
-        FlowRouter.go(routesPath.PERSONALITY_ROUTE);
+		Meteor.call("s_set_ini_step", "personality_questionnaire", err=> {
+                  if (!err) {
+                     FlowRouter.setParams({ini_step: "personality_questionnaire"});
+                  }
+               })
         //FlowRouter.go(routesPath.INI_BASE_ROUTE + routesParam.INI_STEP_0);
          
     }
-
+	
     render() {
     
         return (
@@ -86,8 +93,8 @@ export default class DemographicPage extends React.Component {
                             <form className="form-demQuestionnaire" onSubmit={this.onFormQuestionnaireSubmit.bind(this)} noValidate>
                                 <Age ref="age"/>
                                 <Gender ref="gender"/>
+								<Nationality/>
                                 <Questions ref="questions"/>
-								<SelectTest/>
                                 <LoadingWrapper loading_style="loader-bars" is_processing={this.state.is_processing}>
                                     <input className="btn-questionnaire btn-default" type="submit" value="FINISH"/>
                                 </LoadingWrapper>
@@ -104,3 +111,14 @@ export default class DemographicPage extends React.Component {
         )
     }
 };
+export default createContainer( () => {
+
+	const handleUser = Meteor.subscribe( "pub_myself" );
+	let currentUser = null;
+	if (handleUser.ready()) {
+      currentUser = Meteor.user();
+	}
+	return {
+      currentUser
+	};
+	}, DemographicPage );

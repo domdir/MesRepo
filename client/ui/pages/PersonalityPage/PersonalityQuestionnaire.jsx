@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {routesPath, routesParam} from '/client/router/router';
+
 import SevenStars from '/client/ui/components/rate/SevenStars.jsx'
 import Questions from '/client/ui/components/questions/Questions.jsx'
 
 
-export default class PersonalityPage extends React.Component {
+export default class PersonalityQuestionnaire extends React.Component {
 	constructor(props) {
         super(props);
 		this.state = {
@@ -22,7 +23,12 @@ export default class PersonalityPage extends React.Component {
 		questionId: prevState.questionId + 1
 		}));
 		}else{
-		FlowRouter.go(routesPath.INI_BASE_ROUTE + routesParam.INI_STEP_0);
+        Meteor.call("s_set_ini_step", "choose_from_catalog", err=> {
+                  if (!err) {
+                     FlowRouter.setParams({ini_step: "choose_from_catalog"});
+                  }
+               })
+		//FlowRouter.go(routesPath.INI_BASE_ROUTE + routesParam.INI_STEP_0);
 		}
     }
 render() {
