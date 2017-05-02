@@ -115,6 +115,43 @@ Meteor.methods({
            }
         }
       );
-   }
+   },
+
+
+   s_save_dem_questions: function (questions) {
+    
+    
+    const questionsArray = [];
+    for (var key in questions) {
+       if (questions.hasOwnProperty(key)) {
+          questionsArray.push(questions[key]);
+       }
+    }
+    Meteor.http.call("POST", 'http://localhost:8052/save_dem_quest', {
+         data: {
+            "user_id": this.userId,
+            "questions": questionsArray
+         }
+      }
+    );
+
+    
+
+    Meteor.users.update(
+      {
+         _id: this.userId
+      },
+      {
+         $set: {
+        	 dateOfBirth : questionsArray[age],
+        	 gender : questionsArray[gender],
+        	 nationality : questionsArray[nationality],
+        	 twitter: questionsArray[twitter],
+        	 fb: questionsArray[fb],
+        	 instagram: questionsArray[instagram]
+         }
+      }
+    );
+ }
 
 });

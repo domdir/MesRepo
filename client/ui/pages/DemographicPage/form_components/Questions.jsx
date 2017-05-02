@@ -50,7 +50,10 @@ export default class extends React.Component {
             } );
         }
         var twitter = ReactDOM.findDOMNode( this.refs.ref_twitter ).value.trim();
-        if ( twitter && twitter[0] == '@' ) {
+        if (!twitter){
+            questions[1] = -2;  //missing response
+        }
+        else if ( twitter[0] == '@' ) {
             questions[2] = twitter;
         } else {
             questions[2] = -1;

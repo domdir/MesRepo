@@ -33,13 +33,10 @@ class IniWrapper extends Component {
 
       switch (this.props.ini_step) {
 		 case "demographic":
-			const firstWord = this.props.auth_case ==routesParam.LOGIN ? "THE" : "THE";
-			const secondWord = this.props.auth_case == routesParam.LOGIN ? "MOVIES" : "MOVIES";
 			return (<div className="wrapper">
 			<video autoPlay loop poster="/img/bg-init.jpg" id="bgvid">
 			<source src="/video/MES_video.mp4" type="video/mp4" />
 			</video>
-			<AuthTitle firstWord={firstWord} secondWord={secondWord} />
 			<DemographicPage/>
 			</div>);
 			break;

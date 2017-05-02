@@ -26,9 +26,7 @@ export class DemographicPage extends React.Component {
 
     onFormQuestionnaireSubmit( event ) {
         event.preventDefault();
-
         this.setState( { is_processing: true, error_message: null } );
-
         this.checkErrors(( res ) => {
             this.setState( { is_processing: false, error_message: null } );
             if ( res.age && res.gender && res.nationality) {
@@ -41,13 +39,12 @@ export class DemographicPage extends React.Component {
         var credentials = {
             "age": null,
             "gender": null,
+            "nationality": null,
             "question1": null,
             "question2": null,
-            "fb": null,
             "twitter": null,
-            "instagram": null,
-            "nationality": null
-
+            "fb": null,
+            "instagram": null
         };
         this.refs.age.checkAge(( res ) => {
             credentials.age = res;
@@ -71,11 +68,14 @@ export class DemographicPage extends React.Component {
     }
 
 
-    onSubmitQuestionnaireValidForm() {
+    onSubmitQuestionnaireValidForm(res) {
         this.setState( { is_processing: false, error_message: null } );
         this.setState( { questionnaire_done: true, error_message: null } );
 
         //SAVE DATA INTO DB
+        //Meteor.call("s_save_dem_questions", res, ()=> {
+        //});
+        
         Meteor.call( "s_set_ini_step", "personality_questionnaire", err => {
             if ( !err ) {
                 FlowRouter.setParams( { ini_step: "personality_questionnaire" } );
