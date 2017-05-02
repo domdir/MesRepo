@@ -1,6 +1,8 @@
 
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Select from 'react-select'
+
+import countryList from './countryList.json';
 
 
 
@@ -8,46 +10,53 @@ import Select from 'react-select'
 
 
 export default class SelectTest extends Component {
-	constructor(params) {
-     super(params) 
-     
-     this.state = {
-		 options: [],
-		 selected: []
+    constructor( params ) {
+        super( params )
+
+        this.state = {
+            options: [],
+            selected: null,
+        }
     }
-     }
-  
-  render() {
-    return (
-    	<Select
-        options={ this.state.options }
-        clearable={ false }
-        openOnFocus
-        onChange={ this.onChange.bind(this) }
-        value={ this.state.selected }
-        placeholder="Search options..." />
-    );
-  }
-  
-  componentDidMount() {
-  	this.onChange([
-      this.state.options[5],
-      this.state.options[7]
-    ]);
-  }
-  componentWillMount(){
-	  var optionsTemp=[];
-    for (var i=0; i<10; i++) {
-    	optionsTemp.push({label:'Italy', value:'option'+i});
+
+
+    checkNationality( callBack ) {
+
+        if ( this.state.selected ) {
+            callBack( this.state.selected );
+        } else {
+            callBack( null );
+        }
     }
-	this.setState({
-		options: optionsTemp
-	    });
-  }
-  
-  onChange(selectedOptions)  {
-    this.setState({ selected: selectedOptions })
-  }
+
+
+    render() {
+        return ( 
+            <Select 
+                options={this.state.options}
+                clearable={false}
+                openOnFocus
+                onChange={this.update.bind( this )}
+                value={this.state.selected}
+                placeholder="Search options..." />
+            
+        
+
+        );
+    }
+
+
+    componentWillMount() {
+        var optionsTemp = [];
+        for ( var i = 0; i < countryList.length; i++ ) {
+            var country = countryList[i];
+            optionsTemp.push( { label: countryList[i].en_short_name, value: countryList[i].alpha_3_code } );
+        }
+        this.setState( {
+            options: optionsTemp
+        } );
+    }
+    update( e ) { this.setState( { selected: e.value } ); }
 };
 
 

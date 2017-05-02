@@ -1,13 +1,11 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 import Age from './form_components/Age.jsx';
 import Gender from './form_components/Gender.jsx';
 import Nationality from './form_components/Nationality.jsx'
-//import Country from './form_components/Country.jsx';
 import Questions from './form_components/Questions.jsx';
-import SignUpPassword from './form_components/SignUpPassword.jsx';
 import LoadingWrapper from '/client/ui/components/loading/LoadingWrapper.jsx'
-import {routesPath, routesParam} from '/client/router/router';
+import { routesPath, routesParam } from '/client/router/router';
 import SelectTest from './form_components/DropDownMenu.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
 
@@ -15,9 +13,9 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 
 
-export default class DemographicPage extends React.Component {
-    constructor(props) {
-        super(props);
+export class DemographicPage extends React.Component {
+    constructor( props ) {
+        super( props );
 
         this.state = {
             is_processing: false,
@@ -26,99 +24,111 @@ export default class DemographicPage extends React.Component {
         };
     }
 
-    onFormQuestionnaireSubmit(event) {
+    onFormQuestionnaireSubmit( event ) {
         event.preventDefault();
 
-        this.setState({is_processing: true, error_message: null});
-        
-        this.checkErrors((res) => {
-            this.setState({is_processing: false, error_message: null});
-          if (res.age && res.gender) {
-               this.onSubmitQuestionnaireValidForm(res);
-        }
-     });
+        this.setState( { is_processing: true, error_message: null } );
+
+        this.checkErrors(( res ) => {
+            this.setState( { is_processing: false, error_message: null } );
+            if ( res.age && res.gender && res.nationality) {
+                this.onSubmitQuestionnaireValidForm( res );
+            }
+        } );
     }
 
-    checkErrors(callBack) {
-       var credentials = {
+    checkErrors( callBack ) {
+        var credentials = {
             "age": null,
             "gender": null,
-            "questions": null
+            "question1": null,
+            "question2": null,
+            "fb": null,
+            "twitter": null,
+            "instagram": null,
+            "nationality": null
+
         };
-        this.refs.age.checkAge((res) => {
+        this.refs.age.checkAge(( res ) => {
             credentials.age = res;
-            	this.refs.gender.checkGender((res) => {
-             	credentials.gender = res;
-   		            this.refs.questions.autoCompleteQuestions((res) => {
-   	                credentials.questions = res;
-   	                
-                    this.setState({is_processing: false});
-               });
-   
-           })
-        	callBack(credentials);
-        });
+            this.refs.gender.checkGender(( res ) => {
+                credentials.gender = res;
+                this.refs.questions.checkQuestions(( res ) => {
+                    credentials.question1 = res[0];
+                    credentials.question2 = res[1];
+                    credentials.twitter = res[2];
+                    credentials.fb = res[3];
+                    credentials.instagram = res[4];
+                    this.refs.nationality.checkNationality(( res ) => {
+                        credentials.nationality = res;
+
+                        this.setState( { is_processing: false } );
+                    } );
+                } )
+            } )
+            callBack( credentials );
+        } );
     }
 
 
     onSubmitQuestionnaireValidForm() {
-    	this.setState({is_processing: false, error_message: null});
-        this.setState({questionnaire_done: true, error_message: null});
-        
-		//SAVE DATA INTO DB
-		Meteor.call("s_set_ini_step", "personality_questionnaire", err=> {
-                  if (!err) {
-                     FlowRouter.setParams({ini_step: "personality_questionnaire"});
-                  }
-               })
+        this.setState( { is_processing: false, error_message: null } );
+        this.setState( { questionnaire_done: true, error_message: null } );
+
+        //SAVE DATA INTO DB
+        Meteor.call( "s_set_ini_step", "personality_questionnaire", err => {
+            if ( !err ) {
+                FlowRouter.setParams( { ini_step: "personality_questionnaire" } );
+            }
+        } )
         //FlowRouter.go(routesPath.INI_BASE_ROUTE + routesParam.INI_STEP_0);
-         
+
     }
-	
+
     render() {
-    
+
         return (
             <div className="row" id="spacerow">
-                
-                    <h1>
-            <span style={{
-                            color: '#FFFFFF',
-                            textShadow: '0px 2px 5px rgba(37, 35, 40, 0.5)'
-                        }}>Demographic Questionnaire</span>
-                    </h1>
-                    <div className="formauth">
-                        <LoadingWrapper loading_style="loader-spinning" processing_message="test"
-                                        is_processing={this.state.questionnaire_done}>
-                                        
-                            <form className="form-demQuestionnaire" onSubmit={this.onFormQuestionnaireSubmit.bind(this)} noValidate>
-                                <Age ref="age"/>
-                                <Gender ref="gender"/>
-								<Nationality/>
-                                <Questions ref="questions"/>
-                                <LoadingWrapper loading_style="loader-bars" is_processing={this.state.is_processing}>
-                                    <input className="btn-questionnaire btn-default" type="submit" value="FINISH"/>
-                                </LoadingWrapper>
-                                <div className="colorError">
-                                    {(this.state.error_message)
-                                        ? this.state.error_message
-                                        : null}
-                                </div>
-                            </form >
-                        </LoadingWrapper>
-                   
+
+                <h1>
+                    <span style={{
+                        color: '#FFFFFF',
+                        textShadow: '0px 2px 5px rgba(37, 35, 40, 0.5)'
+                    }}>Demographic Questionnaire</span>
+                </h1>
+                <div className="formauth">
+                    <LoadingWrapper loading_style="loader-spinning" processing_message="test"
+                        is_processing={this.state.questionnaire_done}>
+
+                        <form className="form-demQuestionnaire" onSubmit={this.onFormQuestionnaireSubmit.bind( this )} noValidate>
+                            <Age ref="age" />
+                            <Gender ref="gender" />
+                            <Nationality ref="nationality" />
+                            <Questions ref="questions" />
+                            <LoadingWrapper loading_style="loader-bars" is_processing={this.state.is_processing}>
+                                <input className="btn-questionnaire btn-default" type="submit" value="FINISH" />
+                            </LoadingWrapper>
+                            <div className="colorError">
+                                {( this.state.error_message )
+                                    ? this.state.error_message
+                                    : null}
+                            </div>
+                        </form >
+                    </LoadingWrapper>
+
                 </div>
             </div>
         )
     }
 };
-export default createContainer( () => {
+export default createContainer(() => {
 
-	const handleUser = Meteor.subscribe( "pub_myself" );
-	let currentUser = null;
-	if (handleUser.ready()) {
-      currentUser = Meteor.user();
-	}
-	return {
-      currentUser
-	};
-	}, DemographicPage );
+    const handleUser = Meteor.subscribe( "pub_myself" );
+    let currentUser = null;
+    if ( handleUser.ready() ) {
+        currentUser = Meteor.user();
+    }
+    return {
+        currentUser
+    };
+}, DemographicPage );
