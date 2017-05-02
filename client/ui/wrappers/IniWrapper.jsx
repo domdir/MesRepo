@@ -86,6 +86,16 @@ class IniWrapper extends Component {
 
 
    render() {
+	   if (this.props.currentUser) {
+         
+         if (FlowRouter.current().params.ini_step != this.props.currentUser.ini_step) {
+            
+            FlowRouter.go("/ini/"+this.props.currentUser.ini_step)
+         }
+         if(this.props.currentUser.is_ini){
+            FlowRouter.go("/profile");
+         }
+      }
       return (
         <div >
            <div className="wrapper">
@@ -97,5 +107,12 @@ class IniWrapper extends Component {
 }
 
 export default createContainer(() => {
-   return {};
+	const handleUser = Meteor.subscribe( "pub_myself" );
+   let currentUser = null;
+   if (handleUser.ready()) {
+      currentUser = Meteor.user();
+   }
+   return {
+	   currentUser
+   };
 }, IniWrapper);

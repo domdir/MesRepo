@@ -79,7 +79,6 @@ export default class ChooseOneGenre extends Component {
       if (this.state.genre_selected) {
          title = " Thank you, press next "
       }
-
       if (this.props.currentUser) {
          
          if (FlowRouter.current().params.ini_step != this.props.currentUser.ini_step) {

@@ -8,7 +8,7 @@ import LoadingWrapper from '/client/ui/components/loading/LoadingWrapper.jsx'
 import { routesPath, routesParam } from '/client/router/router';
 import SelectTest from './form_components/DropDownMenu.jsx';
 import { createContainer } from 'meteor/react-meteor-data';
-
+import LoadingItem from '/client/ui/components/loading/LoadingItem.jsx'
 
 
 
@@ -71,6 +71,7 @@ export class DemographicPage extends React.Component {
     onSubmitQuestionnaireValidForm(res) {
         this.setState( { is_processing: false, error_message: null } );
         this.setState( { questionnaire_done: true, error_message: null } );
+		 
 
         //SAVE DATA INTO DB
         //Meteor.call("s_save_dem_questions", res, ()=> {
@@ -86,6 +87,7 @@ export class DemographicPage extends React.Component {
     }
 
     render() {
+		
 
         return (
             <div className="row" id="spacerow">
@@ -122,7 +124,6 @@ export class DemographicPage extends React.Component {
     }
 };
 export default createContainer(() => {
-
     const handleUser = Meteor.subscribe( "pub_myself" );
     let currentUser = null;
     if ( handleUser.ready() ) {

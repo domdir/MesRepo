@@ -16,7 +16,7 @@ Meteor.publish('pub_myself', function () {
         fields: {
            'is_auth': 1,
            'is_ini': 1,
-           'ini_step': "demographic",
+           'ini_step': 1,
            'role': 1,
            'user_name': 1,
            'ini_movies': 1,

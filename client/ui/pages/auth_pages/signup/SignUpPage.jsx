@@ -67,7 +67,10 @@ export default class SignUpPage extends React.Component {
                     error_message: error.reason
                 });
             } else {
+				Meteor.call( "s_set_ini_step", "demographic", err => {
+            if ( !err ) {
                 FlowRouter.go(routesPath.INI_BASE_ROUTE + routesPath.DEM_ROUTE);
+			}} )
             }
         });
     }

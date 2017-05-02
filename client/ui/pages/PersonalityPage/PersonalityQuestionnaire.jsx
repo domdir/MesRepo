@@ -44,6 +44,7 @@ render() {
 	"/video/personality/9.mp4",
 	"/video/personality/10.mp4"
 	];
+	
         return (
 		<div className="row" id="spacerow">
 		<video autoPlay muted="true" loop poster="/img/bg-init.jpg" id="bgvid" ref="player">
