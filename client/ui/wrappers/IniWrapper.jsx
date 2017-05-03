@@ -15,10 +15,12 @@ import Catalog from '/client/ui/pages/PersonalityPage/Catalog.jsx'
 import PersonalityQuestionnaire from '/client/ui/pages/PersonalityPage/PersonalityQuestionnaire.jsx'
 import {routesParam} from '/client/router/router.js'
 
+
 class IniWrapper extends Component {
 
    constructor(props) {
       super(props);
+
       this.state = {};
    }
 
@@ -39,7 +41,7 @@ class IniWrapper extends Component {
 			<DemographicPage/>
 			</div>);
 			break;
-	
+			
 		 case "choose_from_catalog":
 			return (
 			<div style={ sectionStyle }>
