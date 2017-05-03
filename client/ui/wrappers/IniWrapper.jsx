@@ -27,7 +27,7 @@ class IniWrapper extends Component {
    renderCurrentStep() {
 	   var sectionStyle = {
 		width: "100%",
-		height: "400px",
+		height: "645px",
 		backgroundImage: "url(/images/home_page.jpg)"
 		};
 
@@ -42,7 +42,8 @@ class IniWrapper extends Component {
 			break;
 			
 		 case "choose_from_catalog":
-			return (<div style={ sectionStyle }>
+			return (
+			<div style={ sectionStyle }>
 			<Catalog/>
 			</div>);
 			break;
@@ -97,11 +98,9 @@ class IniWrapper extends Component {
          }
       }
       return (
-        <div >
            <div className="wrapper">
               {this.renderCurrentStep()}
            </div>
-        </div>
       )
    }
 }

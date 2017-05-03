@@ -17,11 +17,12 @@ export default class PersonalityQuestionnaire extends React.Component {
     this.refs.player.load();
     }
     
-	metodo() {
+	goToTheNext() {
+		this.refs.rating.resetVote() 
 		if (this.state.questionId<10){
 		this.setState((prevState) => ({
 		questionId: prevState.questionId + 1
-		}));
+		})); 
 		}else{
         Meteor.call("s_set_ini_step", "choose_from_catalog", err=> {
                   if (!err) {
@@ -65,7 +66,7 @@ render() {
                     How much are you...
                     </h2></span>
 					<Questions questionId={this.state.questionId}/>
-                    <SevenStars onHandleVote={this.metodo.bind(this)} rate_title=""/>
+                    <SevenStars ref="rating" onHandleVote={this.goToTheNext.bind(this)} rate_title=""/>
                     </div>
                    
             </div>

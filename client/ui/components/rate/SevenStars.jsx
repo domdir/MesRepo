@@ -19,6 +19,11 @@ export default class FiveStars extends React.Component {
          })
       });
    }
+	resetVote(){
+		this.setState({
+            starSelectedId: null
+         })
+	}
 
    onClickStar(key) {
       if (!this.props.isDisabled) {

@@ -123,13 +123,3 @@ export class DemographicPage extends React.Component {
         )
     }
 };
-export default createContainer(() => {
-    const handleUser = Meteor.subscribe( "pub_myself" );
-    let currentUser = null;
-    if ( handleUser.ready() ) {
-        currentUser = Meteor.user();
-    }
-    return {
-        currentUser
-    };
-}, DemographicPage );
