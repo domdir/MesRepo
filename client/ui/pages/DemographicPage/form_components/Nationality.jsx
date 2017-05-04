@@ -42,12 +42,12 @@ export default class extends React.Component {
         return (
             <div className="question_div2">
                 <div className="leftpanel">
-                    <span className="question_title">Nationality</span>
+                    <span className="question_title">Nationality:*</span>
                 </div>
                 <div style={{ width: 200 }} className="rightpanel">
                     <SelectTest ref="nationality" style={{ float: "right" }} />
                 </div>
-                <div className="colorError">{( this.state.nationality_error_message ) ?
+                <div className="colorErrorRed">{( this.state.nationality_error_message ) ?
                     this.state.nationality_error_message : null}
                 </div>
             </div>

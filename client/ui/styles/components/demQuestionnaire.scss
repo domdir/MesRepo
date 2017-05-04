@@ -65,11 +65,53 @@ margin-top: 10px;
 
 
 .question_div{
-margin-top: 20px;
+margin-top: 25px;
 }
 
+
+
+.question_div_left{
+margin-top: 25px;
+margin-left: 50px;
+text-align: left;
+color: white;
+width: 200px;
+}
+
+.question_div_center{
+    margin-top: 5px;
+    margin-left: 13%;
+    color: white;
+    width: 250px;
+    text-align: left !important;
+}
+
+.choice{
+margin-top: 10px;
+}
+
+.float-right{
+font-family: MESFont2, sans-serif;
+margin-top: 0px !important;
+margin-right: 20px;
+  color: white;
+  height: 25px !important;
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.20);
+  border-radius: 0px;
+    width: 40px;
+    border: 1px solid #CCC;
+float: right;
+}
+
+.block{
+margin-top: 20px;
+}
 .question_div2{
 margin-top: 25px;
+}
+
+.question_div3{
+margin-top: 40px;
 }
 
 .question_title{
@@ -78,6 +120,28 @@ margin-top: 25px;
   width: 200px;
   margin-top: 0px;
 }
+
+.question_title2{
+  color: white;
+  float: left;
+  width: 350px;
+  margin: 10px 5%;
+} 
+
+.question_title3{
+  color: white;
+  float: left;
+  width: 210px;
+  margin-top: 0px;
+}
+
+.question_title3{
+  color: white;
+  float: left;
+  width: 210px;
+  margin-top: 0px;
+}
+
 .question_measure{
   color: white;
   margin-top: 10px;
@@ -95,4 +159,9 @@ margin-top: 40px;
 }
 .gender_text{
   color: white;
+}
+
+.colorErrorRed{
+ color: red;
+  font-family: MESFont5, sans-serif;
 }

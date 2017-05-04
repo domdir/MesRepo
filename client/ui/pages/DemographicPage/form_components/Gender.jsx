@@ -45,7 +45,7 @@ export default class Gender extends React.Component {
   render() {
     const {gender,error_msg} = this.state
     return  <div className="gender_div">
-       <span className="gender_title_text">Gender: </span>
+       <span className="gender_title_text">Gender:* </span>
           <input type="radio" checked={gender == "male"} 
 onClick={this.setGender} value="male" />  <span className="gender_text"> Male </span>
           <input type="radio" checked={gender == "female"} 
@@ -53,7 +53,7 @@ onClick={this.setGender} value="female"  />  <span className="gender_text"> Fema
 	<input type="radio" checked={gender == "other"} 
 onClick={this.setGender} value="other" />  <span className="gender_text"> Other </span>
 
-	<div className="colorError">{(this.state.gender_error_message)? 
+	<div className="colorErrorRed">{(this.state.gender_error_message)? 
                   this.state.gender_error_message : null}
                 </div>
 </div>

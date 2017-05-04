@@ -46,9 +46,9 @@ export default class  extends React.Component {
     render() {
         return (
             <div id="1">
-                 <span className="age_title">Date of Birth: </span><input type="date" placeholder="Age" ref="ref_age"
+                 <span className="age_title">Date of Birth:* </span><input type="date" placeholder="Age" ref="ref_age"
                        className="form-demQuestionnaire-age"/>
-                <div className="colorError">
+                <div className="colorErrorRed">
                     {(this.state.age_error_message && !this.state.is_valid_age)
                         ? this.state.age_error_message
                         : null}

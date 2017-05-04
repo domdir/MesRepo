@@ -40,11 +40,13 @@ export default class DemographicPage extends React.Component {
             "age": null,
             "gender": null,
             "nationality": null,
-            "question1": null,
-            "question2": null,
+            "question1": [],
+            "question2": [],
             "twitter": null,
             "fb": null,
-            "instagram": null
+            "instagram": null,
+            "lastfm": null,
+            "spotify": null
         };
         this.refs.age.checkAge(( res ) => {
             credentials.age = res;
@@ -56,6 +58,8 @@ export default class DemographicPage extends React.Component {
                     credentials.twitter = res[2];
                     credentials.fb = res[3];
                     credentials.instagram = res[4];
+                    credentials.lastfm = res[5];
+                    credentials.spotify = res[6];
                     this.refs.nationality.checkNationality(( res ) => {
                         credentials.nationality = res;
 
