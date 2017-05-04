@@ -13,7 +13,7 @@ import LoadingItem from '/client/ui/components/loading/LoadingItem.jsx'
 
 
 
-export class DemographicPage extends React.Component {
+export default class DemographicPage extends React.Component {
     constructor( props ) {
         super( props );
 
@@ -90,7 +90,7 @@ export class DemographicPage extends React.Component {
 		
 
         return (
-            <div className="row" id="spacerow">
+            <div className="row" id="spacerow" >
 
                 <h1>
                     <span style={{

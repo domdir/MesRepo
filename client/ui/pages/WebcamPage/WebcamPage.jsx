@@ -1,7 +1,7 @@
 /*
  * Created with ? by Gianluca Chiap (@forgiangi)
  */
-MIN_NUM_MOVIES = 3
+MIN_NUM_MOVIES = 1
 
 
 import MovieThumbnail from '/client/ui/components/thumb_trailer/MovieThumbnail.jsx'
@@ -36,9 +36,9 @@ export default class WebcamPage extends Component {
       if (this.state.movies_selected_id.length >= MIN_NUM_MOVIES) {
          Meteor.call("s_save_movies_chosen", this.state.movies_selected, (err, res)=> {
             if (res) {
-               Meteor.call("s_set_ini_step", 2, err=> {
+               Meteor.call("s_set_ini_step", 3, err=> {
                if (!err) {
-                  FlowRouter.setParams({ ini_step: "2" });
+                  FlowRouter.setParams({ ini_step: "3" });
 	       }
 	       });
 	    }
@@ -122,7 +122,7 @@ export default class WebcamPage extends Component {
     const movie_selected_id = this.state.movies_selected_id;
     movie_selected_id.push(movie.IMDB_ID);
     let is_advance_search = this.state.is_advance_search;
-    if (movie_selected_id.length == 4) {
+    if (movie_selected_id.length == MIN_NUM_MOVIES+1) {
       is_advance_search = false;
     }
     this.setState({
@@ -175,18 +175,7 @@ export default class WebcamPage extends Component {
   
   render() {
     
-
-      if (this.props.currentUser) {
-         
-         if (FlowRouter.current().params.ini_step != this.props.currentUser.ini_step) {
-            
-            FlowRouter.go("/ini/"+this.props.currentUser.ini_step)
-         }
-         if(this.props.currentUser.is_ini){
-            FlowRouter.go("/profile");
-         }
-      }
-
+		MIN_NUM_MOVIES=1
       return (
         <div>   
            <div className='jumbotron' id="jumbostart">
@@ -199,10 +188,10 @@ export default class WebcamPage extends Component {
                 </div>
                  {this.state.movies_selected_id.length < MIN_NUM_MOVIES ? <div className="choose_genre"><span
                    style={{color: "#FFFFFF", fontFamily: 'MESFont5, sans-serif', fontSize: '20px'}}>
-                      TAKE A PICTURE OF 3 MOVIES COVERS</span><div id = "progress">
-           <Line percent={this.state.movies_selected_id.length*33} trailWidth="1" trailColor="#494949" strokeWidth="1" strokeColor="#399000" /></div></div>
+                      TAKE A PICTURE OF A MOVIES COVER</span><div id = "progress">
+				 <Line percent={this.state.movies_selected_id.length*100} trailWidth="1" trailColor="#494949" strokeWidth="1" strokeColor="#399000" /></div></div>
                    : <button onClick={this.onHandleNext.bind(this)}
-                             className="btn btn-default button_ini">N E X T</button>}
+				 className="btn btn-default button_ini">N E X T</button>}
               </div>
           </div>
 
@@ -229,18 +218,6 @@ export default class WebcamPage extends Component {
       )
    }
 }
-export default createContainer( () => {
-
-   const handleUser = Meteor.subscribe( "pub_myself" );
-   let currentUser = null;
-   if (handleUser.ready()) {
-      currentUser = Meteor.user();
-
-   }
-   return {
-      currentUser
-   };
-}, WebcamPage );
 
 
 

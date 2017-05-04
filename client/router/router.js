@@ -11,7 +11,7 @@ export const routesPath = {
    PERSONALITY_PROFILE_ROUTE: "/personality_profile",
    CATALOG: "/choose_from_catalog",
    PREWEBCAM: "/webcam",
-   WEBCAM: "/interaction_with_system",
+   WEBCAM: "/interaction_with_the_system",
    INI_BASE_ROUTE: "/ini",
    QUEST_BASE_ROUTE: "/survey",
    LOGOUT_ROUTE: "/logout",

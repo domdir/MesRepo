@@ -32,6 +32,11 @@ export default class FiveStars extends React.Component {
             starSelectedId: key
          })
       }
+	  this.props.onHandleVote(key, this.props.startDate, ()=> {
+         this.setState({
+            starSelectedId: null
+         })
+      });
    }
 
    render() {
@@ -61,7 +66,8 @@ export default class FiveStars extends React.Component {
               <span style={{color:'white', fontFamily:'MESFont5'}}>{this.props.rate_title}</span>
            </div>
            {ratingList}
-           {this.state.starSelectedId
+		   
+           {this.state.starSelectedId && this.props.last=="1"
              ? <button id='button_next_rate' onClick={this.confirmVote.bind(this)}>Go</button>
              : null}
         </div>

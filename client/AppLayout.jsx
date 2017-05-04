@@ -14,7 +14,6 @@ export default AppLayout = ({main_content})=> {
           {main_content()}
          <Footer/>
       </main>
-
     </div>
   )
 };

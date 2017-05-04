@@ -5,6 +5,7 @@
 import React, { Component } from 'react'
 import { createContainer } from 'meteor/react-meteor-data';
 import SingleMovieToRate from './../../../components/rate/SingleMovieToRate.jsx'
+import { routesPath, routesParam } from '/client/router/router';
 import LoadingItem from '/client/ui/components/loading/LoadingItem.jsx'
 
 export class RateMovies extends React.Component {
@@ -52,9 +53,9 @@ export class RateMovies extends React.Component {
       
       
       if (this.props.is_next) {
-         Meteor.call("s_set_ini_step", 3, err=> {
+         Meteor.call("s_set_ini_step", "webcam", err=> {
             if (!err) {
-               FlowRouter.setParams({ini_step: "3"});
+               FlowRouter.setParams({ini_step: routesParam.PREWEBCAM});
             }
          })
 		 

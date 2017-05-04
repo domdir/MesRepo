@@ -7,7 +7,7 @@ import LoadingWrapper from '/client/ui/components/loading/LoadingWrapper.jsx'
 
 import LoginEmail from './form_components/LoginEmail.jsx'
 import LoginPassword from './form_components/LoginPassword.jsx'
-import {routesPath} from '/client/router/router'
+import {routesPath, routesParam} from '/client/router/router';
 
 export default class LoginPage extends Component {
 
@@ -94,8 +94,11 @@ export default class LoginPage extends Component {
                     error_message: "The email and password you entered don't match"
                 });
             } else {
-                //FlowRouter.go("/profile");
-				FlowRouter.go("/webcam");
+                Meteor.call("s_set_ini_step", "webcam", err=> {
+            if (!err) {
+               FlowRouter.go(routesPath.INI_BASE_ROUTE + routesPath.PREWEBCAM);
+            }
+         })
             }
         });
     }

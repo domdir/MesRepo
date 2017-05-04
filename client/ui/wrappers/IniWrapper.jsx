@@ -12,6 +12,8 @@ import RecQuestionnaireContainer from '/client/ui/pages/ini/3_step/RecQuestionna
 import ChooseOneGenres from '/client/ui/pages/ini/0_step/ChooseOneGenre.jsx'
 import DemographicPage from '/client/ui/pages/DemographicPage/DemographicPage.jsx';
 import Catalog from '/client/ui/pages/PersonalityPage/Catalog.jsx'
+import WebcamPage from '/client/ui/pages/WebcamPage/WebcamPage.jsx'
+import PreWebcam from '/client/ui/pages/WebcamPage/PreWebcam.jsx'
 import PersonalityQuestionnaire from '/client/ui/pages/PersonalityPage/PersonalityQuestionnaire.jsx'
 import {routesParam} from '/client/router/router.js'
 
@@ -24,6 +26,7 @@ class IniWrapper extends Component {
 
 
    renderCurrentStep() {
+	   var wrapperHeight = $(".wrapper").height();
 	   var sectionStyle = {
 		width: "100%",
 		height: "645px",
@@ -32,7 +35,8 @@ class IniWrapper extends Component {
 
       switch (this.props.ini_step) {
 		 case "demographic":
-			return (<div className="wrapper">
+			return (
+			<div className="wrapper">
 			<video autoPlay loop poster="/img/bg-init.jpg" id="bgvid">
 			<source src="/video/MES_video.mp4" type="video/mp4" />
 			</video>
@@ -42,13 +46,33 @@ class IniWrapper extends Component {
 	
 		 case "choose_from_catalog":
 			return (
-			<div style={ sectionStyle }>
+			<div className="overBackgroundCatalog" style={{height: wrapperHeight}} >
 			<Catalog/>
 			</div>);
 			break;
 			
 		case "personality_questionnaire":
-			return (<PersonalityQuestionnaire/>);
+			return (<div className="row" id="spacerow">
+			<video autoPlay muted="true" loop poster="/img/bg-init.jpg" id="bgvid" ref="player">
+          <source src={"/video/personality/1.mp4"} type="video/mp4" />
+        </video>
+		<PersonalityQuestionnaire/>
+		</div>);
+			break;
+			
+		case "webcam":
+			return (
+			<div className="overBackgroundWebcam" style={{height: wrapperHeight}} >
+			<PreWebcam/>
+			</div>);
+			break;
+		
+		case "interaction_with_the_system":
+			return (
+			<div className="overBackgroundInteraction" style={{height: wrapperHeight}}>
+			<WebcamPage/>
+			</div>);
+			
 			break;
 			
          case "0":
