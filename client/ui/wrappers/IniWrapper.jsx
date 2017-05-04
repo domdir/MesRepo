@@ -56,7 +56,7 @@ class IniWrapper extends Component {
 		case "personality_questionnaire":
 			return (<div className="row" id="spacerow">
 			<video autoPlay muted="true" loop poster="/img/bg-init.jpg" id="bgvid" ref="player">
-          <source src={"/video/personality/1.mp4"} type="video/mp4" />
+          <source src={"/video/MES_video.mp4"} type="video/mp4" />
         </video>
 		<PersonalityQuestionnaire/>
 		</div>);

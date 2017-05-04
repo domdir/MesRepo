@@ -28,7 +28,6 @@ export default class RecQuestionnaire extends Component {
         return subQuestions.map(( question, i ) => {
             //
             return <SingleQuestion
-
                 question_number={this.state.question_base + i}
                 onHandleVote={this.onHandleVote.bind( this )} key={i}
                 question={question} />
@@ -110,9 +109,9 @@ const block = [3, 4, 5, 5];
 
 const questions = [
                    
-    "How many film of the first list have you seen?",
-    "How many film of the second list have you seen?",
-    "How many film of the third list have you seen?",
+    "How many movies of the first list have you seen?",
+    "How many movies of the second list have you seen?",
+    "How many movies of the third list have you seen?",
     
     
     "Which list has more movies that you find appealing?",

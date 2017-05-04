@@ -31,8 +31,9 @@ export default class SingleQuestion extends Component {
    }
    
    render() {
-      
-      var ratingList = ratingsList.map((rate, i) => {
+	   var ratingListTwo=null
+	  this.props.question_number<3?ratingListTwo=ratingsList2:ratingListTwo=ratingsList
+      var ratingList = ratingListTwo.map((rate, i) => {
          let isSelected = false;
          let noRate = false;
          if (!this.state.voteSelected) {
@@ -72,4 +73,10 @@ let ratingsList = [
    {_id: 2, group: 2},
    {_id: 3, group: 3}
 
+];
+let ratingsList2=[
+   {_id: 1, group: 1},
+   {_id: 2, group: 2},
+   {_id: 3, group: 3},
+	{_id: 4, group: 4}
 ];
