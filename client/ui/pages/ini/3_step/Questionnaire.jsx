@@ -40,7 +40,6 @@ export default class RecQuestionnaire extends Component {
         let block_callback = this.state.blocK_callbacks;
         votes[questionNum] = vote;
         total_votes[questionNum] = vote;
-
         block_callback[questionNum] = callBack;
 
         this.setState( {
@@ -82,14 +81,15 @@ export default class RecQuestionnaire extends Component {
         return (
             <div className="container-fluid questionnaire">
                 <div className="row">
-                    <h1>SURVEY <span style={{ fontSize: "25px" }}> ( {actualStep + "/4"} )</span></h1>
+                    <h1>SURVEY <span style={{ fontSize: "25px" }}> ( {actualStep + "/5"} )</span></h1>
                     {this.state.questionnaireStep == 0 ?
                         <h5>{"List 1, 2 and 3 contains the top movie recommendations for you from different \"recommenders\". Please" +
                             " answer the following questions to help us understand your preferences about this recommendations."}
                         </h5> : null}
-                    {this.state.questionnaireStep == 1 ?
-                        <h5>{"Please, rate the three lists (1:don't like 5:extremely like)"}
-                        </h5> : null}
+                    {this.state.questionnaireStep == 1 ?<div>
+                        <h5>{"Please, rate the three lists"}
+					<i><h6>{"1:don't like 5:extremely like"}</h6></i></h5>
+					</div>: null}
                     <div>
                         {this.renderQuestion()}
                     </div>

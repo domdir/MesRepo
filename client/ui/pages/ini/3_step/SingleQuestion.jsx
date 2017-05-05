@@ -15,12 +15,13 @@ export default class SingleQuestion extends Component {
    }
 
    onClickStar(key) {
-      
       if (!this.props.isDisabled) {
          this.setState({
             voteSelected: key
          })
       }
+	  alert(rate._id)
+		alert(this.state.voteSelected)
       this.props.onHandleVote(key, this.props.question_number, this.clearState.bind(this))
    }
 
@@ -32,18 +33,25 @@ export default class SingleQuestion extends Component {
    
    render() {
 	   var ratingListTwo=null
-	  this.props.question_number<3?ratingListTwo=ratingsList2:ratingListTwo=ratingsList
+	   if(this.props.question_number<3){
+		   ratingListTwo=ratingsList.slice(0,5)
+	   }else{
+		   if(this.props.question_number<6){
+		   ratingListTwo=ratingsList.slice(1,6)
+				}else{
+					ratingListTwo=ratingsList.slice(1,4)
+				}
+	   }
       var ratingList = ratingListTwo.map((rate, i) => {
          let isSelected = false;
          let noRate = false;
          if (!this.state.voteSelected) {
             noRate = true
          }
-
          if (rate._id == this.state.voteSelected) {
             isSelected = true
          }
-
+		 
          return <Star
            noRate={noRate}
            starId={rate._id}
@@ -69,14 +77,11 @@ export default class SingleQuestion extends Component {
 
 
 let ratingsList = [
-   {_id: 1, group: 1},
-   {_id: 2, group: 2},
-   {_id: 3, group: 3}
-
-];
-let ratingsList2=[
+	{_id: 0, group: 0},
    {_id: 1, group: 1},
    {_id: 2, group: 2},
    {_id: 3, group: 3},
-	{_id: 4, group: 4}
+   {_id: 4, group: 4},
+   {_id: 5, group: 5}
+
 ];
