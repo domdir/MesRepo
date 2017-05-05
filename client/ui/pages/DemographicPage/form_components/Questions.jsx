@@ -21,7 +21,7 @@ export default class extends React.Component {
             value_question1_other: 0,
             value_question1_home: 0,
             value_question1_way: 0,
-            value_question1_www: 0,
+            value_question1_cinema: 0,
             value_question1_other2: 0,
             question_error_message: null
         }
@@ -36,7 +36,7 @@ export default class extends React.Component {
             value_question1_streaming: 0,
             value_question1_home: 0,
             value_question1_way: 0,
-            value_question1_www: 0
+            value_question1_cinema: 0
         } );
         //save the new value in the state
         this.setState( {
@@ -91,13 +91,13 @@ export default class extends React.Component {
         old = this.state.value_question1_home
         //eliminate eventual zeros in front of the number
         input = parseInt( event.target.value )
-        residual_hours = this.state.value_question1 - input - Number( this.state.value_question1_way ) - Number( this.state.value_question1_www )
+        residual_hours = this.state.value_question1 - input - Number( this.state.value_question1_way ) - Number( this.state.value_question1_cinema )
         if ( residual_hours >= 0 ) {   //not inserted a wrong number
             //save the new value in the state
             this.setState( {
                 value_question1_home: input,
                 value_question1_other2: Number( this.state.value_question1 ) - input
-                - Number( this.state.value_question1_way ) - Number( this.state.value_question1_www )
+                - Number( this.state.value_question1_way ) - Number( this.state.value_question1_cinema )
             } );
         }
     }
@@ -105,25 +105,25 @@ export default class extends React.Component {
         old = this.state.value_question1_way
         //eliminate eventual zeros in front of the number
         input = parseInt( event.target.value )
-        residual_hours = this.state.value_question1 - input - Number( this.state.value_question1_home ) - Number( this.state.value_question1_www )
+        residual_hours = this.state.value_question1 - input - Number( this.state.value_question1_home ) - Number( this.state.value_question1_cinema )
         if ( residual_hours >= 0 ) {   //not inserted a wrong number
             //save the new value in the state
             this.setState( {
                 value_question1_way: input,
                 value_question1_other2: Number( this.state.value_question1 ) - Number( this.state.value_question1_home )
-                - input - Number( this.state.value_question1_www )
+                - input - Number( this.state.value_question1_cinema )
             } );
         }
     }
-    handleChangeQuestion1www( event ) {
-        old = this.state.value_question1_www
+    handleChangeQuestion1Cinema( event ) {
+        old = this.state.value_question1_cinema
         //eliminate eventual zeros in front of the number
         input = parseInt( event.target.value )
         residual_hours = Number( this.state.value_question1 ) - input - Number( this.state.value_question1_home ) - Number( this.state.value_question1_way )
         if ( residual_hours >= 0 ) {   //not inserted a wrong number
             //save the new value in the state
             this.setState( {
-                value_question1_www: input,
+                value_question1_cinema: input,
                 value_question1_other2: Number( this.state.value_question1 ) - Number( this.state.value_question1_home )
                 - Number( this.state.value_question1_way ) - input
             } );
@@ -159,7 +159,7 @@ export default class extends React.Component {
             question1[4] = this.state.value_question1_other;
             question1[5] = this.state.value_question1_home;
             question1[6] = this.state.value_question1_way;
-            question1[7] = this.state.value_question1_www;
+            question1[7] = this.state.value_question1_cinema;
             question1[8] = this.state.value_question1_other2;
 
         } else {
@@ -249,8 +249,8 @@ export default class extends React.Component {
                     <div className="question_div_center"><span className="choice">2) On the way (traveling, commuting, etc.)</span>
                         <input type="number" placeholder="0" ref="ref_way" onChange={this.handleChangeQuestion1Way.bind( this )} value={this.state.value_question1_way}
                             className="float-right" /></div>
-                    <div className="question_div_center"><span className="choice">3) www</span>
-                        <input type="number" placeholder="0" ref="ref_www" onChange={this.handleChangeQuestion1www.bind( this )} value={this.state.value_question1_www}
+                    <div className="question_div_center"><span className="choice">3) At the Cinema or in public spaces</span>
+                        <input type="number" placeholder="0" ref="ref_cinema" onChange={this.handleChangeQuestion1Cinema.bind( this )} value={this.state.value_question1_cinema}
                             className="float-right" /> </div>
                     <div className="question_div_center"><span className="choice">4) Others (please specify)</span>
                         <input type="text" placeholder="Other..." ref="ref_other_name2"
