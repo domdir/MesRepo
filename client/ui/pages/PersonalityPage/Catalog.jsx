@@ -10,6 +10,7 @@ export default class Catalog extends React.Component {
     }
     
     goToCatalog() {
+		window.scrollTo(0, 0)
        Meteor.call("s_set_ini_step", "0", err=> {
                   if (!err) {
                      FlowRouter.setParams({ini_step: "0"});

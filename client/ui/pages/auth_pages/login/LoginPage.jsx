@@ -44,6 +44,7 @@ export default class LoginPage extends Component {
     }
 
     onFormLoginSubmit(event) {
+		window.scrollTo(0, 0)
         event.preventDefault();
         switch (this.state.login_step) {
             case 0:

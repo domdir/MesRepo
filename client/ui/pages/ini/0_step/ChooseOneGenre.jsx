@@ -60,6 +60,7 @@ export default class ChooseOneGenre extends Component {
    }
 
    onHandleNext() {
+	   window.scrollTo(0, 0)
       if (this.state.genre_selected) {
          Meteor.call("s_save_genres", [this.state.genre_selected], (err, res)=> {
             if (!err) {

@@ -33,6 +33,7 @@ export default class WebcamPage extends Component {
    }
 
    onHandleNext() {
+	   window.scrollTo(0, 0)
       if (this.state.movies_selected_id.length >= MIN_NUM_MOVIES) {
          Meteor.call("s_save_movies_chosen", this.state.movies_selected, (err, res)=> {
             if (res) {

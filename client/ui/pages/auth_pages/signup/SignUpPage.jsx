@@ -23,6 +23,7 @@ export default class SignUpPage extends React.Component {
     }
 
     onFormSignUpSubmit(event) {
+		window.scrollTo(0, 0)
         event.preventDefault();
 
         this.setState({is_processing: true, error_message: null});

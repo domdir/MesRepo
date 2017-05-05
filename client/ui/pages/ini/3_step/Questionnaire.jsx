@@ -49,6 +49,7 @@ export default class RecQuestionnaire extends Component {
     }
 
     onNextQuestion() {
+		window.scrollTo(0, 0)
 
         if ( this.state.questionnaireStep == 4 ) {
 

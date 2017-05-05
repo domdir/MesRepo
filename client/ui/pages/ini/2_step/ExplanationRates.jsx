@@ -10,6 +10,7 @@ export default class ExplanationRates extends Component {
 
 
     nextStep() {
+		window.scrollTo(0, 0)
         this.props.onNext();
     }
 

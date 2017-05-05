@@ -10,6 +10,7 @@ export default class PreWebcam extends React.Component {
     }
     
     goToWebcam() {
+		window.scrollTo(0, 0)
        Meteor.call("s_set_ini_step", "interaction_with_the_system", err=> {
             if (!err) {
                FlowRouter.setParams({ini_step: routesParam.WEBCAM});

@@ -59,7 +59,7 @@ export default class Choose4Movie extends React.Component {
   }
 
   onNext() {
-
+	window.scrollTo(0, 0)
     if (this.state.movies_selected_id.length == 4) {
 
       this.setState({
