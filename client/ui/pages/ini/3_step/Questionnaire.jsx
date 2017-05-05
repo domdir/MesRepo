@@ -51,7 +51,7 @@ export default class RecQuestionnaire extends Component {
 
     onNextQuestion() {
 
-        if ( this.state.questionnaireStep == 3 ) {
+        if ( this.state.questionnaireStep == 4 ) {
 
             Meteor.call( "s_save_questions_and_clean_rec", this.state.total_votes, () => {
 
@@ -87,6 +87,9 @@ export default class RecQuestionnaire extends Component {
                         <h5>{"List 1, 2 and 3 contains the top movie recommendations for you from different \"recommenders\". Please" +
                             " answer the following questions to help us understand your preferences about this recommendations."}
                         </h5> : null}
+                    {this.state.questionnaireStep == 1 ?
+                        <h5>{"Please, rate the three lists (1:don't like 5:extremely like)"}
+                        </h5> : null}
                     <div>
                         {this.renderQuestion()}
                     </div>
@@ -105,15 +108,18 @@ export default class RecQuestionnaire extends Component {
 
 const block_title = ["Accuracy", "Diversity", "Understands Me", "Satisfaction", "Novelty"];
 
-const block = [3, 4, 5, 5];
+const block = [3, 3, 4, 5, 5];
 
 const questions = [
-                   
+
     "How many movies of the first list have you seen?",
     "How many movies of the second list have you seen?",
     "How many movies of the third list have you seen?",
     
-    
+    "List 1:",
+    "List 2:",
+    "List 3:",
+
     "Which list has more movies that you find appealing?",
     //"Which list has more movies that might be among the best movies you see in the next year?",
     "Which list has more obviously bad movie recommendations for you?",
