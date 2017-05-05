@@ -20,8 +20,6 @@ export default class SingleQuestion extends Component {
             voteSelected: key
          })
       }
-	  alert(rate._id)
-		alert(this.state.voteSelected)
       this.props.onHandleVote(key, this.props.question_number, this.clearState.bind(this))
    }
 
@@ -77,7 +75,7 @@ export default class SingleQuestion extends Component {
 
 
 let ratingsList = [
-	{_id: 0, group: 0},
+	{_id: 6, group: 0},
    {_id: 1, group: 1},
    {_id: 2, group: 2},
    {_id: 3, group: 3},
