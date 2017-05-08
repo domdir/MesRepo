@@ -22,7 +22,7 @@ export default class extends React.Component {
     };
 
     checkNationality( callBack ) {
-        this.refs.nationality.checkNationality(( res ) => {
+        this.refs.nation.checkNation(( res ) => {
             
             if(!res){
                 this.setState({nationality_error_message: "Select your country"});
@@ -30,7 +30,7 @@ export default class extends React.Component {
             }else{
                 this.setState({nationality: res});
                 this.setState({nationality_error_message: null});
-                callBack( this.state.nationality );
+                callBack( res );
             }
         } );
         
@@ -45,7 +45,7 @@ export default class extends React.Component {
                     <span className="question_title">Nationality:*</span>
                 </div>
                 <div style={{ width: 200 }} className="rightpanel">
-                    <SelectTest ref="nationality" style={{ float: "right" }} />
+                    <SelectTest ref="nation" style={{ float: "right" }} />
                 </div>
                 <div className="colorErrorRed">{( this.state.nationality_error_message ) ?
                     this.state.nationality_error_message : null}

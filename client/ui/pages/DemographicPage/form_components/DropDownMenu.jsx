@@ -20,7 +20,7 @@ export default class SelectTest extends Component {
     }
 
 
-    checkNationality( callBack ) {
+    checkNation( callBack ) {
 
         if ( this.state.selected ) {
             callBack( this.state.selected );
