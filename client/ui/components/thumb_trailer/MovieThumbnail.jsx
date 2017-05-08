@@ -5,6 +5,7 @@
 import React, { Component } from 'react'
 import LoadingWrapper from '/client/ui/components/loading/LoadingWrapper.jsx'
 
+
 export default class MovieThumbnail extends Component {
    constructor(props) {
       super(props);
@@ -12,8 +13,11 @@ export default class MovieThumbnail extends Component {
       this.state = {
          is_selected: false,
          on_hover: false,
-         onLoadImage: true
-
+         onLoadImage: true,
+		 timeTrailer: 0,
+		 mouseOverTime: 0,
+		 dateStartOver: null,
+		 dateStartTrailer:null
       };
    }
 
@@ -46,24 +50,63 @@ export default class MovieThumbnail extends Component {
             this.props.remove_movie_from_selected(this.props.movie)
          }else {
             this.props.open_modal(this.props.movie)
+			if(this.props.checkTime){
+			this.props.movieOn=true
+			this.setState({
+				dateStartTrailer: (new Date).getTime()
+			});}
          }
       }
    }
-
+   
+   timeSpentOnTrailer(){
+	   if(this.props.checkTime){
+	   if (this.props.movieOn==false && this.state.dateStartTrailer!=null){
+		   timeToAdd=(new Date).getTime()-this.state.dateStartTrailer
+		   newTime=this.state.timeTrailer+timeToAdd/1000
+		   this.setState({
+				dateStartTrailer: null,
+				timeTrailer: newTime
+			});
+			alert(newTime)
+			}
+	   }
+   }
+   mouseIsOver(){
+	   if(this.props.checkTime){
+	   this.setState((prevState) =>{
+			   return {
+				dateStartOver: (new Date).getTime()
+			   }
+	   });}
+   }
+   mouseIsOut(){
+	   if(this.props.checkTime){
+	   if(this.state.dateStartOver!=null){
+	   timeToAdd=(new Date).getTime()-this.state.dateStartOver
+	   newTime=this.state.mouseOverTime+timeToAdd/1000
+	   this.setState({
+				dateStartOver: null,
+				mouseOverTime: newTime
+			});
+			alert(newTime)
+	   }
+	   }
+   }
 
    render() {
-
-
+	   this.props.timeTrailer=this.state.timeTrailer
+	   this.props.mouseOverTime=this.state.mouseOverTime
+	   this.timeSpentOnTrailer()
       return (
         <div className="thumbnail" id={!this.props.is_selected ? "thumbmovies":  "thumbmovies-selected"}
-             onClick={this.onClick.bind(this)}>
+             onClick={this.onClick.bind(this)} >
            <div className="caption" id="captionthumb">
-              <img id="thumbMoviesDimension" title={this.props.title}
+              <img id="thumbMoviesDimension" onMouseOver={this.mouseIsOver.bind(this)} onMouseOut={this.mouseIsOut.bind(this)} title={this.props.title}
                    src={"http://localhost:8052/get_img?imdb_id="+this.props.movie.IMDB_ID}
                    onLoad={this.handleImageLoaded.bind(this)}
                    onError={this.handleImageErrored.bind(this)}/>
            </div>
-
         </div>
                    
       )

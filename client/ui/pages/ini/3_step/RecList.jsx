@@ -29,21 +29,27 @@ export default class RecList extends Component {
    }
 
    renderMovies() {
-
-
       return this.props.rec_movies.map( ( movie, i )=> {
+		 isOn=(this.state.movie_selected==movie)
          return (
            <MovieThumbnail
              key={i}
              movie={movie}
              is_selected={false}
              is_selectable={false}
-             open_modal={this.openModal.bind(this)} />)
+             open_modal={this.openModal.bind(this)} 
+			 movieOn={isOn}
+			 timeTrailer={0}
+			 mouseOverTime={0}
+			 checkTime={true}
+			 />)
+			 
       } )
    }
    closeModal(){
       this.setState( {
-         modalIsOpen: false
+         modalIsOpen: false,
+		 movie_selected: null
       } );
    }
 
