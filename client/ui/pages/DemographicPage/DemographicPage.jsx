@@ -29,7 +29,9 @@ export default class DemographicPage extends React.Component {
         this.setState( { is_processing: true, error_message: null } );
         this.checkErrors(( res ) => {
             this.setState( { is_processing: false, error_message: null } );
+        this.setState( { is_processing: false, error_message:  null} );
             if ( res.age && res.gender && res.nationality) {
+                
                 this.onSubmitQuestionnaireValidForm( res );
             }
         } );
@@ -67,14 +69,14 @@ export default class DemographicPage extends React.Component {
                     } );
                 } )
             } )
-            callBack( credentials );
         } );
+            callBack( credentials );
     }
 
 
     onSubmitQuestionnaireValidForm(res) {
-        this.setState( { is_processing: false, error_message: null } );
-        this.setState( { questionnaire_done: true, error_message: null } );
+        this.setState( { is_processing: false, error_message: res } );
+       this.setState( { questionnaire_done: true, error_message: null } );
 		 
 
         //SAVE DATA INTO DB
@@ -106,7 +108,7 @@ export default class DemographicPage extends React.Component {
                     <LoadingWrapper loading_style="loader-spinning" processing_message="test"
                         is_processing={this.state.questionnaire_done}>
 
-                        <form className="form-demQuestionnaire" onSubmit={this.onFormQuestionnaireSubmit.bind( this )} noValidate>
+                        <form className="form-demQuestionnaire" onSubmit={this.onFormQuestionnaireSubmit.bind(this)} noValidate>
                             <Age ref="age" />
                             <Gender ref="gender" />
                             <Nationality ref="nationality" />
