@@ -121,30 +121,30 @@ const questions = [
     "List 2:",
     "List 3:",
 
-    "Which list has more movies that you find appealing?",
+    "Which list has the most movies that you find appealing?",
     //"Which list has more movies that might be among the best movies you see in the next year?",
-    "Which list has more obviously bad movie recommendations for you?",
+    "Which list has the most obviously bad movie recommendations for you?",
     //"Which list does a better job of putting better movies to the left?",
 
-    "Which list has more movies that are similar to each other?",
-    "Which list has a more varied selection of movies?",
+    "Which list has the most movies that are similar to each other?",
+    "Which list has a the most varied selection of movies?",
     "Which list has movies that match a wider variety of moods?",
     //"Which list would suit a broader set of tastes?",
 
-    "Which list better understand your taste in movies?",
+    "Which list best understands your taste in movies?",
     //"Which list would you trust more to provide you with recommendation?",
-    "Which list seems more personalized to your movie ratings?",
-    "Which list more represent mainstream tastes instead of your own?",
+    "Which list seems the most personalized to your movie taste?",
+    "Which list most represent mainstream tastes instead of your own?",
 
-    "Which list would better help you find movies to watch?",
-    "Which list would you be more likely to recommend to your friends?",
+    "Which list would best help you find movies to watch?",
+    "Which list would you be the most likely to recommend to your friends?",
     //"Which list of recommendations do you find more valuable?",
     //"Which list would you rather have as an app on your mobile phone?",
     //"Which list would better help to pick satisfactory movies?",
 
-    "Which list has more movies you do not expect?",
-    "Which list has more movies that are familiar to you?",
-    "Which list has more pleasantly surprising movies?",
+    "Which list has the most movies you do not expect?",
+    "Which list has the most movies that are familiar to you?",
+    "Which list has the most pleasantly surprising movies?",
     //"Which list has more movies you would not have thought to consider?",
-    "Which list provides fewer new suggestion?"
+    "Which list provides most new suggestion?"
 ];

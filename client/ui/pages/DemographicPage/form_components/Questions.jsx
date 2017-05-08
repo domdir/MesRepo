@@ -229,7 +229,7 @@ export default class extends React.Component {
                     <div className="question_div_center"><span className="choice">2) From a physical medium (DVD/BluRay)</span>
                         <input type="number" placeholder="0" ref="ref_physical_medium" onChange={this.handleChangeQuestion1PhysicalMedium.bind( this )} value={this.state.value_question1_physical_medium}
                             className="float-right" /></div>
-                    <div className="question_div_center"><span className="choice">3) Through streaming services, such as Netflix</span>
+                    <div className="question_div_center"><span className="choice">3) Through streaming services, such as Netflix, Infinity, ...</span>
                         <input type="number" placeholder="0" ref="ref_streaming" onChange={this.handleChangeQuestion1Streaming.bind( this )} value={this.state.value_question1_streaming}
                             className="float-right" /> </div>
                     <div className="question_div_center"><span className="choice">4) Others (please specify)</span>
@@ -249,7 +249,7 @@ export default class extends React.Component {
                     <div className="question_div_center"><span className="choice">2) On the way (traveling, commuting, etc.)</span>
                         <input type="number" placeholder="0" ref="ref_way" onChange={this.handleChangeQuestion1Way.bind( this )} value={this.state.value_question1_way}
                             className="float-right" /></div>
-                    <div className="question_div_center"><span className="choice">3) At the Cinema or in public spaces</span>
+                    <div className="question_div_center"><span className="choice">3) Public spaces (Cinema, School, ...)</span>
                         <input type="number" placeholder="0" ref="ref_cinema" onChange={this.handleChangeQuestion1Cinema.bind( this )} value={this.state.value_question1_cinema}
                             className="float-right" /> </div>
                     <div className="question_div_center"><span className="choice">4) Others (please specify)</span>
@@ -270,7 +270,7 @@ export default class extends React.Component {
                 <span className="question_title">Your Twitter name    (starting with @):</span><input type="text" placeholder="@TwitterName" ref="ref_twitter"
                     className="form-demQuestionnaire-questions-text" /></div>
             <div className="question_div2">
-                <span className="question_title">Your Facebook ID: </span><input type="number" placeholder="FacebookID" ref="ref_fb"
+                <span className="question_title">Your Facebook ID: </span><input type="text" placeholder="FacebookID" ref="ref_fb"
                     className="form-demQuestionnaire-questions-text" /> </div>
             <div className="question_div2">
                 <span className="question_title">Your Instagram ID: </span><input type="number" placeholder="InstagramID" ref="ref_instagram"

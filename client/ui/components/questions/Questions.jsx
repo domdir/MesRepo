@@ -36,15 +36,15 @@ export default class Questions extends React.Component {
 }
    
    const questionsList = [
-   {_id: 1, message: "Extraverted - Enthusiastic", imgSource: "/personalityImages/1.jpg"},
-   {_id: 2, message: "Critical - Quarrelsome", imgSource: "/personalityImages/2.jpg"},
-   {_id: 3, message: "Dependable - Self Disciplined", imgSource: "/personalityImages/3.jpg"},
-   {_id: 4, message: "Anxious - Easily upset", imgSource: "/personalityImages/4.jpg"},
-   {_id: 5, message: "Open to new experiences - Complex", imgSource: "/personalityImages/5.jpg"},
-   {_id: 6, message: "Reserved - Quiet", imgSource: "/personalityImages/6.jpg"},
-   {_id: 7, message: "Sympathetic - Warm", imgSource: "/personalityImages/7.jpg"},
-   {_id: 8, message: "Disorganized - Careless", imgSource: "/personalityImages/8.jpg"},
-   {_id: 9, message: "Calm - Emotionally stable", imgSource: "/personalityImages/9.jpg"},
-   {_id: 10, message: "Conventional - Uncreative", imgSource: "/personalityImages/10.jpg"}
+   {_id: 1, message: "Extraverted, Enthusiastic", imgSource: "/personalityImages/1.jpg"},
+   {_id: 2, message: "Critical, Quarrelsome", imgSource: "/personalityImages/2.jpg"},
+   {_id: 3, message: "Dependable, Self Disciplined", imgSource: "/personalityImages/3.jpg"},
+   {_id: 4, message: "Anxious, Easily upset", imgSource: "/personalityImages/4.jpg"},
+   {_id: 5, message: "Open to new experiences, Complex", imgSource: "/personalityImages/5.jpg"},
+   {_id: 6, message: "Reserved, Quiet", imgSource: "/personalityImages/6.jpg"},
+   {_id: 7, message: "Sympathetic, Warm", imgSource: "/personalityImages/7.jpg"},
+   {_id: 8, message: "Disorganized, Careless", imgSource: "/personalityImages/8.jpg"},
+   {_id: 9, message: "Calm, Emotionally stable", imgSource: "/personalityImages/9.jpg"},
+   {_id: 10, message: "Conventional, Uncreative", imgSource: "/personalityImages/10.jpg"}
 
 ];

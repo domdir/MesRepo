@@ -143,13 +143,19 @@ render() {
 					Personality Questionnaire ({this.state.offset==0?"1/2":"2/2"})
                     </h1></span>
                     <div className="formauthLarge">
+					<i><font size="4" color="##66ff99">Instructions:</font> <font size="3" color="white">Here are a number of personality traits that may or may not apply to you. 
+					<br/>Please indicate the extent to which you agree or disagree with that statement. 
+					<br/>You should rate the extent to which the pair of traits applies to you, even if one 
+                    characteristic <br/>applies more strongly than the other. Answer all questions for the most 
+                    accurate result.</font></i>
 					<span style={{
                             color: '#FFFFFF',
                             textShadow: '0px 2px 5px rgba(37, 35, 40, 0.5)'
                         }}><h2>
                     How much are you...
                     </h2></span>
-					<i><font size="2" color="white">1: Disagree Strongly 7:Agree Strongly</font></i>
+					<i><font size="3" color="white">1: Disagree Strongly 7:Agree Strongly</font></i>
+					
 					<Questions questionId={this.state.questionId}/>
                     <SevenStars last= "0"  ref="q1" onHandleVote={this.saveRate1} rate_title=""/>
 					<Questions questionId={this.state.questionId+1}/>
