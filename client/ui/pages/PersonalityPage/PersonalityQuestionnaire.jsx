@@ -142,12 +142,12 @@ render() {
                         }}><h1>
 					Personality Questionnaire ({this.state.offset==0?"1/2":"2/2"})
                     </h1></span>
-                    <div className="formauthLarge">
+                    <div className="formauthLarge">{( this.state.questionId < 6 ) ?
 					<i><font size="4" color="##66ff99">Instructions:</font> <font size="3" color="white">
 					    Here are a number of personality traits that may or may not apply to you. <br/>Please write a number next to
 					    each statement to indicate the extent to which you agree<br/> or disagree with that statement. You should rate
 					    the extent to which the pair of traits  <br/> applies to you, even if one characteristic applies more strongly than
-					    the other.</font></i>
+					    the other.</font></i> : null}
 					<span style={{
                             color: '#FFFFFF',
                             textShadow: '0px 2px 5px rgba(37, 35, 40, 0.5)'

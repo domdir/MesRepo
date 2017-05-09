@@ -35,7 +35,7 @@ export default class  extends React.Component {
         var age = ReactDOM.findDOMNode(this.refs.ref_age).value;
         if (!age) {
             this.setState({
-                age_error_message: "Insert your age"
+                age_error_message: "Insert your date of birth"
             });
             callBack(null);
         } else {

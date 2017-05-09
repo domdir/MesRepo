@@ -41,9 +41,9 @@ export default class extends React.Component {
     render() {
         return (
             <div className="question_div2">
-                <div className="leftpanel">
-                    <span className="question_title">Nationality:*</span>
-                </div>
+                
+                    <span className="nationality_title">Nationality:*</span>
+                
                 <div style={{ width: 200 }} className="rightpanel">
                     <SelectTest ref="nation" style={{ float: "right" }} />
                 </div>

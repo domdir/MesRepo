@@ -96,7 +96,7 @@ export default class DemographicPage extends React.Component {
 		
 
         return (
-            <div className="row" id="spacerow" >
+            <div className="row_AlignLeft" id="spacerow" >
 
                 <h1>
                     <span style={{
@@ -114,7 +114,7 @@ export default class DemographicPage extends React.Component {
                             <Nationality ref="nationality" />
                             <Questions ref="questions" />
                             <LoadingWrapper loading_style="loader-bars" is_processing={this.state.is_processing}>
-                                <input className="btn-questionnaire btn-default" type="submit" value="FINISH" />
+                                <div className="center_button"><input className="btn-questionnaire btn-default" type="submit" value="FINISH" /></div>
                             </LoadingWrapper>
                             <div className="colorError">
                                 {( this.state.error_message )
