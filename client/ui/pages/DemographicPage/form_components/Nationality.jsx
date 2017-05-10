@@ -25,7 +25,7 @@ export default class extends React.Component {
         this.refs.nation.checkNation(( res ) => {
             
             if(!res){
-                this.setState({nationality_error_message: "Select your country"});
+                this.setState({nationality_error_message: "Select your nationality"});
                 callBack(null );
             }else{
                 this.setState({nationality: res});
@@ -41,9 +41,9 @@ export default class extends React.Component {
     render() {
         return (
             <div className="question_div2">
-                <div className="leftpanel">
-                    <span className="question_title">Nationality:*</span>
-                </div>
+                
+                    <span className="nationality_title">Nationality:*</span>
+                
                 <div style={{ width: 200 }} className="rightpanel">
                     <SelectTest ref="nation" style={{ float: "right" }} />
                 </div>

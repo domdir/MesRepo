@@ -226,13 +226,13 @@ export default class extends React.Component {
                     <div className="question_div_center"><span className="choice"> 1) On Tv </span>
                         <input type="number" placeholder="0" ref="ref_tv" onChange={this.handleChangeQuestion1Tv.bind( this )} value={this.state.value_question1_tv}
                             className="float-right" /> </div>
-                    <div className="question_div_center"><span className="choice">2) From a physical medium (DVD/BluRay)</span>
+                    <div className="question_div_center"><span className="choice">2) From a physical medium, such as DVD or BluRay</span>
                         <input type="number" placeholder="0" ref="ref_physical_medium" onChange={this.handleChangeQuestion1PhysicalMedium.bind( this )} value={this.state.value_question1_physical_medium}
                             className="float-right" /></div>
-                    <div className="question_div_center"><span className="choice">3) Through streaming services, such as Netflix, Infinity, ...</span>
+                    <div className="question_div_center"><span className="choice">3) Through streaming service, such as Netflix, Infinity, ...</span>
                         <input type="number" placeholder="0" ref="ref_streaming" onChange={this.handleChangeQuestion1Streaming.bind( this )} value={this.state.value_question1_streaming}
                             className="float-right" /> </div>
-                    <div className="question_div_center"><span className="choice">4) Others (please specify)</span>
+                    <div className="question_div_center"><span className="choice">4) Others (Please specify)</span>
                         <input type="text" placeholder="Other..." ref="ref_other_name"
                             className="form-demQuestionnaire-questions-text" />
                         <input type="number" ref="ref_other_value" value={this.state.value_question1_other} readOnly
@@ -246,13 +246,13 @@ export default class extends React.Component {
                     <div className="question_div_center"><span className="choice"> 1) At home </span>
                         <input type="number" placeholder="0" ref="ref_home" onChange={this.handleChangeQuestion1Home.bind( this )} value={this.state.value_question1_home}
                             className="float-right" /> </div>
-                    <div className="question_div_center"><span className="choice">2) On the way (traveling, commuting, etc.)</span>
+                    <div className="question_div_center"><span className="choice">2) On the way, such as Travelling, Commuting, ...</span>
                         <input type="number" placeholder="0" ref="ref_way" onChange={this.handleChangeQuestion1Way.bind( this )} value={this.state.value_question1_way}
                             className="float-right" /></div>
-                    <div className="question_div_center"><span className="choice">3) Public spaces (Cinema, School, ...)</span>
+                    <div className="question_div_center"><span className="choice">3) Public spaces, such as Cinema, School, ...</span>
                         <input type="number" placeholder="0" ref="ref_cinema" onChange={this.handleChangeQuestion1Cinema.bind( this )} value={this.state.value_question1_cinema}
                             className="float-right" /> </div>
-                    <div className="question_div_center"><span className="choice">4) Others (please specify)</span>
+                    <div className="question_div_center"><span className="choice">4) Others (Please specify)</span>
                         <input type="text" placeholder="Other..." ref="ref_other_name2"
                             className="form-demQuestionnaire-questions-text" />
                         <input type="number" ref="ref_other_value" value={this.state.value_question1_other2} readOnly
