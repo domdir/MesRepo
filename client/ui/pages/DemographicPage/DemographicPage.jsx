@@ -25,6 +25,7 @@ export default class DemographicPage extends React.Component {
     }
 
     onFormQuestionnaireSubmit( event ) {
+		window.scrollTo(0, 0)
         event.preventDefault();
         this.setState( { is_processing: true, error_message: null } );
         this.checkErrors(( res ) => {

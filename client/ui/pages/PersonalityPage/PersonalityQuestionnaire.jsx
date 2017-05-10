@@ -119,18 +119,6 @@ export default class PersonalityQuestionnaire extends React.Component {
 		}
 	}
 render() {
-	const movieBackgrounds=[
-	"/video/personality/1.mp4",
-	"/video/personality/2.mp4",
-	"/video/personality/3.mp4",
-	"/video/personality/4.mp4",
-	"/video/personality/5.mp4",
-	"/video/personality/6.mp4",
-	"/video/personality/7.mp4",
-	"/video/personality/8.mp4",
-	"/video/personality/9.mp4",
-	"/video/personality/10.mp4"
-	];
 	
         return (
 		<div className="row" id="spacerow">
@@ -138,7 +126,6 @@ render() {
                     <span style={{
                             color: '#FFFFFF',
                             textShadow: '0px 2px 5px rgba(37, 35, 40, 0.5)',
-                           
                         }}><h1>
 					Personality Questionnaire ({this.state.offset==0?"1/2":"2/2"})
                     </h1></span>

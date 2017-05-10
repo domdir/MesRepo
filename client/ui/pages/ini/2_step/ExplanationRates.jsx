@@ -43,19 +43,14 @@ export default class ExplanationRates extends Component {
                                             <a>
                                                 In order to make better recommendations for you, we need a vote for
                                                 the movies that you have selected before.
-                                                Use the buttons shown below to give a score from 1 to 5 for the next
-                                                movies.
+                                                Use the buttons under the trailers to give a score 
+												from 1 to 5 for the next movies.
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-
-                        <div className="row" id="rate_ex">
-                            <FiveStars isDisabled={true} rate_title="USE THIS BUTTONS TO RATE THE NEXT MOVIES"/>
-                        </div>
- 
                         <br />
                         <button className="btn btn-default btn_circle row button_ini"
                                 onClick={this.nextStep.bind(this)}>S T A R T

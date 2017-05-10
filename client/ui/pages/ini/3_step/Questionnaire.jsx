@@ -127,7 +127,7 @@ const questions = [
     //"Which list does a better job of putting better movies to the left?",
 
     "Which list has the most movies that are similar to each other?",
-    "Which list has a the most varied selection of movies?",
+    "Which list has the most varied selection of movies?",
     "Which list has movies that match a wider variety of moods?",
     //"Which list would suit a broader set of tastes?",
 
@@ -146,5 +146,5 @@ const questions = [
     "Which list has the most movies that are familiar to you?",
     "Which list has the most pleasantly surprising movies?",
     //"Which list has more movies you would not have thought to consider?",
-    "Which list provides most new suggestion?"
+    "Which list provides most new suggestions?"
 ];

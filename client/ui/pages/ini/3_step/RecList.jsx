@@ -100,7 +100,8 @@ export default class RecList extends Component {
              isOpen={this.state.modalIsOpen}
              style={customStyles}
              onRequestClose={this.closeModal.bind(this)}>
-              <div className="closeModal" onClick={this.closeModal.bind(this)}>x</div>
+              <button className="btn btn-default button_ini" onClick={this.closeModal.bind(this)}>GO BACK
+              </button>
               {this.state.movie_selected ?
                 <div className="movie_modal">
                    <SingleMovieToRate

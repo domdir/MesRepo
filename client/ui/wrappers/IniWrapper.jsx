@@ -23,7 +23,9 @@ class IniWrapper extends Component {
    constructor(props) {
       super(props);
 
-      this.state = {};
+      this.state = {
+		  timeSpent: 0
+	  };
    }
 
 
@@ -39,6 +41,7 @@ class IniWrapper extends Component {
 		 case "demographic":
 			return (
 			<div className="wrapper">
+			
 			<video autoPlay loop poster="/img/bg-init.jpg" id="bgvid">
 			<source src="/video/MES_video.mp4" type="video/mp4" />
 			</video>
@@ -109,8 +112,10 @@ class IniWrapper extends Component {
             break;
       }
    }
-
-
+   
+componentDidMount() {
+	Meteor.call('page_loaded', "ini/"+this.props.ini_step);
+  }
    render() {
 	   if (this.props.currentUser) {
          
@@ -123,7 +128,7 @@ class IniWrapper extends Component {
          }
       }
       return (
-           <div className="wrapper">
+	  <div className="wrapper">
               {this.renderCurrentStep()}
            </div>
       )
