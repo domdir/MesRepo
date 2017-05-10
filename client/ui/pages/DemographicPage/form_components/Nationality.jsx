@@ -25,7 +25,7 @@ export default class extends React.Component {
         this.refs.nation.checkNation(( res ) => {
             
             if(!res){
-                this.setState({nationality_error_message: "Select your country"});
+                this.setState({nationality_error_message: "Select your nationality"});
                 callBack(null );
             }else{
                 this.setState({nationality: res});

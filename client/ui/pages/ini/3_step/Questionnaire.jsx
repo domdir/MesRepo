@@ -49,9 +49,9 @@ export default class RecQuestionnaire extends Component {
     }
 
     onNextQuestion() {
-		window.scrollTo(0, 0)
+        window.scrollTo( 0, 0 )
 
-        if ( this.state.questionnaireStep == 4 ) {
+        if ( this.state.questionnaireStep == 6 ) {
 
             Meteor.call( "s_save_questions_and_clean_rec", this.state.total_votes, () => {
 
@@ -82,15 +82,15 @@ export default class RecQuestionnaire extends Component {
         return (
             <div className="container-fluid questionnaire">
                 <div className="row">
-                    <h1>SURVEY <span style={{ fontSize: "25px" }}> ( {actualStep + "/5"} )</span></h1>
+                    <h1>SURVEY <span style={{ fontSize: "25px" }}> ( {actualStep + "/7"} )</span></h1>
                     {this.state.questionnaireStep == 0 ?
                         <h5>{"List 1, 2 and 3 contains the top movie recommendations for you from different \"recommenders\". Please" +
                             " answer the following questions to help us understand your preferences about this recommendations."}
                         </h5> : null}
-                    {this.state.questionnaireStep == 1 ?<div>
+                    {this.state.questionnaireStep == 1 ? <div>
                         <h5>{"Please, rate the three lists"}
-					<i><h6>{"1:don't like 5:extremely like"}</h6></i></h5>
-					</div>: null}
+                            <i><h6>{"1:don't like 5:extremely like"}</h6></i></h5>
+                    </div> : null}
                     <div>
                         {this.renderQuestion()}
                     </div>
@@ -109,42 +109,42 @@ export default class RecQuestionnaire extends Component {
 
 const block_title = ["Accuracy", "Diversity", "Understands Me", "Satisfaction", "Novelty"];
 
-const block = [3, 3, 4, 5, 5];
+const block = [3, 3, 4, 4, 4, 5, 5];
 
 const questions = [
 
     "How many movies of the first list have you seen?",
     "How many movies of the second list have you seen?",
     "How many movies of the third list have you seen?",
-    
+
     "List 1:",
     "List 2:",
     "List 3:",
 
     "Which list has the most movies that you find appealing?",
-    //"Which list has more movies that might be among the best movies you see in the next year?",
+    "Which list has the most movies that might be among the best movies you see in the next year?",
     "Which list has the most obviously bad movie recommendations for you?",
-    //"Which list does a better job of putting better movies to the left?",
+    "Which recommender does the best job of putting the best movies to the left?",
 
     "Which list has the most movies that are similar to each other?",
-    "Which list has a the most varied selection of movies?",
+    "Which list has the most varied selection of movies?",
     "Which list has movies that match a wider variety of moods?",
-    //"Which list would suit a broader set of tastes?",
+    "Which list would suit a broader set of tastes?",
 
-    "Which list best understands your taste in movies?",
-    //"Which list would you trust more to provide you with recommendation?",
-    "Which list seems the most personalized to your movie taste?",
-    "Which list most represent mainstream tastes instead of your own?",
+    "Which recommender best understands your taste in movies?",
+    "Which recommender would you trust more to provide you with recommendation?",
+    "Which recommender seems the most personalized to your movie taste?",
+    "Which recommender most represent mainstream tastes instead of your own?",
 
-    "Which list would best help you find movies to watch?",
-    "Which list would you be the most likely to recommend to your friends?",
-    //"Which list of recommendations do you find more valuable?",
-    //"Which list would you rather have as an app on your mobile phone?",
-    //"Which list would better help to pick satisfactory movies?",
+    "Which recommender would best help you find movies to watch?",
+    "Which recommender would you be the most likely to recommend to your friends?",
+    "Which list of recommendations do you find more valuable?",
+    "Which recommender would you rather have as an app on your mobile phone?",
+    "Which recommender would better help to pick satisfactory movies?",
 
     "Which list has the most movies you do not expect?",
     "Which list has the most movies that are familiar to you?",
     "Which list has the most pleasantly surprising movies?",
-    //"Which list has more movies you would not have thought to consider?",
+    "Which list has the most movies you would not have thought to consider?",
     "Which list provides most new suggestion?"
 ];

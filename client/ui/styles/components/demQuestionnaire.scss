@@ -64,6 +64,11 @@ margin-left: 30px;
 margin-top: 10px;
 }
 
+.privacy_div{
+margin-top: 30px;
+display: flex;
+}
+
 
 .question_div{
 margin-top: 25px;
@@ -168,13 +173,18 @@ margin-top: 40px;
   float: left;
       margin-right: 15px;
 }
+.privacy_title_text{
+  color: white;
+      margin-left: 15px;
+}
 .gender_text{
   color: white;
 }
 
 .colorErrorRed{
- color: red;
+ color: #ff3300;
   font-family: MESFont5, sans-serif;
+  text-align: center !important;
 }
 
 .center_button{
