@@ -16,7 +16,8 @@ export default class RecQuestionnaire extends Component {
             total_votes: {},
             blocK_callbacks: {},
             block_votes: {},
-            is_loading: false
+            is_loading: false,
+			actualBlock: 0
         };
     }
 
@@ -47,7 +48,12 @@ export default class RecQuestionnaire extends Component {
             total_votes: total_votes
         } );
     }
-
+	shuffle(a) {
+    for (let i = a.length; i; i--) {
+        let j = Math.floor(Math.random() * i);
+        [a[i - 1], a[j]] = [a[j], a[i - 1]];
+    }
+}
     onNextQuestion() {
         window.scrollTo( 0, 0 )
 
@@ -69,9 +75,16 @@ export default class RecQuestionnaire extends Component {
                     this.state.blocK_callbacks[key]();
                 }
             }
+			/*if (this.state.questionnaireStep>1){
+			blocks=shuffle(this.state.blocks)
+			actual_block=blocks[blocks.length-1]
+			blocks.pop()
+			}else{
+			actual_block=this.state.questionnaireStep}*/
             this.setState( {
                 question_base: this.state.question_base + block[step],
                 questionnaireStep: step + 1,
+				//questionnaireStep: actual_block,
                 block_votes: {}
             } )
         }
@@ -121,30 +134,31 @@ const questions = [
     "List 2:",
     "List 3:",
 
-    "Which list has the most movies that you find appealing?",
-    "Which list has the most movies that might be among the best movies you see in the next year?",
-    "Which list has the most obviously bad movie recommendations for you?",
-    "Which recommender does the best job of putting the best movies to the left?",
-
-    "Which list has the most movies that are similar to each other?",
-    "Which list has the most varied selection of movies?",
-    "Which list has movies that match a wider variety of moods?",
-    "Which list would suit a broader set of tastes?",
-
-    "Which recommender best understands your taste in movies?",
-    "Which recommender would you trust more to provide you with recommendation?",
-    "Which recommender seems the most personalized to your movie taste?",
-    "Which recommender most represent mainstream tastes instead of your own?",
-
-    "Which recommender would best help you find movies to watch?",
-    "Which recommender would you be the most likely to recommend to your friends?",
-    "Which list of recommendations do you find more valuable?",
-    "Which recommender would you rather have as an app on your mobile phone?",
     "Which recommender would better help to pick satisfactory movies?",
+	"Which list would suit a broader set of tastes?",
+	"Which recommender most represent mainstream tastes instead of your own?",
+	"Which list has the most movies that are familiar to you?",
 
-    "Which list has the most movies you do not expect?",
-    "Which list has the most movies that are familiar to you?",
-    "Which list has the most pleasantly surprising movies?",
-    "Which list has the most movies you would not have thought to consider?",
-    "Which list provides most new suggestions?"
+	"Which list has the most pleasantly surprising movies?",
+	"Which list has the most obviously bad movie recommendations for you?",
+	"Which list has the most varied selection of movies?",
+	"Which recommender would best help you find movies to watch?",
+
+	"Which recommender does the best job of putting the best movies to the left?",
+	"Which list has the most movies you would not have thought to consider?",
+	"Which list of recommendations do you find more valuable?",
+	"Which recommender best understands your taste in movies?",
+
+	"Which list has movies that match a wider variety of moods?",
+	"Which recommender seems the most personalized to your movie taste?", 
+	"Which list provides most new suggestions?",
+	"Which recommender would you be the most likely to recommend to your friends?",
+	"Which list has the most movies that you find appealing?",
+
+	"Which recommender would you trust more to provide you with recommendation?",
+	"Which list has the most movies that might be among the best movies you see in the next year?",
+	"Which recommender would you rather have as an app on your mobile phone?", 
+	"Which list has the most movies you do not expect?", 
+	"Which list has the most movies that are similar to each other?"
+
 ];

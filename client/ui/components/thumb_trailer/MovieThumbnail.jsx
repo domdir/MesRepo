@@ -68,7 +68,6 @@ export default class MovieThumbnail extends Component {
 				dateStartTrailer: null,
 				timeTrailer: newTime
 			});
-			alert(newTime)
 			}
 	   }
    }
@@ -89,7 +88,6 @@ export default class MovieThumbnail extends Component {
 				dateStartOver: null,
 				mouseOverTime: newTime
 			});
-			alert(newTime)
 	   }
 	   }
    }
