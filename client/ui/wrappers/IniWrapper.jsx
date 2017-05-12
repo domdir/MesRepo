@@ -113,9 +113,9 @@ class IniWrapper extends Component {
       }
    }
    
-componentDidMount() {
+/*componentDidMount() {
 	Meteor.call('load_page', "ini/"+this.props.ini_step);
-  }
+  }*/
    render() {
 	   if (this.props.currentUser) {
          

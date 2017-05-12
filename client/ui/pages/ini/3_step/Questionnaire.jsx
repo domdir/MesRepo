@@ -17,6 +17,7 @@ export default class RecQuestionnaire extends Component {
             blocK_callbacks: {},
             block_votes: {},
             is_loading: false,
+			blocks: [2,3,4,5,6],
 			actualBlock: 0
         };
     }
@@ -53,6 +54,7 @@ export default class RecQuestionnaire extends Component {
         let j = Math.floor(Math.random() * i);
         [a[i - 1], a[j]] = [a[j], a[i - 1]];
     }
+	return a
 }
     onNextQuestion() {
         window.scrollTo( 0, 0 )
@@ -75,16 +77,17 @@ export default class RecQuestionnaire extends Component {
                     this.state.blocK_callbacks[key]();
                 }
             }
-			/*if (this.state.questionnaireStep>1){
-			blocks=shuffle(this.state.blocks)
+			if (this.state.questionnaireStep>0){
+			blocks=this.shuffle(this.state.blocks)
 			actual_block=blocks[blocks.length-1]
 			blocks.pop()
 			}else{
-			actual_block=this.state.questionnaireStep}*/
+			actual_block=this.state.questionnaireStep
+			}
             this.setState( {
                 question_base: this.state.question_base + block[step],
                 questionnaireStep: step + 1,
-				//questionnaireStep: actual_block,
+				actualBlock: actual_block,
                 block_votes: {}
             } )
         }
