@@ -135,10 +135,10 @@ export default class extends React.Component {
 
 
     checkQuestions( callBack ) {
-        var question1 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var question1 = [0, 0, 0, 0, 0, "", 0, 0, 0, 0 ,""];
         var other1 = null;
         var other2 = null;
-        var question2 = 0;
+        var question2 = null;
         var twitter = null;
         var fb = null;
         var instagram = null;
@@ -152,15 +152,19 @@ export default class extends React.Component {
             question1[0] = -1;  //missing response
         }
         else if ( question1tot >= 0 && question1tot <= 168 ) {
+            other1 = ReactDOM.findDOMNode( this.refs.ref_other_name ).value.trim();
+            other2 = ReactDOM.findDOMNode( this.refs.ref_other_name2 ).value.trim();
             question1[0] = question1tot;
             question1[1] = this.state.value_question1_tv;
             question1[2] = this.state.value_question1_physical_medium;
             question1[3] = this.state.value_question1_streaming;
             question1[4] = this.state.value_question1_other;
-            question1[5] = this.state.value_question1_home;
-            question1[6] = this.state.value_question1_way;
-            question1[7] = this.state.value_question1_cinema;
-            question1[8] = this.state.value_question1_other2;
+            question1[5] = other1;
+            question1[6] = this.state.value_question1_home;
+            question1[7] = this.state.value_question1_way;
+            question1[8] = this.state.value_question1_cinema;
+            question1[9] = this.state.value_question1_other2;
+            question1[10] = other2;
 
         } else {
             question1[0] = -2; //impossible response
@@ -207,11 +211,8 @@ export default class extends React.Component {
         if ( !spotify ) {
             spotify = -1;
         }
-        if ( this.state.value_question1 ) { //if it is created the element with the other field text
-            other1 = ReactDOM.findDOMNode( this.refs.ref_other_name ).value.trim();
-            other2 = ReactDOM.findDOMNode( this.refs.ref_other_name2 ).value.trim();
-        }
-        res = [question1, other1, other2, question2, twitter, fb, instagram, lastfm, spotify];
+       
+        res = [question1, question2, twitter, fb, instagram, lastfm, spotify];
         callBack( res );
     }
 

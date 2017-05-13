@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Age from './form_components/Age.jsx';
+import DateOfBirth from './form_components/DateOfBirth.jsx';
 import Gender from './form_components/Gender.jsx';
 import Nationality from './form_components/Nationality.jsx'
 import Questions from './form_components/Questions.jsx';
@@ -26,14 +26,14 @@ export default class DemographicPage extends React.Component {
     }
 
     onFormQuestionnaireSubmit( event ) {
-		window.scrollTo(0, 0)
         event.preventDefault();
         this.setState( { is_processing: true, error_message: null } );
         this.checkErrors(( res ) => {
             this.setState( { is_processing: false, error_message: null } );
             this.setState( { is_processing: false, error_message: null } );
-            if ( res.age && res.gender && res.nationality && res.privacy) {
+            if ( res.dateOfBirth && res.gender && res.nationality && res.privacy) {
 
+                window.scrollTo( 0, 0)
                 this.onSubmitQuestionnaireValidForm( res );
             }
         } );
@@ -41,11 +41,11 @@ export default class DemographicPage extends React.Component {
 
     checkErrors( callBack ) {
         var credentials = {
-            "age": null,
+            "dateOfBirth": null,
             "gender": null,
             "nationality": null,
-            "question1": [],
-            "question2": [],
+            "question1": [],            
+            "question2": null,
             "twitter": null,
             "fb": null,
             "instagram": null,
@@ -53,8 +53,8 @@ export default class DemographicPage extends React.Component {
             "spotify": null,
             "privacy": null
         };
-        this.refs.age.checkAge(( res ) => {
-            credentials.age = res;
+        this.refs.dateOfBirth.checkAge(( res ) => {
+            credentials.dateOfBirth = res;
             this.refs.gender.checkGender(( res ) => {
                 credentials.gender = res;
                 this.refs.questions.checkQuestions(( res ) => {
@@ -85,8 +85,8 @@ export default class DemographicPage extends React.Component {
 
 
         //SAVE DATA INTO DB
-        //Meteor.call("s_save_dem_questions", res, ()=> {
-        //});
+        Meteor.call("s_save_dem_questions", res, ()=> {
+        });
 
         Meteor.call( "s_set_ini_step", "personality_questionnaire", err => {
             if ( !err ) {
@@ -114,7 +114,7 @@ export default class DemographicPage extends React.Component {
                         is_processing={this.state.questionnaire_done}>
 
                         <form className="form-demQuestionnaire" onSubmit={this.onFormQuestionnaireSubmit.bind( this )} noValidate>
-                            <Age ref="age" />
+                            <DateOfBirth ref="dateOfBirth" />
                             <Gender ref="gender" />
                             <Nationality ref="nationality" />
                             <Questions ref="questions" />
