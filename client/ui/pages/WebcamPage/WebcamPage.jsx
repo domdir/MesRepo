@@ -24,20 +24,24 @@ export default class WebcamPage extends Component {
          is_loading: false,
          error: null,
 	 movies_selected: [],
-         movies_selected_id: []
-      };
-   }
-
-   componentDidMount() {
-
-   }
+         movies_selected_id: [],
+      date_load: null
+        };
+    }
+	
+	componentDidMount() {
+	this.setState({
+		date_load: (new Date).getTime()
+	});
+  }
 
    onHandleNext() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
 	   window.scrollTo(0, 0)
       if (this.state.movies_selected_id.length >= MIN_NUM_MOVIES) {
          Meteor.call("s_save_movies_chosen", this.state.movies_selected, (err, res)=> {
             if (res) {
-               Meteor.call("s_set_ini_step", 3, err=> {
+               Meteor.call("s_set_ini_step", 3,pageTime, err=> {
                if (!err) {
                   FlowRouter.setParams({ ini_step: "3" });
 	       }
