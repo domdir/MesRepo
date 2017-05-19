@@ -88,9 +88,9 @@ export default class DemographicPage extends React.Component {
         Meteor.call("s_save_dem_questions", res, ()=> {
         });
 
-        Meteor.call( "s_set_ini_step", "personality_questionnaire", err => {
+        Meteor.call( "s_set_ini_step", "choose_from_catalog", err => {
             if ( !err ) {
-                FlowRouter.setParams( { ini_step: "personality_questionnaire" } );
+                FlowRouter.setParams( { ini_step: "choose_from_catalog" } );
             }
         } )
         //FlowRouter.go(routesPath.INI_BASE_ROUTE + routesParam.INI_STEP_0);
