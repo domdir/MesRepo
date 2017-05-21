@@ -20,10 +20,16 @@ export default class LoginPage extends Component {
             login_step: 0,
             is_processing: false,
             is_loading: false,
-            error_message: null
+            error_message: null,
+			date_load: null
         };
     }
-
+	
+	componentDidMount() {
+	this.setState({
+		date_load: (new Date).getTime()
+	});
+  }
 
     renderLoginStep() {
 
@@ -45,6 +51,7 @@ export default class LoginPage extends Component {
 
     onFormLoginSubmit(event) {
 		window.scrollTo(0, 0)
+		
         event.preventDefault();
         switch (this.state.login_step) {
             case 0:
@@ -88,6 +95,7 @@ export default class LoginPage extends Component {
     }
 
     onSubmitLoginValidForm(email, psw) {
+		pageTime= ((new Date).getTime()-this.state.date_load)/1000
         Meteor.loginWithPassword(email, psw, err=> {
             if (err) {
                 this.setState({
@@ -95,7 +103,7 @@ export default class LoginPage extends Component {
                     error_message: "The email and password you entered don't match"
                 });
             } else {
-                Meteor.call("s_set_ini_step", "webcam", err=> {
+                Meteor.call("s_set_ini_step", "webcam",pageTime, err=> {
             if (!err) {
                FlowRouter.go(routesPath.INI_BASE_ROUTE + routesPath.PREWEBCAM);
             }

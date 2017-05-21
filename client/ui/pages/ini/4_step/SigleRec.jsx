@@ -20,8 +20,15 @@ class SingleRec extends Component {
       is_loading: false,
       modalIsOpen: false,
       movie_selected: null,
-      alreadyVoted:[]
-    };
+      alreadyVoted:[],
+    date_load: null
+        };
+    }
+	
+	componentDidMount() {
+	this.setState({
+		date_load: (new Date).getTime()
+	});
   }
 
   onHandleRecVote(rate, startDate, callBack) {
@@ -81,9 +88,10 @@ class SingleRec extends Component {
   }
 
   nextPage(){
+	  pageTime= ((new Date).getTime()-this.state.date_load)/1000
     Meteor.call("s_clear_rec");
 
-    Meteor.call( "s_set_ini_step", 5, err=> {
+    Meteor.call( "s_set_ini_step", 5,pageTime, err=> {
       if (!err) {
         FlowRouter.setParams( { ini_step: "5" } );
       }

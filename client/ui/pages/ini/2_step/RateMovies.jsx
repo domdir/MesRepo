@@ -17,10 +17,16 @@ export class RateMovies extends React.Component {
       this.state = {
          currentMovieToRate: null,
          is_loading: false,
-         error: null
-      };
-
-   }
+         error: null,
+      date_load: null
+        };
+    }
+	
+	componentDidMount() {
+	this.setState({
+		date_load: (new Date).getTime()
+	});
+  }
 
    onHandleIniRate(rate, startTime, callBack) {
       
@@ -53,7 +59,8 @@ export class RateMovies extends React.Component {
       
       
       if (this.props.is_next) {
-         Meteor.call("s_set_ini_step", "webcam", err=> {
+		  pageTime= ((new Date).getTime()-this.state.date_load)/1000
+         Meteor.call("s_set_ini_step", "webcam",pageTime, err=> {
             if (!err) {
                FlowRouter.setParams({ini_step: routesParam.PREWEBCAM});
             }

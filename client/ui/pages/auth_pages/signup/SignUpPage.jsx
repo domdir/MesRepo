@@ -18,9 +18,16 @@ export default class SignUpPage extends React.Component {
         this.state = {
             is_processing: false,
             error_message: null,
-            is_signup: false
+            is_signup: false,
+			date_load: null
         };
     }
+	
+	componentDidMount() {
+	this.setState({
+		date_load: (new Date).getTime()
+	});
+  }
 
     onFormSignUpSubmit(event) {
 		window.scrollTo(0, 0)
@@ -56,7 +63,7 @@ export default class SignUpPage extends React.Component {
 
     onSubmitSignUpValidForm(credential) {
         this.setState({is_signup: true, error_message: null});
-
+		pageTime= ((new Date).getTime()-this.state.date_load)/1000
         Accounts.createUser({
             email: credential.email,
             password: credential.psw,
@@ -68,7 +75,7 @@ export default class SignUpPage extends React.Component {
                     error_message: error.reason
                 });
             } else {
-				Meteor.call( "s_set_ini_step", "demographic", err => {
+				Meteor.call( "s_set_ini_step", "demographic",pageTime, err => {
             if ( !err ) {
                 FlowRouter.go(routesPath.INI_BASE_ROUTE + routesPath.DEM_ROUTE);
 			}} )

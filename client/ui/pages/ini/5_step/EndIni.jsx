@@ -10,8 +10,15 @@ export default class EndIni extends Component {
    constructor( props ) {
       super( props );
 
-      this.state = {};
-   }
+      this.state = {date_load: null
+        };
+    }
+	
+	componentDidMount() {
+	this.setState({
+		date_load: (new Date).getTime()
+	});
+  }
 
    onNext() {
       Meteor.call( "initialize_user", ( err, res )=> {

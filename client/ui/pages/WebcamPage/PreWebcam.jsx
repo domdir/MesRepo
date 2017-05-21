@@ -6,12 +6,20 @@ export default class PreWebcam extends React.Component {
         super(props);
 
         this.state = {
+        date_load: null
         };
     }
+	
+	componentDidMount() {
+	this.setState({
+		date_load: (new Date).getTime()
+	});
+  }
     
     goToWebcam() {
+		pageTime= ((new Date).getTime()-this.state.date_load)/1000
 		window.scrollTo(0, 0)
-       Meteor.call("s_set_ini_step", "interaction_with_the_system", err=> {
+       Meteor.call("s_set_ini_step", "interaction_with_the_system",pageTime, err=> {
             if (!err) {
                FlowRouter.setParams({ini_step: routesParam.WEBCAM});
             }

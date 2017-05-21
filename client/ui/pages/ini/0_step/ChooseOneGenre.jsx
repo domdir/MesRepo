@@ -16,13 +16,16 @@ export default class ChooseOneGenre extends Component {
       this.state = {
          is_loading: false,
          genre_selected: null,
-         error: null
-      };
-   }
-
-   componentDidMount() {
-
-   }
+         error: null,
+		date_load: null
+        };
+    }
+	
+	componentDidMount() {
+	this.setState({
+		date_load: (new Date).getTime()
+	});
+  }
 
    add_genre_to_selected(genre_name) {
       this.setState({
@@ -60,11 +63,12 @@ export default class ChooseOneGenre extends Component {
    }
 
    onHandleNext() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
 	   window.scrollTo(0, 0)
       if (this.state.genre_selected) {
          Meteor.call("s_save_genres", [this.state.genre_selected], (err, res)=> {
             if (!err) {
-               Meteor.call("s_set_ini_step", 1, err=> {
+               Meteor.call("s_set_ini_step", 1,pageTime, err=> {
                   if (!err) {
                      FlowRouter.setParams({ini_step: "1"});
                   }

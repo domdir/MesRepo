@@ -23,15 +23,16 @@ export default class Choose4Movie extends React.Component {
       current_genre: null,
       is_advance_search: false,
       years_selected: null,
-      is_getting_new_movies: false
-
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      is_loading: true
-    });
+      is_getting_new_movies: false,
+		date_load: null
+        };
+    }
+	
+	componentDidMount() {
+	this.setState({
+		date_load: (new Date).getTime(),
+		is_loading: true
+	});
 
     Meteor.call("s_get_n_ini_movies", 10, this.props.genre, this.state.years_selected, [], (error, result)=> {
       this.setState({
@@ -61,13 +62,13 @@ export default class Choose4Movie extends React.Component {
   onNext() {
 	window.scrollTo(0, 0)
     if (this.state.movies_selected_id.length == 4) {
-
+		pageTime= ((new Date).getTime()-this.state.date_load)/1000
       this.setState({
         is_loading: true
       });
       Meteor.call("s_save_movies_chosen", this.state.movies_selected, (err, res)=> {
         if (res) {
-          Meteor.call("s_set_ini_step", 2, err=> {
+          Meteor.call("s_set_ini_step", 2,pageTime, err=> {
             if (!err) {
               FlowRouter.setParams({ ini_step: "2" });
             }

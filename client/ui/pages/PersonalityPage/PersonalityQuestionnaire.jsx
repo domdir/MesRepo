@@ -16,9 +16,17 @@ export default class PersonalityQuestionnaire extends React.Component {
         this.state = {
             offset: 0,
             rates: [],
-            questionId: 1
+            questionId: 1,
+        date_load: null
         };
     }
+	
+	componentDidMount() {
+		if(!this.state.date_load){
+	this.setState({
+		date_load: (new Date).getTime()
+		});}
+  }
 
     componentDidUpdate() {
         this.refs.player.load();
@@ -27,6 +35,7 @@ export default class PersonalityQuestionnaire extends React.Component {
         return arr.map( x => x[n] );
     }
     goToTheNext() {
+		pageTime= ((new Date).getTime()-this.state.date_load)/1000
         window.scrollTo( 0, 0 )
         if ( this.state.rates.length < 10 ) {
             this.refs.q1.resetVote()
@@ -43,7 +52,7 @@ export default class PersonalityQuestionnaire extends React.Component {
             Meteor.call( "s_save_personality_questions", this.state.rates, () => {
             } );
 
-            Meteor.call( "s_set_ini_step", "choose_from_catalog", err => {
+            Meteor.call( "s_set_ini_step", "choose_from_catalog",pageTime, err => {
                 if ( !err ) {
                     FlowRouter.setParams( { ini_step: "choose_from_catalog" } );
                 }

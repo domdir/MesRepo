@@ -18,9 +18,17 @@ export default class RecQuestionnaire extends Component {
             block_votes: {},
             is_loading: false,
 			blocks: [2,3,4,5,6],
-			actualBlock: 0
+			actualBlock: 0,
+        date_load: null
         };
     }
+	
+	componentDidMount() {
+	if(!this.state.date_load){
+	this.setState({
+		date_load: (new Date).getTime()
+	});}
+  }
 
     renderQuestion() {
 
@@ -57,6 +65,7 @@ export default class RecQuestionnaire extends Component {
 	return a
 }
     onNextQuestion() {
+		pageTime= ((new Date).getTime()-this.state.date_load)/1000
         window.scrollTo( 0, 0 )
 
         if ( this.state.questionnaireStep == 6 ) {
@@ -65,7 +74,7 @@ export default class RecQuestionnaire extends Component {
 
             } );
 
-            Meteor.call( "s_set_ini_step", 4, err => {
+            Meteor.call( "s_set_ini_step", 4,pageTime, err => {
                 if ( !err ) {
                     FlowRouter.setParams( { ini_step: "4" } );
                 }

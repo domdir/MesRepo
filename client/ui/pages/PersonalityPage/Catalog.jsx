@@ -6,12 +6,20 @@ export default class Catalog extends React.Component {
         super(props);
 
         this.state = {
+        date_load: null
         };
     }
+	
+	componentDidMount() {
+	this.setState({
+		date_load: (new Date).getTime()
+	});
+  }
     
     goToCatalog() {
+		pageTime= ((new Date).getTime()-this.state.date_load)/1000
 		window.scrollTo(0, 0)
-       Meteor.call("s_set_ini_step", "0", err=> {
+       Meteor.call("s_set_ini_step", "0",pageTime, err=> {
                   if (!err) {
                      FlowRouter.setParams({ini_step: "0"});
                   }

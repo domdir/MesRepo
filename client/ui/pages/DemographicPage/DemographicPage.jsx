@@ -21,16 +21,9 @@ export default class DemographicPage extends React.Component {
         this.state = {
             is_processing: false,
             error_message: null,
-            questionnaire_done: false,
-			date_load: null
+            questionnaire_done: false
         };
     }
-	
-	componentDidMount() {
-	this.setState({
-		date_load: (new Date).getTime()
-	});
-  }
 
     onFormQuestionnaireSubmit( event ) {
         event.preventDefault();
@@ -87,7 +80,6 @@ export default class DemographicPage extends React.Component {
 
 
     onSubmitQuestionnaireValidForm( res ) {
-		pageTime= ((new Date).getTime()-this.state.date_load)/1000
         this.setState( { is_processing: false, error_message: res } );
         this.setState( { questionnaire_done: true, error_message: null } );
 
@@ -96,11 +88,7 @@ export default class DemographicPage extends React.Component {
         Meteor.call("s_save_dem_questions", res, ()=> {
         });
 
-<<<<<<< HEAD
-        Meteor.call( "s_set_ini_step", "personality_questionnaire",pageTime, err => {
-=======
         Meteor.call( "s_set_ini_step", "choose_from_catalog", err => {
->>>>>>> refs/remotes/origin/master
             if ( !err ) {
                 FlowRouter.setParams( { ini_step: "choose_from_catalog" } );
             }

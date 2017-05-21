@@ -3,6 +3,8 @@
  */
 
 
+NUM_MOVIES_TO_CAPTURE = 1
+
 import MovieThumbnail from '/client/ui/components/thumb_trailer/MovieThumbnail.jsx'
 import React, { Component } from 'react';
 import LoadingItem from '/client/ui/components/loading/LoadingItem.jsx';
@@ -14,7 +16,6 @@ import { Line, Circle } from 'rc-progress';
 
 export default class WebcamPage extends Component {
 
-	
     constructor( props ) {
         super( props );
         this.save_screenshot = this.save_screenshot.bind( this );
@@ -47,9 +48,14 @@ export default class WebcamPage extends Component {
         if ( this.state.movies_selected_id.length >= NUM_MOVIES_TO_CAPTURE ) {
             Meteor.call( "s_save_movies_chosen", this.state.movies_selected, ( err, res ) => {
                 if ( res ) {
-                    Meteor.call( "s_set_ini_step", 4, err => {
+                    /*Meteor.call( "s_set_ini_step", 4, err => {
                         if ( !err ) {
                             FlowRouter.setParams( { ini_step: "4" } );
+                        }
+                    } );*/
+					Meteor.call( "s_set_ini_step", 3, err => {
+                        if ( !err ) {
+                            FlowRouter.setParams( { ini_step: "3" } );
                         }
                     } );
                 }
