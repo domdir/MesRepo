@@ -12,7 +12,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import Webcam from 'react-webcam';
 import { Line, Circle } from 'rc-progress';
 
-
+var time = 2000; 
 
 export default class WebcamPage extends Component {
 
@@ -20,6 +20,7 @@ export default class WebcamPage extends Component {
         super( props );
         this.save_screenshot = this.save_screenshot.bind( this );
         var timer1 = null;
+           
         this.state = {
             welcomeText: "W E L C O M E", //this.props.currentUser.user_name
             title: "",
@@ -36,8 +37,8 @@ export default class WebcamPage extends Component {
     componentDidMount() {
         //start_saving_screenshot() {
         if ( !this.state.intervalId ) {
-            //call the saving every 4 sec
-            var intervalId = setInterval( this.save_screenshot, 4000 );
+            //call the saving every time sec
+            var intervalId = setInterval( this.save_screenshot, time );
             // store intervalId in the state so it can be accessed later:
             this.setState( { intervalId: intervalId } );
         }
@@ -71,7 +72,7 @@ export default class WebcamPage extends Component {
             count:0,
             time_finished: false
         } );
-        var intervalId = setInterval( this.save_screenshot, 4000 );
+        var intervalId = setInterval( this.save_screenshot, time );
         // store intervalId in the state so it can be accessed later:
         this.setState( { intervalId: intervalId } );
     }
@@ -80,7 +81,7 @@ export default class WebcamPage extends Component {
 
     save_screenshot() {
         
-        if(this.state.count>=12){
+        if(this.state.count>=60000/time){
             clearInterval( this.state.intervalId ); 
             this.setState( {
                 welcomeText: "Time is Up, Click restart!",
