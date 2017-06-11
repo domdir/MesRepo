@@ -24,23 +24,6 @@ export default class RecQuestionnaireContainer extends Component {
     }
 
     componentDidMount() {
-        Meteor.call( "s_get_n_tag_rec",
-            4, ( err, res ) => {
-
-            } );
-        //Meteor.call("s_get_n_genre_rec",
-        // 4, (err, res)=> {
-        //});
-
-        Meteor.call( "s_get_n_feature_rec",
-            4, ( err, res ) => {
-
-            } );
-        Meteor.call( "s_get_n_audio_rec",
-            4, ( err, res ) => {
-
-            } );
-
         //create an array(rec) with 2 random rec and the tag_rec in random order
         str_fixed_rec = 'tag'
         str_others_rec = ['feature', 'audio', 'hybridRed']
@@ -70,6 +53,23 @@ export default class RecQuestionnaireContainer extends Component {
         this.setState( {
             list_order: str_rec
         } )
+        
+        Meteor.call( "s_get_n_tag_rec",
+            4, ( err, res ) => {
+
+            } );
+        //Meteor.call("s_get_n_genre_rec",
+        // 4, (err, res)=> {
+        //});
+
+        Meteor.call( "s_get_n_feature_rec",
+            4, ( err, res ) => {
+
+            } );
+        Meteor.call( "s_get_n_audio_rec",
+            4, ( err, res ) => {
+
+            } );
 
     }
 
