@@ -180,9 +180,10 @@ Meteor.methods({
 
    },
 
-   s_save_questions_and_clean_rec: function (questions) {
+   s_save_questions_and_clean_rec: function (param) {
       
-      
+	  questions=param[0]
+	  list_rec=param[1]
       const questionsArray = [];
       for (var key in questions) {
          if (questions.hasOwnProperty(key)) {
@@ -192,7 +193,8 @@ Meteor.methods({
       Meteor.http.call("POST", 'http://localhost:8052/save_quest', {
            data: {
               "user_id": this.userId,
-              "questions": questionsArray
+              "questions": questionsArray,
+              "recs": list_rec
            }
         }
       );
@@ -207,7 +209,8 @@ Meteor.methods({
            $set: {
               tag_rec: null,
               genre_rec:null,
-              feature_rec:[]
+              feature_rec:[],
+              audio_rec:null
            }
         }
       );

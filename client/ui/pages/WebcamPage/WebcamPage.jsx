@@ -12,7 +12,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import Webcam from 'react-webcam';
 import { Line, Circle } from 'rc-progress';
 
-var time = 2000; 
+var time = 3000; 
 
 export default class WebcamPage extends Component {
 

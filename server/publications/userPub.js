@@ -26,7 +26,8 @@ Meteor.publish('pub_myself', function () {
            
            'tag_rec':1,
            'genre_rec':1,
-           'feature_rec':1
+           'feature_rec':1,
+           'audio_rec':1
         }
      }
    );

@@ -8,7 +8,7 @@ export default class RecQuestionnaire extends Component {
 
     constructor( props ) {
         super( props );
-
+        
         this.state = {
             questionnaireStep: 0,
             question_base: 0,
@@ -21,6 +21,7 @@ export default class RecQuestionnaire extends Component {
 			actualBlock: 0,
         date_load: null
         };
+        //console.log(this.props.list_order) run to see the order of the list locally
     }
 	
 	componentDidMount() {
@@ -70,7 +71,7 @@ export default class RecQuestionnaire extends Component {
 
         if ( this.state.questionnaireStep == 6 ) {
 
-            Meteor.call( "s_save_questions_and_clean_rec", this.state.total_votes, () => {
+            Meteor.call( "s_save_questions_and_clean_rec", [this.state.total_votes,this.props.list_order], () => {
 
             } );
 

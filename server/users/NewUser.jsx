@@ -20,6 +20,7 @@ Accounts.onCreateUser( function( options, user ) {
     user.tag_rec = null;
     user.genre_rec = null;
     user.feature_rec = null;
+    user.audio_rec = null;
 
     user.dateOfBirth = null;
     user.gender = null;

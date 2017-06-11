@@ -254,7 +254,54 @@ Meteor.methods({
         }
 
       });
-  }
+  },
+  
+  s_get_n_audio_rec: function(numOfRec) {
+
+	 
+	    currentUser = Meteor.users.findOne({
+	      _id: this.userId
+	    });
+
+	    if (currentUser.audio_rec) {
+	      if (currentUser.audio_rec.length) {
+	    	  
+	        return
+	      }
+	    }
+	    
+	    Meteor.http.call("GET", "http://localhost:8052/get_audio_rec?" +
+	      "num_of_rec=" + numOfRec +
+	      "&for_who=" + this.userId,
+	      (error, result) => {
+	        if (error) {
+	        } else {
+
+	          const movies = [];
+	          for (let key in result.data) {
+
+	            if (result.data.hasOwnProperty(key)) {
+	              movies.push(JSON.parse(result.data[key]))
+	            }
+	          }
+	          
+	          Meteor.users.update(
+	            {
+	              _id: this.userId
+	            },
+	            {
+	              $set: {
+	                audio_rec: movies
+	              }
+	            }
+	          )
+
+	        }
+
+	      }); 
+
+	  }
+
 
 
 });
