@@ -30,7 +30,10 @@ export default class RecQuestionnaire extends Component {
 		date_load: (new Date).getTime()
 	});}
   }
-
+	componentWillUnmount() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","Ini3Page",pageTime)
+  }
     renderQuestion() {
 
         subQuestions = questions.slice( this.state.question_base,

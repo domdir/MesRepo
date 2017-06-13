@@ -42,7 +42,7 @@ Meteor.methods( {
    },
 
 
-   save_ini_rate: function ( movie_id, rate, start_date ) {
+   save_ini_rate: function ( movie_id, rate, start_date, rec_type="NONE") {
 
       const userId = this.userId;
       let endDate = new Date();
@@ -55,7 +55,7 @@ Meteor.methods( {
             "seen_by": userId,
             "imdb_id": movie_id,
             "rate": rate,
-            "rec_type": "NONE",
+            "rec_type": rec_type,
             "predicted_rate": -1,
             "time_watched": deltaInSeconds
 

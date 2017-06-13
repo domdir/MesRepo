@@ -30,6 +30,10 @@ export default class LoginPage extends Component {
 		date_load: (new Date).getTime()
 	});
   }
+  componentWillUnmount() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","SignInPage",pageTime)
+  }
 
     renderLoginStep() {
 
@@ -95,6 +99,7 @@ export default class LoginPage extends Component {
     }
 
     onSubmitLoginValidForm(email, psw) {
+		url=window.location.pathname
 		pageTime= ((new Date).getTime()-this.state.date_load)/1000
         Meteor.loginWithPassword(email, psw, err=> {
             if (err) {
@@ -103,11 +108,7 @@ export default class LoginPage extends Component {
                     error_message: "The email and password you entered don't match"
                 });
             } else {
-                Meteor.call("s_set_ini_step", "webcam",pageTime, err=> {
-            if (!err) {
-               FlowRouter.go(routesPath.INI_BASE_ROUTE + routesPath.PREWEBCAM);
-            }
-         })
+                location.reload()
             }
         });
     }

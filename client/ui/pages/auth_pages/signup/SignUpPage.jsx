@@ -28,6 +28,10 @@ export default class SignUpPage extends React.Component {
 		date_load: (new Date).getTime()
 	});
   }
+  componentWillUnmount() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","SignUpPage",pageTime)
+  }
 
     onFormSignUpSubmit(event) {
 		window.scrollTo(0, 0)

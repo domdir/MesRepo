@@ -27,10 +27,14 @@ export default class PersonalityQuestionnaire extends React.Component {
 		date_load: (new Date).getTime()
 		});}
   }
+  componentWillUnmount() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","PersonalityPage",pageTime)
+  }
 
-    componentDidUpdate() {
+   /* componentDidUpdate() {
         this.refs.player.load();
-    }
+    }*/
     arrayColumn( arr, n ) {
         return arr.map( x => x[n] );
     }

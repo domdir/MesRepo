@@ -21,9 +21,14 @@ export default class DemographicPage extends React.Component {
         this.state = {
             is_processing: false,
             error_message: null,
-            questionnaire_done: false
+            questionnaire_done: false,
+			data_load: null
         };
     }
+	componentDidMount() {
+	this.setState({
+		date_load: (new Date).getTime()
+	});}
 
     onFormQuestionnaireSubmit( event ) {
         event.preventDefault();
@@ -38,6 +43,10 @@ export default class DemographicPage extends React.Component {
             }
         } );
     }
+	componentWillUnmount() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","DemographicPage",pageTime)
+  }
 
     checkErrors( callBack ) {
         var credentials = {
@@ -88,11 +97,11 @@ export default class DemographicPage extends React.Component {
         Meteor.call("s_save_dem_questions", res, ()=> {
         });
 
-        Meteor.call( "s_set_ini_step", "choose_from_catalog", err => {
-            if ( !err ) {
-                FlowRouter.setParams( { ini_step: "choose_from_catalog" } );
+        Meteor.call( "s_set_ini_step", "personality_questionnaire", err => {
+            if ( !err )
+                FlowRouter.setParams( { ini_step: "personality_questionnaire" } );
             }
-        } )
+         )
         //FlowRouter.go(routesPath.INI_BASE_ROUTE + routesParam.INI_STEP_0);
 
     }

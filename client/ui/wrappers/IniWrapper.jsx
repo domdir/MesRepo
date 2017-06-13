@@ -12,8 +12,6 @@ import RecQuestionnaireContainer from '/client/ui/pages/ini/3_step/RecQuestionna
 import ChooseOneGenres from '/client/ui/pages/ini/0_step/ChooseOneGenre.jsx'
 import DemographicPage from '/client/ui/pages/DemographicPage/DemographicPage.jsx';
 import Catalog from '/client/ui/pages/PersonalityPage/Catalog.jsx'
-import WebcamPage from '/client/ui/pages/WebcamPage/WebcamPage.jsx'
-import PreWebcam from '/client/ui/pages/WebcamPage/PreWebcam.jsx'
 import PersonalityQuestionnaire from '/client/ui/pages/PersonalityPage/PersonalityQuestionnaire.jsx'
 import {routesParam} from '/client/router/router.js'
 
@@ -63,21 +61,6 @@ class IniWrapper extends Component {
         </video>
 		<PersonalityQuestionnaire/>
 		</div>);
-			break;
-			
-		case "webcam":
-			return (
-			<div className="overBackgroundWebcam" style={{height: wrapperHeight}} >
-			<PreWebcam/>
-			</div>);
-			break;
-		
-		case "interaction_with_the_system":
-			return (
-			<div className="overBackgroundInteraction" style={{height: wrapperHeight}}>
-			<WebcamPage/>
-			</div>);
-			
 			break;
 			
          case "0":

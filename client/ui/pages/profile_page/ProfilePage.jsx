@@ -28,8 +28,8 @@ export default class ProfilePage extends React.Component {
          is_loading_more: false,
          modalIsOpen: false,
          movie_selected: null,
-         modalAvatarIsOpen: false
-
+         modalAvatarIsOpen: false,
+		 date_load: null
 
       };
    }
@@ -37,7 +37,8 @@ export default class ProfilePage extends React.Component {
    componentDidMount() {
 
       this.setState({
-         is_loading: true
+         is_loading: true,
+		 date_load: (new Date).getTime()
       });
       Meteor.call("s_get_trailer_rated_by_me", this.state.limit, (err, res)=> {
 
@@ -57,6 +58,11 @@ export default class ProfilePage extends React.Component {
          }
       })
    }
+   componentWillUnmount() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","ProfilePage",pageTime)
+  }
+	  
 
    renderTrailersSeen() {
       return this.state.trailers.map((trailer, i)=> {
@@ -88,8 +94,10 @@ export default class ProfilePage extends React.Component {
    }
 
    logout() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
       Meteor.logout((err)=> {
          if (!err) {
+	   Meteor.call("update_page","RecForYouPage",pageTime)
             FlowRouter.go("/")
          }
       })

@@ -58,6 +58,10 @@ export default class Choose4Movie extends React.Component {
       }
     });
   }
+  componentWillUnmount() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","Ini1Page",pageTime)
+  }
 
   onNext() {
 	window.scrollTo(0, 0)

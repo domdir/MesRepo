@@ -15,16 +15,18 @@ export default class RecList extends Component {
 
       this.state = {
          modalIsOpen: false,
-         movie_selected:null
+         movie_selected:null,
+		 opened_date:null
       };
    }
 
 
    openModal(movie) {
-      
+      time_open=new Date().getTime()
       this.setState( {
          modalIsOpen: true,
-         movie_selected:movie
+         movie_selected:movie,
+		 opened_date: time_open
       } );
    }
 
@@ -47,6 +49,9 @@ export default class RecList extends Component {
       } )
    }
    closeModal(){
+	   if (this.state.movie_selected.IMDB_ID) {
+	  Meteor.call("save_ini_rate", this.state.movie_selected.IMDB_ID, -1,this.state.opened_date,this.props.rec_type)
+	  }
       this.setState( {
          modalIsOpen: false,
 		 movie_selected: null

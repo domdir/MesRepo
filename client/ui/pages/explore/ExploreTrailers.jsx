@@ -36,7 +36,7 @@ class ExplorePage extends Component {
       f2: "ALL",
       f4: "ALL",
       f6: "ALL",
-
+		date_load: null,
       years_selected: null
 
     };
@@ -45,7 +45,8 @@ class ExplorePage extends Component {
   componentDidMount() {
 
     this.setState({
-      is_loading: true
+      is_loading: true,
+	  date_load: (new Date).getTime()
     });
     Meteor.call("s_get_movies", this.state.num_of_movies,
       this.props.genre, this.state.years_selected,
@@ -66,7 +67,10 @@ class ExplorePage extends Component {
         }
       });
   }
-
+componentWillUnmount() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","ExplorePage",pageTime)
+  }
 
   renderYears() {
     return years.map((year, i)=> {

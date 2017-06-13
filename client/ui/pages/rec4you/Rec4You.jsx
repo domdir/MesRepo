@@ -22,15 +22,21 @@ class Rec4You extends Component {
       is_loading: false,
       modalIsOpen: false,
       movie_selected: null,
-      alreadyVoted: []
+      alreadyVoted: [],
+	  date_load: null
     };
   }
 
   componentDidMount() {
+	  date_load: (new Date).getTime()
     Meteor.call("s_get_n_feature_rec", 5, (err, res)=> {
 
     });
 
+  }
+  componentWillUnmount() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","RecForYouPage",pageTime)
   }
 
   getOtherMovies() {

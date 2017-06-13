@@ -15,7 +15,10 @@ export default class Catalog extends React.Component {
 		date_load: (new Date).getTime()
 	});
   }
-    
+    componentWillUnmount() {
+	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","PreCatalogPage",pageTime)
+  }
     goToCatalog() {
 		pageTime= ((new Date).getTime()-this.state.date_load)/1000
 		window.scrollTo(0, 0)

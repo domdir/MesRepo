@@ -144,13 +144,13 @@ export default class RecQuestionnaireContainer extends Component {
         return (
             <div>
                 <div className="row">
-                    <RecList list_title={"List 1"} rec_movies={this.state.list1} />
+                    <RecList list_title={"List 1"} rec_type={this.state.list_order[0]} rec_movies={this.state.list1} />
                 </div>
                 <div className="row">
-                    <RecList list_title={"List 2"} rec_movies={this.state.list2} />
+                    <RecList list_title={"List 2"} rec_type={this.state.list_order[1]} rec_movies={this.state.list2} />
                 </div>
                 <div className="row">
-                    <RecList list_title={"List 3"} rec_movies={this.state.list3} />
+                    <RecList list_title={"List 3"} rec_type={this.state.list_order[2]} rec_movies={this.state.list3} />
 
                 </div>
 
