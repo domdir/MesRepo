@@ -30,10 +30,6 @@ class SingleRec extends Component {
 		date_load: (new Date).getTime()
 	});
   }
-  componentWillUnmount() {
-	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-	   Meteor.call("update_page","Ini4Page",pageTime)
-  }
 
 
   onHandleRecVote(rate, startDate, callBack) {
@@ -94,13 +90,18 @@ class SingleRec extends Component {
 
   nextPage(){
 	  pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","Ini4Page",pageTime)
     Meteor.call("s_clear_rec");
-
-    Meteor.call( "s_set_ini_step", 5,pageTime, err=> {
+	Meteor.call( "sendTime", err=> {
+		   if(err)console.log("ERRORE")
+		else{
+			Meteor.call( "s_set_ini_step", 5,pageTime, err=> {
       if (!err) {
         FlowRouter.setParams( { ini_step: "5" } );
       }
     } )
+		}
+	   })
   }
   
   render() {

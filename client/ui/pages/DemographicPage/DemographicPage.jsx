@@ -43,10 +43,6 @@ export default class DemographicPage extends React.Component {
             }
         } );
     }
-	componentWillUnmount() {
-	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-	   Meteor.call("update_page","DemographicPage",pageTime)
-  }
 
     checkErrors( callBack ) {
         var credentials = {
@@ -96,7 +92,8 @@ export default class DemographicPage extends React.Component {
         //SAVE DATA INTO DB
         Meteor.call("s_save_dem_questions", res, ()=> {
         });
-
+		pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","DemographicPage",pageTime)
         Meteor.call( "s_set_ini_step", "personality_questionnaire", err => {
             if ( !err )
                 FlowRouter.setParams( { ini_step: "personality_questionnaire" } );

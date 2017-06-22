@@ -11,6 +11,7 @@ import ThumbTrailerProfile from '/client/ui/components/thumb_trailer/ThumbTraile
 import SingleMovieToRate from '/client/ui/components/rate/SingleMovieToRate.jsx'
 import InfoFeatures from '/client/ui/components/info_features/InfoFeatures.jsx'
 import Avatar from '/client/ui/components/avatar/Avatar.jsx'
+import { routesPath, routesParam } from '/client/router/router';
 
 
 import Modal from 'react-modal';
@@ -28,8 +29,8 @@ export default class ProfilePage extends React.Component {
          is_loading_more: false,
          modalIsOpen: false,
          movie_selected: null,
-         modalAvatarIsOpen: false,
-		 date_load: null
+         modalAvatarIsOpen: false
+
 
       };
    }
@@ -37,8 +38,7 @@ export default class ProfilePage extends React.Component {
    componentDidMount() {
 
       this.setState({
-         is_loading: true,
-		 date_load: (new Date).getTime()
+         is_loading: true
       });
       Meteor.call("s_get_trailer_rated_by_me", this.state.limit, (err, res)=> {
 
@@ -58,11 +58,6 @@ export default class ProfilePage extends React.Component {
          }
       })
    }
-   componentWillUnmount() {
-	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-	   Meteor.call("update_page","ProfilePage",pageTime)
-  }
-	  
 
    renderTrailersSeen() {
       return this.state.trailers.map((trailer, i)=> {
@@ -95,9 +90,9 @@ export default class ProfilePage extends React.Component {
 
    logout() {
 	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-      Meteor.logout((err)=> {
-         if (!err) {
 	   Meteor.call("update_page","RecForYouPage",pageTime)
+	   Meteor.logout((err)=> {
+         if (!err) {
             FlowRouter.go("/")
          }
       })
@@ -171,7 +166,6 @@ export default class ProfilePage extends React.Component {
       if (this.props.currentUser) {
 
          if (this.props.currentUser.ini_step!=5) {
-         
             FlowRouter.go("/ini/"+this.props.currentUser.ini_step)
          }
       }

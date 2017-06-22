@@ -27,10 +27,6 @@ export default class PersonalityQuestionnaire extends React.Component {
 		date_load: (new Date).getTime()
 		});}
   }
-  componentWillUnmount() {
-	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-	   Meteor.call("update_page","PersonalityPage",pageTime)
-  }
 
    /* componentDidUpdate() {
         this.refs.player.load();
@@ -55,7 +51,8 @@ export default class PersonalityQuestionnaire extends React.Component {
             //SAVE DATA INTO DB
             Meteor.call( "s_save_personality_questions", this.state.rates, () => {
             } );
-
+			pageTime= ((new Date).getTime()-this.state.date_load)/1000
+			Meteor.call("update_page","PersonalityPage",pageTime)
             Meteor.call( "s_set_ini_step", "choose_from_catalog",pageTime, err => {
                 if ( !err ) {
                     FlowRouter.setParams( { ini_step: "choose_from_catalog" } );

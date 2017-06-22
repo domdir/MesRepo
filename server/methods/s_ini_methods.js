@@ -141,6 +141,7 @@ Meteor.methods({
       
 	  questions=param[0]
 	  list_rec=param[1]
+	  list_timestamps=param[2]
       const questionsArray = [];
       for (var key in questions) {
          if (questions.hasOwnProperty(key)) {
@@ -151,7 +152,8 @@ Meteor.methods({
            data: {
               "user_id": this.userId,
               "questions": questionsArray,
-              "recs": list_rec
+              "recs": list_rec,
+              "timestamps": list_timestamps
            }
         }
       );

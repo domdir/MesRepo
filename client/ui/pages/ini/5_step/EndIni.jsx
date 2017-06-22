@@ -19,14 +19,11 @@ export default class EndIni extends Component {
 		date_load: (new Date).getTime()
 	});
   }
-  componentWillUnmount() {
-	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-	   Meteor.call("update_page","Ini5Page",pageTime)
-  }
 
 
    onNext() {
 	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","Ini5Page",pageTime)
       Meteor.call( "initialize_user", ( err, res )=> {
          FlowRouter.go( "/profile" )
       } )

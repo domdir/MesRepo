@@ -34,10 +34,6 @@ class Rec4You extends Component {
     });
 
   }
-  componentWillUnmount() {
-	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-	   Meteor.call("update_page","RecForYouPage",pageTime)
-  }
 
   getOtherMovies() {
     this.setState({
@@ -111,6 +107,8 @@ class Rec4You extends Component {
   }
 
   nextPage() {
+	  pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","RecForYouPage",pageTime)
     Meteor.call("s_set_ini_step", 5, err=> {
       if (!err) {
         FlowRouter.setParams({ ini_step: "5" });

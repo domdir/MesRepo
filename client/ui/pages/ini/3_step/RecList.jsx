@@ -22,11 +22,11 @@ export default class RecList extends Component {
 
 
    openModal(movie) {
-      time_open=new Date().getTime()
+      timestamp=new Date().getTime()
       this.setState( {
          modalIsOpen: true,
          movie_selected:movie,
-		 opened_date: time_open
+		 opened_date: timestamp
       } );
    }
 

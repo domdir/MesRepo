@@ -29,11 +29,7 @@ export default class LoginPage extends Component {
 	this.setState({
 		date_load: (new Date).getTime()
 	});
-  }
-  componentWillUnmount() {
-	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-	   Meteor.call("update_page","SignInPage",pageTime)
-  }
+  }
 
     renderLoginStep() {
 
@@ -100,7 +96,8 @@ export default class LoginPage extends Component {
 
     onSubmitLoginValidForm(email, psw) {
 		url=window.location.pathname
-		pageTime= ((new Date).getTime()-this.state.date_load)/1000
+		 pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","SignInPage",pageTime)
         Meteor.loginWithPassword(email, psw, err=> {
             if (err) {
                 this.setState({

@@ -27,10 +27,6 @@ export class RateMovies extends React.Component {
 		date_load: (new Date).getTime()
 	});
   }
-  componentWillUnmount() {
-	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-	   Meteor.call("update_page","Ini2Page",pageTime)
-  }
 
    onHandleIniRate(rate, startTime, callBack) {
       
@@ -64,6 +60,7 @@ export class RateMovies extends React.Component {
       
       if (this.props.is_next) {
 		  pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","Ini2Page",pageTime)
          Meteor.call("s_set_ini_step", "3",pageTime, err=> {
             if (!err) {
                FlowRouter.setParams({ini_step: 3});

@@ -27,11 +27,7 @@ export default class SignUpPage extends React.Component {
 	this.setState({
 		date_load: (new Date).getTime()
 	});
-  }
-  componentWillUnmount() {
-	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-	   Meteor.call("update_page","SignUpPage",pageTime)
-  }
+  }
 
     onFormSignUpSubmit(event) {
 		window.scrollTo(0, 0)
@@ -68,6 +64,7 @@ export default class SignUpPage extends React.Component {
     onSubmitSignUpValidForm(credential) {
         this.setState({is_signup: true, error_message: null});
 		pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","SignUpPage",pageTime)
         Accounts.createUser({
             email: credential.email,
             password: credential.psw,

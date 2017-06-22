@@ -58,15 +58,12 @@ export default class Choose4Movie extends React.Component {
       }
     });
   }
-  componentWillUnmount() {
-	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-	   Meteor.call("update_page","Ini1Page",pageTime)
-  }
 
   onNext() {
 	window.scrollTo(0, 0)
     if (this.state.movies_selected_id.length == 4) {
 		pageTime= ((new Date).getTime()-this.state.date_load)/1000
+	   Meteor.call("update_page","Ini1Page",pageTime)
       this.setState({
         is_loading: true
       });

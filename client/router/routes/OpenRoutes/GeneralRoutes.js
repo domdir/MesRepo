@@ -24,7 +24,6 @@ FlowRouter.notFound = {
 FlowRouter.route( routesPath.LOGOUT_ROUTE, {
    name: routesName.LOGOUT_ROUTE_NAME,
    triggersEnter: [function () {
-	   Meteor.call( "sendTime" )
       Meteor.logout( err=> {
          if (!err) {
             FlowRouter.go( routesPath.AUTH_BASE_ROUTE + "/" + routesParam.LOGIN );

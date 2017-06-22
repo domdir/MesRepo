@@ -67,10 +67,6 @@ class ExplorePage extends Component {
         }
       });
   }
-componentWillUnmount() {
-	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-	   Meteor.call("update_page","ExplorePage",pageTime)
-  }
 
   renderYears() {
     return years.map((year, i)=> {

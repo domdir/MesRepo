@@ -51,13 +51,13 @@ Meteor.methods( {
 
       Meteor.http.call( "POST", 'http://localhost:8052/save_rate', {
          data: {
-            "time_stamp": new Date().getTime(),
+            "time_stamp": start_date,
             "seen_by": userId,
             "imdb_id": movie_id,
             "rate": rate,
             "rec_type": rec_type,
             "predicted_rate": -1,
-            "time_watched": deltaInSeconds
+            "time_watched": deltaInSeconds,
 
          }
       } );

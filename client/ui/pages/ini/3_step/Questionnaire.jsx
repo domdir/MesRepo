@@ -19,7 +19,8 @@ export default class RecQuestionnaire extends Component {
             is_loading: false,
 			blocks: [2,3,4,5,6],
 			actualBlock: 0,
-        date_load: null
+        date_load: null,
+		timestamps: []
         };
         //console.log(this.props.list_order) run to see the order of the list locally
     }
@@ -30,10 +31,7 @@ export default class RecQuestionnaire extends Component {
 		date_load: (new Date).getTime()
 	});}
   }
-	componentWillUnmount() {
-	   pageTime= ((new Date).getTime()-this.state.date_load)/1000
-	   Meteor.call("update_page","Ini3Page",pageTime)
-  }
+	
     renderQuestion() {
 
         subQuestions = questions.slice( this.state.question_base,
@@ -69,15 +67,22 @@ export default class RecQuestionnaire extends Component {
 	return a
 }
     onNextQuestion() {
-		pageTime= ((new Date).getTime()-this.state.date_load)/1000
+		timestamp=(new Date).getTime()
+		pageTime= (timestamp-this.state.date_load)/1000
+		vector_time=this.state.timestamps
+		vector_time.push(timestamp)
+		this.setState( {
+            timestamps: vector_time
+        } );
         window.scrollTo( 0, 0 )
 
         if ( this.state.questionnaireStep == 6 ) {
 
-            Meteor.call( "s_save_questions_and_clean_rec", [this.state.total_votes,this.props.list_order], () => {
+            Meteor.call( "s_save_questions_and_clean_rec", [this.state.total_votes,this.props.list_order,this.state.timestamps], () => {
 
             } );
-
+			pageTime= ((new Date).getTime()-this.state.date_load)/1000
+			Meteor.call("update_page","Ini3Page",pageTime)
             Meteor.call( "s_set_ini_step", 4,pageTime, err => {
                 if ( !err ) {
                     FlowRouter.setParams( { ini_step: "4" } );
@@ -118,7 +123,9 @@ export default class RecQuestionnaire extends Component {
                         </h5> : null}
                     {this.state.questionnaireStep == 1 ? <div>
                         <h5>{"Please, rate the three lists"}
-                            <i><h6>{"1:don't like 5:extremely like"}</h6></i></h5>
+						<br/>
+						<i><font size="3" color="white">1:don't like 5:extremely like</font></i>
+                            </h5>
                     </div> : null}
                     <div>
                         {this.renderQuestion()}
