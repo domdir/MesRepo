@@ -4,7 +4,6 @@ import DateOfBirth from './form_components/DateOfBirth.jsx';
 import Gender from './form_components/Gender.jsx';
 import Nationality from './form_components/Nationality.jsx'
 import Questions from './form_components/Questions.jsx';
-import Privacy from './form_components/Privacy.jsx'
 import LoadingWrapper from '/client/ui/components/loading/LoadingWrapper.jsx'
 import { routesPath, routesParam } from '/client/router/router';
 import SelectTest from './form_components/DropDownMenu.jsx';
@@ -36,7 +35,7 @@ export default class DemographicPage extends React.Component {
         this.checkErrors(( res ) => {
             this.setState( { is_processing: false, error_message: null } );
             this.setState( { is_processing: false, error_message: null } );
-            if ( res.dateOfBirth && res.gender && res.nationality && res.privacy) {
+            if ( res.dateOfBirth && res.gender && res.nationality) {
 
                 window.scrollTo( 0, 0)
                 this.onSubmitQuestionnaireValidForm( res );
@@ -55,8 +54,7 @@ export default class DemographicPage extends React.Component {
             "fb": null,
             "instagram": null,
             "lastfm": null,
-            "spotify": null,
-            "privacy": null
+            "spotify": null
         };
         this.refs.dateOfBirth.checkAge(( res ) => {
             credentials.dateOfBirth = res;
@@ -72,10 +70,7 @@ export default class DemographicPage extends React.Component {
                     credentials.spotify = res[6];
                     this.refs.nationality.checkNationality(( res ) => {
                         credentials.nationality = res;
-                        this.refs.privacy.checkPrivacy(( res ) => {
-                            credentials.privacy = res;
-                            this.setState( { is_processing: false } );
-                        } );
+						this.setState( { is_processing: false } );
                     } );
                 } )
             } )
@@ -125,7 +120,6 @@ export default class DemographicPage extends React.Component {
                             <Nationality ref="nationality" />
                             <Questions ref="questions" />
                             <LoadingWrapper loading_style="loader-bars" is_processing={this.state.is_processing}>
-                                <Privacy ref="privacy" />
                                 <div className="center_button"><input className="btn-questionnaire btn-default" type="submit" value="FINISH" /></div>
                             </LoadingWrapper>
 

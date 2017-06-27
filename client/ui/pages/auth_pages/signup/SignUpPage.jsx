@@ -8,6 +8,7 @@ import SignUpEmail from './form_components/SignUpEmail.jsx';
 import SignUpUserName from './form_components/SignUpUserName.jsx';
 import SignUpPassword from './form_components/SignUpPassword.jsx';
 import LoadingWrapper from '/client/ui/components/loading/LoadingWrapper.jsx'
+import Privacy from './form_components/Privacy.jsx'
 import {routesPath, routesParam} from '/client/router/router';
 
 
@@ -30,13 +31,13 @@ export default class SignUpPage extends React.Component {
   }
 
     onFormSignUpSubmit(event) {
-		window.scrollTo(0, 0)
         event.preventDefault();
-
+		
         this.setState({is_processing: true, error_message: null});
         this.checkErrors((res) => {
             this.setState({is_processing: false, error_message: null});
-            if (res.email && res.user_name && res.psw) {
+            if (res.email && res.user_name && res.psw && res.privacy) {
+				window.scrollTo(0, 0)
                 this.onSubmitSignUpValidForm(res);
             }
         });
@@ -54,8 +55,10 @@ export default class SignUpPage extends React.Component {
                 credentials.user_name = res;
                 this.refs.signup_psw.checkPsw((res) => {
                     credentials.psw = res;
-                    this.setState({is_processing: false});
+					this.refs.privacy.checkPrivacy(( res ) => {credentials.privacy = res;
+                            this.setState({is_processing: false});
                     callBack(credentials);
+                        } );
                 });
             })
         });
@@ -101,8 +104,10 @@ export default class SignUpPage extends React.Component {
                                 <SignUpEmail ref="signup_email"/>
                                 <SignUpUserName ref="signup_userName"/>
                                 <SignUpPassword ref="signup_psw"/>
+								<Privacy ref="privacy"/>
                                 <LoadingWrapper loading_style="loader-bars" is_processing={this.state.is_processing}>
-                                    <input className="btn btn-default" type="submit" value="Join us"/>
+                                    <br/>
+									<input className="btn btn-default" type="submit" value="Join us"/>
                                 </LoadingWrapper>
                                 <div className="colorError">
                                     {(this.state.error_message)
