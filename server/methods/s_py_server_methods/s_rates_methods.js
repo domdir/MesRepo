@@ -43,7 +43,7 @@ Meteor.methods( {
    },
 
 
-   save_ini_rate: function ( movie_id, rate, start_date,reported, rec_type="NONE" ) {
+   save_ini_rate: function ( movie_id, rate, start_date="NONE",reported=0, rec_type="NONE" ) {
 
       const userId = this.userId;
       let endDate = new Date();

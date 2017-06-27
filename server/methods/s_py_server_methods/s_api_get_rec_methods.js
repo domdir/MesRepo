@@ -7,7 +7,52 @@ import { errors } from '/both/errors/ErrorList'
 import { throwError } from '/both/errors/ErrorManager'
 
 Meteor.methods({
+  s_get_n_final_movies: function(num_of_rec, recType="NONE"){
+	  if(recType=="NONE"){
+		  recType=currentUser.final_list
+		  console.log(recType)
+	  }
+	  if (currentUser.final_rec) {
+	      if (currentUser.final_rec.length) {
+	        return
+	      }
+	    }
+	  console.log("GET", "http://localhost:8052/get_"+recType+"_rec?" +
+		      "num_of_rec=" + num_of_rec +
+		      "&for_who=" + this.userId)
+	  Meteor.http.call("GET", "http://localhost:8052/get_"+recType+"_rec?" +
+      "num_of_rec=" + num_of_rec +
+      "&for_who=" + this.userId,
+		      (error, result) => {
+		        if (error) {
+		        	console.log(error)
+		          //myFuture.throw("could not contact the server");
+		        } else {
 
+
+		          const movies = [];
+		          for (let key in result.data) {
+		            if (result.data.hasOwnProperty(key)) {
+		              movies.push(JSON.parse(result.data[key]))
+		            }
+		          }
+
+		          Meteor.users.update(
+		            {
+		              _id: this.userId
+		            },
+		            {
+		              $set: {
+		            	final_list: recType,
+		                final_rec: movies
+		              }
+		            }
+		          )
+		        }
+
+		      });
+	  
+  },
   s_get_n_rec_movies: function(...recType) {
 
     //this.unblock();
@@ -127,7 +172,7 @@ Meteor.methods({
       },
       {
         $set: {
-          feature_rec: []
+          final_rec: []
         }
       }
     )

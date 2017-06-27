@@ -83,6 +83,9 @@ class SingleRec extends Component {
   }
   
   closeModal() {
+	  if (this.state.movie_selected.IMDB_ID) {
+	  Meteor.call("save_ini_rate", this.state.movie_selected.IMDB_ID, -1)
+	  }
     this.setState({
       modalIsOpen: false
     });
@@ -91,7 +94,6 @@ class SingleRec extends Component {
   nextPage(){
 	  pageTime= ((new Date).getTime()-this.state.date_load)/1000
 	   Meteor.call("update_page","Ini4Page",pageTime)
-    Meteor.call("s_clear_rec");
 	Meteor.call( "sendTime", err=> {
 		   if(err)console.log("ERRORE")
 		else{
@@ -211,7 +213,7 @@ export default createContainer(() => {
   if (handleUser.ready()) {
     currentUser = Meteor.user();
     if (currentUser) {
-      rec_movies = currentUser.feature_rec;
+      rec_movies = currentUser.final_rec;
     }
 
   }

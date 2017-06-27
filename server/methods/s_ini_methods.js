@@ -63,7 +63,6 @@ Meteor.methods({
 	  		         }
 	  		      }
 	  		    );
-	      	console.log("time: ",dic)
 	},
    s_set_ini_step: function (ini_step, pageTime) {
       Meteor.users.update(

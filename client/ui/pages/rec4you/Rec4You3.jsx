@@ -29,21 +29,24 @@ class Rec4You extends Component {
 
   componentDidMount() {
 	  date_load: (new Date).getTime()
-Meteor.call( "s_get_n_final_movies",
-            5, ( err, res ) => {})
+    Meteor.call("s_get_n_feature_rec", 5, (err, res)=> {
+
+    });
+
   }
 
   getOtherMovies() {
     this.setState({
       is_loading:true
     });
+    Meteor.call("s_clear_rec", ()=>{
       Meteor.call( "s_get_n_final_movies",
             5, ( err, res ) => {
-				location.reload()
 				this.setState({
           is_loading:false
         });
             } );
+    });
   }
 
   onHandleRecVote(rate, startDate, callBack) {
@@ -97,6 +100,9 @@ Meteor.call( "s_get_n_final_movies",
   }
 
   closeModal() {
+	  if (this.state.movie_selected.IMDB_ID) {
+	  Meteor.call("save_ini_rate", this.state.movie_selected.IMDB_ID, -1)
+	  }
     this.setState({
       modalIsOpen: false
     });

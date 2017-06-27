@@ -22,7 +22,7 @@ export default class RecQuestionnaire extends Component {
         date_load: null,
 		timestamps: []
         };
-        //console.log(this.props.list_order) run to see the order of the list locally
+        console.log(this.props.list_order) //run to see the order of the list locally
     }
 	
 	componentDidMount() {
@@ -67,6 +67,24 @@ export default class RecQuestionnaire extends Component {
 	return a
 }
     onNextQuestion() {
+		if(this.state.questionnaireStep==1){
+			console.log(this.state.block_votes)
+		maxValue=0
+		maxKey=0
+		for (var key in this.state.block_votes) {
+		if (this.state.block_votes.hasOwnProperty(key)) {
+			console.log(key, this.state.block_votes[key]);
+			if(maxValue<this.state.block_votes[key]){
+				maxValue=this.state.block_votes[key]
+				maxKey=key
+			}
+			}
+		}
+		maxRec=this.props.list_order[maxKey-3]
+		if(maxRec=="hybridRed"){
+			maxRec="feature"
+		}
+		}
 		timestamp=(new Date).getTime()
 		pageTime= (timestamp-this.state.date_load)/1000
 		vector_time=this.state.timestamps
@@ -77,7 +95,10 @@ export default class RecQuestionnaire extends Component {
         window.scrollTo( 0, 0 )
 
         if ( this.state.questionnaireStep == 6 ) {
-
+			Meteor.call( "s_get_n_final_movies",
+            5,maxRec, ( err, res ) => {
+            } );
+			
             Meteor.call( "s_save_questions_and_clean_rec", [this.state.total_votes,this.props.list_order,this.state.timestamps], () => {
 
             } );
