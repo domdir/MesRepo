@@ -11,13 +11,14 @@ export default class SingleMovieToRate extends React.Component {
         this.state = {
             can_skip: null,
             start_date: null,
-            votes: []
+            votes: [],
+           
         };
     }
 
     onHandleReport() {
         this.setState( { can_skip: 1 } );
-        this.props.onHandleVote( -1, this.state.start_date )
+        this.props.onHandleVote( -1, this.state.start_date, 1 );
     }
 
 

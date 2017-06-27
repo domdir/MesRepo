@@ -12,8 +12,9 @@ export default class FiveStars extends React.Component {
    }
 
    confirmVote() {
-   
-      this.props.onHandleVote(this.state.starSelectedId, this.props.startDate, ()=> {
+       
+       //0 means the video is not reported Reported=0
+      this.props.onHandleVote(this.state.starSelectedId, this.props.startDate, 0, ()=> {
          this.setState({
             starSelectedId: null
          })

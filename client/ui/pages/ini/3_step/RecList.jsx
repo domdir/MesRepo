@@ -12,11 +12,14 @@ export default class RecList extends Component {
 
    constructor( props ) {
       super( props );
+      
+      this.onHandleVote = this.onHandleVote.bind(this);
 
       this.state = {
          modalIsOpen: false,
          movie_selected:null,
-		 opened_date:null
+		 opened_date:null,
+		 reported:0
       };
    }
 
@@ -29,6 +32,32 @@ export default class RecList extends Component {
 		 opened_date: timestamp
       } );
    }
+   
+   onHandleVote(rate, startTime, reported, callBack) {
+       
+       if (this.state.movie_selected.IMDB_ID && rate) {
+          Meteor.call("save_ini_rate",this.state.movie_selected.IMDB_ID, rate, startTime, reported,this.props.rec_type, (err, res)=> {
+             //callBack();
+
+             this.setState({
+                modalIsOpen: false,
+                movie_selected: null,
+                is_loading: false,
+                error: null
+
+             });
+
+             if (err) {
+                this.setState({
+                   modalIsOpen: false,
+                   movie_selected: null,
+                   error: err.reason
+                })
+             }
+          });
+       }
+    }
+
 
    renderMovies() {
       return this.props.rec_movies.map( ( movie, i )=> {
@@ -50,11 +79,12 @@ export default class RecList extends Component {
    }
    closeModal(){
 	   if (this.state.movie_selected.IMDB_ID) {
-	  Meteor.call("save_ini_rate", this.state.movie_selected.IMDB_ID, -1,this.state.opened_date,this.props.rec_type)
+	  Meteor.call("save_ini_rate", this.state.movie_selected.IMDB_ID, -1,this.state.opened_date,this.state.reported,this.props.rec_type)
 	  }
       this.setState( {
          modalIsOpen: false,
-		 movie_selected: null
+		 movie_selected: null,
+		 reported: 0
       } );
    }
 
@@ -110,6 +140,7 @@ export default class RecList extends Component {
               {this.state.movie_selected ?
                 <div className="movie_modal">
                    <SingleMovieToRate
+                     onHandleVote={this.onHandleVote}
                      imdb_id={this.state.movie_selected.IMDB_ID}
                      poster_img={this.state.movie_selected.POSTER}
                      is_already_voted={true}

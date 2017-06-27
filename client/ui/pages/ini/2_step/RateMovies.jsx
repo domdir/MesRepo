@@ -18,7 +18,8 @@ export class RateMovies extends React.Component {
          currentMovieToRate: null,
          is_loading: false,
          error: null,
-      date_load: null
+      date_load: null,
+      reported: 0
         };
     }
 	
@@ -28,7 +29,7 @@ export class RateMovies extends React.Component {
 	});
   }
 
-   onHandleIniRate(rate, startTime, callBack) {
+   onHandleIniRate(rate, startTime, reported, callBack) {
       
       this.setState({
          is_loading: true
@@ -37,7 +38,7 @@ export class RateMovies extends React.Component {
       
       
       if (this.props.ini_movies.IMDB_ID && rate) {
-         Meteor.call("save_ini_rate", this.props.ini_movies.IMDB_ID, rate, startTime, (err, res)=> {
+         Meteor.call("save_ini_rate", this.props.ini_movies.IMDB_ID, rate, startTime, reported, (err, res)=> {
             //callBack();
 
             this.setState({

@@ -12,7 +12,7 @@ const base_server_url = 'http://localhost:8052/';
 Meteor.methods( {
 
 
-   save_rec_rate: function ( movie_id, rate, rec_type, predicted_rate, start_date ) {
+   save_rec_rate: function ( movie_id, rate, rec_type, predicted_rate, start_date, reported ) {
 
 
       const userId = this.userId;
@@ -24,6 +24,7 @@ Meteor.methods( {
             "seen_by": userId,
             "imdb_id": movie_id,
             "rate": rate,
+            "reported": reported,
             "rec_type": rec_type,
             "predicted_rate": predicted_rate,
             "time_watched": deltaInSeconds
@@ -42,7 +43,7 @@ Meteor.methods( {
    },
 
 
-   save_ini_rate: function ( movie_id, rate, start_date, rec_type="NONE") {
+   save_ini_rate: function ( movie_id, rate, start_date,reported, rec_type="NONE" ) {
 
       const userId = this.userId;
       let endDate = new Date();
@@ -55,6 +56,7 @@ Meteor.methods( {
             "seen_by": userId,
             "imdb_id": movie_id,
             "rate": rate,
+            "reported": reported,
             "rec_type": rec_type,
             "predicted_rate": -1,
             "time_watched": deltaInSeconds,
