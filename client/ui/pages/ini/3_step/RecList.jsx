@@ -135,8 +135,12 @@ export default class RecList extends Component {
              isOpen={this.state.modalIsOpen}
              style={customStyles}
              onRequestClose={this.closeModal.bind(this)}>
-              <button className="btn btn-default button_ini" onClick={this.closeModal.bind(this)}>GO BACK
+              <button className="btn-bigger-bigger" onClick={this.closeModal.bind(this)}>GO BACK
               </button>
+			  <center>
+			  <h5> Please, use the 'Go Back' button instead of the back button in your browser 
+			  to come back on the questionnaire.</h5>
+			  </center>
               {this.state.movie_selected ?
                 <div className="movie_modal">
                    <SingleMovieToRate

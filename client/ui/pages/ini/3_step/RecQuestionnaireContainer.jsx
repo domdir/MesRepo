@@ -70,7 +70,6 @@ export default class RecQuestionnaireContainer extends Component {
             4, ( err, res ) => {
 
             } );
-
     }
 
     componentWillReceiveProps( nextProps ) {
@@ -169,12 +168,17 @@ export default class RecQuestionnaireContainer extends Component {
                 FlowRouter.go( "/profile" );
             }
         }
+		if(this.props.tag_rec && this.props.feature_rec && this.props.audio_rec && this.state.list_order 
+		&& !this.state.list1 || !this.state.list2 || !this.state.list3){
+			this.componentWillReceiveProps( this.props )
+		}
 
         return (
             <div className="container-fluid questionnaire-page">
                 <div className="col-md-7">
                     <h3>You can click on thumbnail to see the trailer.</h3>
-                    {this.state.list1 && this.state.list2 && this.state.list3 ?
+                    {	
+						this.state.list1 && this.state.list2 && this.state.list3 ?
                         <div className="questionnaire">
                             {this.renderRandomRec()}
                         </div>
