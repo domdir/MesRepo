@@ -54,7 +54,7 @@ export default class  extends React.Component {
     render() {
         return (
             <div>
-			<a href="https://stackoverflow.com/questions/3559467/description-box-on-mouseover" title="You will not receive any email from us,
+			<a href="" title="You will not receive any email from us,
 			neither your email-adress will be shared with anyone">
                 <input type="email" placeholder="Email" ref="ref_email"
                        className="form-control"/></a>
