@@ -26,7 +26,7 @@ s_save_dem_questions: function (questions) {
       },
       {
          $set: {
-        	 dateOfBirth : questions["dateOfBirth"],
+        	 age : questions["age"],
         	 gender : questions["gender"],
         	 nationality : questions["nationality"],
         	 question1 : questions["question1"],
