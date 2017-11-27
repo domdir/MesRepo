@@ -3,7 +3,8 @@
  */
 
 import React, { Component } from 'react';
-import SingleQuestion from './SingleQuestion.jsx'
+import SingleQuestion from './SingleQuestion.jsx';
+
 export default class RecQuestionnaire extends Component {
 
     constructor( props ) {

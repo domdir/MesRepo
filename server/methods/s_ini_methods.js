@@ -166,9 +166,11 @@ Meteor.methods({
         {
            $set: {
               tag_rec: null,
-              genre_rec:null,
+              audio_ivec_rec: null,
+	      audio_blf_rec: null
+              /*genre_rec:null,
               feature_rec:[],
-              audio_rec:null
+              audio_rec:null*/
            }
         }
       );

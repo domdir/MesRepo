@@ -121,12 +121,12 @@ Meteor.methods({
       }
       case 2:
       {
-        rec_type = "get_genre_rec";
+        rec_type = "get_audio_ivec_rec";
         break;
       }
       case 3:
       {
-        rec_type = "get_feature_rec";
+        rec_type = "get_audio_blf_rec";
 
         break;
       }
@@ -345,9 +345,101 @@ Meteor.methods({
 
 	      }); 
 
+	  },
+
+
+  s_get_n_audio_ivec_rec: function(numOfRec) {
+
+	 
+	    currentUser = Meteor.users.findOne({
+	      _id: this.userId
+	    });
+
+	    if (currentUser.audio_rec) {
+	      if (currentUser.audio_ivec_rec.length) {
+	    	  
+	        return
+	      }
+	    }
+	    
+	    Meteor.http.call("GET", "http://localhost:8052/get_audio_ivec_rec?" +
+	      "num_of_rec=" + numOfRec +
+	      "&for_who=" + this.userId,
+	      (error, result) => {
+	        if (error) {
+	        } else {
+
+	          const movies = [];
+	          for (let key in result.data) {
+
+	            if (result.data.hasOwnProperty(key)) {
+	              movies.push(JSON.parse(result.data[key]))
+	            }
+	          }
+	          
+	          Meteor.users.update(
+	            {
+	              _id: this.userId
+	            },
+	            {
+	              $set: {
+	                audio_ivec_rec: movies
+	              }
+	            }
+	          )
+
+	        }
+
+	      }); 
+
+	  },
+
+  s_get_n_audio_blf_rec: function(numOfRec) {
+
+	 
+	    currentUser = Meteor.users.findOne({
+	      _id: this.userId
+	    });
+
+	    if (currentUser.audio_rec) {
+	      if (currentUser.audio_blf_rec.length) {
+	    	  
+	        return
+	      }
+	    }
+	    
+	    Meteor.http.call("GET", "http://localhost:8052/get_audio_blf_rec?" +
+	      "num_of_rec=" + numOfRec +
+	      "&for_who=" + this.userId,
+	      (error, result) => {
+	        if (error) {
+	        } else {
+
+	          const movies = [];
+	          for (let key in result.data) {
+
+	            if (result.data.hasOwnProperty(key)) {
+	              movies.push(JSON.parse(result.data[key]))
+	            }
+	          }
+
+	          
+	          Meteor.users.update(
+	            {
+	              _id: this.userId
+	            },
+	            {
+	              $set: {
+	                audio_blf_rec: movies
+	              }
+	            }
+	          )
+
+	        }
+
+	      }); 
+
 	  }
-
-
 
 });
 

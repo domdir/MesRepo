@@ -26,7 +26,7 @@ export default class RecQuestionnaireContainer extends Component {
     componentDidMount() {
         //create an array(rec) with 2 random rec and the tag_rec in random order
         str_fixed_rec = 'tag'
-        str_others_rec = ['feature', 'audio', 'hybridRed']
+        str_others_rec = ['audio_ivec', 'audio_blf']
         // create an array with 2 numbers between 1 and the number of others_rec (=3) to select 2 random recs
         var arr = []
         while ( arr.length < 2 ) {
@@ -34,16 +34,18 @@ export default class RecQuestionnaireContainer extends Component {
             if ( arr.indexOf( randomnumber ) > -1 ) continue;
             arr[arr.length] = randomnumber;
         }
+
         //take the selected at random 2 rec 
         str_rec1 = str_others_rec[arr[0]];
         str_rec2 = str_others_rec[arr[1]];
         //create an array with 3 element between 1 and 3 in random order
         var arr = []
         while ( arr.length < 3 ) {
-            var randomnumber = Math.ceil( Math.random() * str_others_rec.length )
+            var randomnumber = Math.ceil( Math.random() * 3 )
             if ( arr.indexOf( randomnumber ) > -1 ) continue;
             arr[arr.length] = randomnumber;
         }
+
         str_rec = ['', '', '']
         //put the recs  in two arrays according to the random array just created
         str_rec[arr.indexOf( 1 )] = str_rec1
@@ -62,11 +64,11 @@ export default class RecQuestionnaireContainer extends Component {
         // 4, (err, res)=> {
         //});
 
-        Meteor.call( "s_get_n_feature_rec",
+        Meteor.call( "s_get_n_audio_ivec_rec",
             4, ( err, res ) => {
 
             } );
-        Meteor.call( "s_get_n_audio_rec",
+        Meteor.call( "s_get_n_audio_blf_rec",
             4, ( err, res ) => {
 
             } );
@@ -75,53 +77,44 @@ export default class RecQuestionnaireContainer extends Component {
     componentWillReceiveProps( nextProps ) {
         rec=["","",""]
         //if we have all the rec_list in the new props
-        if ( nextProps.tag_rec && nextProps.feature_rec && nextProps.audio_rec && this.state.list_order ) {
+        if ( nextProps.tag_rec && nextProps.audio_ivec_rec && nextProps.audio_blf_rec && this.state.list_order ) {
             str_rec = this.state.list_order
             //create the fixed hybrid list
-            const hybridRed = [nextProps.feature_rec[1], nextProps.audio_rec[0], nextProps.feature_rec[0], nextProps.audio_rec[1]];
+            // const hybridRed = [nextProps.feature_rec[1], nextProps.audio_rec[0], nextProps.feature_rec[0], nextProps.audio_rec[1]];
 
             switch ( str_rec[0] ) {
                 case ( 'tag' ):
                     rec[0] = nextProps.tag_rec
                     break;
-                case ( 'feature' ):
-                    rec[0] = nextProps.feature_rec
+                case ( 'audio_ivec' ):
+                    rec[0] = nextProps.audio_ivec_rec
                     break;
-                case ( 'audio' ):
-                    rec[0] = nextProps.audio_rec
-                    break;
-                case ( 'hybridRed' ):
-                    rec[0] = hybridRed
+                case ( 'audio_blf' ):
+                    rec[0] = nextProps.audio_blf_rec
                     break;
             }
             switch ( str_rec[1] ) {
-            case ( 'tag' ):
-                rec[1] = nextProps.tag_rec
-                break;
-            case ( 'feature' ):
-                rec[1] = nextProps.feature_rec
-                break;
-            case ( 'audio' ):
-                rec[1] = nextProps.audio_rec
-                break;
-            case ( 'hybridRed' ):
-                rec[1] = hybridRed
-                break;
-        }
+                case ( 'tag' ):
+                    rec[1] = nextProps.tag_rec
+                    break;
+                case ( 'audio_ivec' ):
+                    rec[1] = nextProps.audio_ivec_rec
+                    break;
+                case ( 'audio_blf' ):
+                    rec[1] = nextProps.audio_blf_rec
+                    break;
+	    }
             switch ( str_rec[2] ) {
-            case ( 'tag' ):
-                rec[2] = nextProps.tag_rec
-                break;
-            case ( 'feature' ):
-                rec[2] = nextProps.feature_rec
-                break;
-            case ( 'audio' ):
-                rec[2] = nextProps.audio_rec
-                break;
-            case ( 'hybridRed' ):
-                rec[2] = hybridRed
-                break;
-        }
+                case ( 'tag' ):
+                    rec[2] = nextProps.tag_rec
+                    break;
+                case ( 'audio_ivec' ):
+                    rec[2] = nextProps.audio_ivec_rec
+                    break;
+                case ( 'audio_blf' ):
+                    rec[2] = nextProps.audio_blf_rec
+                    break;
+            	}
             
             this.setState( {
                 list1: rec[0],
@@ -132,8 +125,8 @@ export default class RecQuestionnaireContainer extends Component {
         }
         else {
             //run to see which rec lists is arrived and which is yet null
-            //console.log("list_order"+this.state.list_order+"tag_rec=" + this.props.tag_rec +"audio_rec=" + this.props.audio_rec +"feature_rec=" + this.props.feature_rec  )
-        }
+            //console.log("list_order="+this.state.list_order+"\ntag_rec=" + this.props.tag_rec +"\naudio_ivec_rec=" + this.props.audio_ivec_rec +"\naudio_blfrec=" + this.props.audio_blf_rec  )
+	} 
     }
 
     renderRandomRec() {
@@ -168,7 +161,7 @@ export default class RecQuestionnaireContainer extends Component {
                 FlowRouter.go( "/profile" );
             }
         }
-		if(this.props.tag_rec && this.props.feature_rec && this.props.audio_rec && this.state.list_order 
+		if(this.props.tag_rec && this.props.audio_ivec_rec && this.props.audio_blf_rec && this.state.list_order 
 		&& !this.state.list1 || !this.state.list2 || !this.state.list3){
 			this.componentWillReceiveProps( this.props )
 		}
@@ -201,16 +194,14 @@ export default createContainer(() => {
     const handleUser = Meteor.subscribe( "pub_myself" );
     let currentUser = null;
     let tag_rec = null;
-    let genre_rec = null;
-    let feature_rec = null;
-    let audio_rec = null;
+    let audio_ivec_rec = null;
+    let audio_blf_rec = null;
     if ( handleUser.ready() ) {
         currentUser = Meteor.user();
         if ( currentUser ) {
             tag_rec = currentUser.tag_rec;
-            genre_rec = currentUser.genre_rec;
-            feature_rec = currentUser.feature_rec;
-            audio_rec = currentUser.audio_rec;
+            audio_ivec_rec = currentUser.audio_ivec_rec;
+            audio_blf_rec = currentUser.audio_blf_rec;
         }
 
 
@@ -218,9 +209,8 @@ export default createContainer(() => {
     return {
         currentUser,
         tag_rec,
-        genre_rec,
-        feature_rec,
-        audio_rec
+        audio_ivec_rec,
+        audio_blf_rec
     };
 }, RecQuestionnaireContainer )
 
