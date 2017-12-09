@@ -25,9 +25,12 @@ Meteor.publish('pub_myself', function () {
            'rec_movies':1,
            
            'tag_rec':1,
+	   'genre_rec':1,
 	   'audio_ivec_rec':1,
 	   'audio_blf_rec':1,
-           /*'genre_rec':1,
+	   'video_avf_rec':1,
+	   'video_deep_rec':1,
+           /*
            'feature_rec':1,
            'audio_rec':1,*/
            'final_rec':1

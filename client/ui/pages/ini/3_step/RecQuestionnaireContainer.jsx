@@ -24,109 +24,69 @@ export default class RecQuestionnaireContainer extends Component {
     }
 
     componentDidMount() {
-        //create an array(rec) with 2 random rec and the tag_rec in random order
-        str_fixed_rec = 'tag'
-        str_others_rec = ['audio_ivec', 'audio_blf']
-        // create an array with 2 numbers between 1 and the number of others_rec (=3) to select 2 random recs
-        var arr = []
-        while ( arr.length < 2 ) {
-            var randomnumber = Math.ceil(( Math.random() * str_others_rec.length ) - 1 )
-            if ( arr.indexOf( randomnumber ) > -1 ) continue;
-            arr[arr.length] = randomnumber;
-        }
-
-        //take the selected at random 2 rec 
-        str_rec1 = str_others_rec[arr[0]];
-        str_rec2 = str_others_rec[arr[1]];
-        //create an array with 3 element between 1 and 3 in random order
-        var arr = []
-        while ( arr.length < 3 ) {
-            var randomnumber = Math.ceil( Math.random() * 3 )
-            if ( arr.indexOf( randomnumber ) > -1 ) continue;
-            arr[arr.length] = randomnumber;
-        }
-
-        str_rec = ['', '', '']
-        //put the recs  in two arrays according to the random array just created
-        str_rec[arr.indexOf( 1 )] = str_rec1
-        str_rec[arr.indexOf( 2 )] = str_rec2
-        str_rec[arr.indexOf( 3 )] = str_fixed_rec
+    // create an array with 3 random recommenders. 1 from baseline, 1 from audio, 1 from video
+    str_baseline_rec = ['tag', 'genre']
+    str_audio_rec = ['audio_ivec', 'audio_blf']
+    str_video_rec = ['video_avf', 'video_deep']
+    var arr = Array.from({length: 3}, () => Math.round(Math.random() * 1))
+    // take the selected recommenders
+    str_rec = ['', '', '']
+    str_rec[0] = str_baseline_rec[arr[0]];
+    str_rec[1] = str_audio_rec[arr[1]];
+    str_rec[2] = str_video_rec[arr[2]];
+    // shuffle the recommendations
+    for (let i = str_rec.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+        [str_rec[i], str_rec[j]] = [str_rec[j], str_rec[i]];
+    }
+    
         //set the recs name in the state
         this.setState( {
             list_order: str_rec
         } )
-        
-        Meteor.call( "s_get_n_tag_rec",
-            4, ( err, res ) => {
 
-            } );
-        //Meteor.call("s_get_n_genre_rec",
-        // 4, (err, res)=> {
-        //});
+    // and call the recommenders
+    for (let rec of str_rec){
+        method = "s_get_n_" + rec + "_rec";
+        Meteor.call(method, 4, (err,res) => {
 
-        Meteor.call( "s_get_n_audio_ivec_rec",
-            4, ( err, res ) => {
-
-            } );
-        Meteor.call( "s_get_n_audio_blf_rec",
-            4, ( err, res ) => {
-
-            } );
+        } );
+    };
     }
 
     componentWillReceiveProps( nextProps ) {
         rec=["","",""]
-        //if we have all the rec_list in the new props
-        if ( nextProps.tag_rec && nextProps.audio_ivec_rec && nextProps.audio_blf_rec && this.state.list_order ) {
-            str_rec = this.state.list_order
-            //create the fixed hybrid list
-            // const hybridRed = [nextProps.feature_rec[1], nextProps.audio_rec[0], nextProps.feature_rec[0], nextProps.audio_rec[1]];
+    
+        // if we have chosen the recommenders
+        if (this.state.list_order) {
+            str_rec = this.state.list_order;
 
-            switch ( str_rec[0] ) {
-                case ( 'tag' ):
-                    rec[0] = nextProps.tag_rec
-                    break;
-                case ( 'audio_ivec' ):
-                    rec[0] = nextProps.audio_ivec_rec
-                    break;
-                case ( 'audio_blf' ):
-                    rec[0] = nextProps.audio_blf_rec
-                    break;
+            // and we received all the recommendations
+            if (!this.state.list1 && nextProps[str_rec[0] + "_rec"] && nextProps[str_rec[1] + "_rec"] && nextProps[str_rec[2] + "_rec"] ) {
+
+                //save them
+                for (let i = str_rec.length -1; i >= 0; i--) {
+                    rec[i] = nextProps[str_rec[i] + "_rec"];
+                }
+
+                this.setState( {
+                    list1: rec[0],
+                    list2: rec[1],
+                    list3: rec[2],
+                    list_order: str_rec
+                } )
+
+		//console.log("Inserted lists: " + this.state.list1 + this.state.list2 + this.state.list3 + this.state.list_order)
             }
-            switch ( str_rec[1] ) {
-                case ( 'tag' ):
-                    rec[1] = nextProps.tag_rec
-                    break;
-                case ( 'audio_ivec' ):
-                    rec[1] = nextProps.audio_ivec_rec
-                    break;
-                case ( 'audio_blf' ):
-                    rec[1] = nextProps.audio_blf_rec
-                    break;
-	    }
-            switch ( str_rec[2] ) {
-                case ( 'tag' ):
-                    rec[2] = nextProps.tag_rec
-                    break;
-                case ( 'audio_ivec' ):
-                    rec[2] = nextProps.audio_ivec_rec
-                    break;
-                case ( 'audio_blf' ):
-                    rec[2] = nextProps.audio_blf_rec
-                    break;
-            	}
-            
-            this.setState( {
-                list1: rec[0],
-                list2: rec[1],
-                list3: rec[2],
-                list_order: str_rec
-            } )
+            else {
+                //run to see which rec lists is arrived and which is yet null
+                //console.log("list_order=" + this.state.list_order);
+		//for (var r of str_rec){
+		//	console.log("Props: " + r + "_rec=" + nextProps[r + "_rec"]);
+		//}
+            } 
+                
         }
-        else {
-            //run to see which rec lists is arrived and which is yet null
-            //console.log("list_order="+this.state.list_order+"\ntag_rec=" + this.props.tag_rec +"\naudio_ivec_rec=" + this.props.audio_ivec_rec +"\naudio_blfrec=" + this.props.audio_blf_rec  )
-	} 
     }
 
     renderRandomRec() {
@@ -161,8 +121,7 @@ export default class RecQuestionnaireContainer extends Component {
                 FlowRouter.go( "/profile" );
             }
         }
-		if(this.props.tag_rec && this.props.audio_ivec_rec && this.props.audio_blf_rec && this.state.list_order 
-		&& !this.state.list1 || !this.state.list2 || !this.state.list3){
+		if ( !this.state.list1 || !this.state.list2 || !this.state.list3){
 			this.componentWillReceiveProps( this.props )
 		}
 
@@ -194,14 +153,20 @@ export default createContainer(() => {
     const handleUser = Meteor.subscribe( "pub_myself" );
     let currentUser = null;
     let tag_rec = null;
+    let genre_rec = null;
     let audio_ivec_rec = null;
     let audio_blf_rec = null;
+    let video_avf_rec = null;
+    let video_deep_rec = null;
     if ( handleUser.ready() ) {
         currentUser = Meteor.user();
         if ( currentUser ) {
             tag_rec = currentUser.tag_rec;
+	    genre_rec = currentUser.genre_rec;
             audio_ivec_rec = currentUser.audio_ivec_rec;
             audio_blf_rec = currentUser.audio_blf_rec;
+	    video_avf_rec = currentUser.video_avf_rec;
+	    video_deep_rec = currentUser.video_deep_rec;
         }
 
 
@@ -209,8 +174,11 @@ export default createContainer(() => {
     return {
         currentUser,
         tag_rec,
+	genre_rec,
         audio_ivec_rec,
-        audio_blf_rec
+        audio_blf_rec,
+	video_avf_rec,
+	video_deep_rec
     };
 }, RecQuestionnaireContainer )
 

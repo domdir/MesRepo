@@ -18,9 +18,12 @@ Accounts.onCreateUser( function( options, user ) {
     user.rec_movies = [];
 
     user.tag_rec = null;
+    user.genre_rec = null;
     user.audio_ivec_rec = null;
     user.audio_blf_rec = null;
-    /*user.genre_rec = null;
+    user.video_avf_rec = null;
+    user.video_deep_rec = null;
+    /*
     user.feature_rec = null;
     user.audio_rec = null;*/
     user.final_rec=null;
