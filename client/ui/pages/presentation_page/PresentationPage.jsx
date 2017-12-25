@@ -26,7 +26,8 @@ export default PresentationPage = ()=> (
                                             </span></h2>
                                 <br />
                                 <h5>Mise-En-Scène is a no-profit project developed by Politecnico di Milano,
-                                    with the goal to investigates the use of automatically extracted visual features of
+                                    Johannes Kepler University Linz and University Politehnica of Bucharest
+                                    with the goal to investigates the use of automatically extracted visual and audio features of
                                     videos in
                                     the context of recommender systems and brings some novel contributions in the
                                     domain of
@@ -43,12 +44,12 @@ export default PresentationPage = ()=> (
                     </h4>
                     <p id="firstp">
                         We propose a new content-based recommender system that encompasses a technique to automatically
-                        analyze video contents and to extract a set of representative stylistic features
-                        (lighting, color, and motion) grounded on existing approaches of Applied Media Theory.
+                        analyze video contents and to extract a set of representative audio and visual features grounded
+                        on existing approaches of Applied Media Theory.
                         The evaluation of the proposed recommendations, assessed w.r.t. relevance metrics (e.g., recall)
                         and compared with existing content-based recommender systems that exploit explicit features
                         such as movie genre, shows that our technique leads to more accurate recommendations.
-                        Our proposed technique achieves better results not only when visual features are extracted
+                        Our proposed technique achieves better results not only when visual and audio features are extracted
                         from full-length videos, but also when the feature extraction technique operates on
                         movie trailers, pinpointing that our approach is effective also when fulllength videos are
                         not available or when there are performance requirements.
@@ -56,6 +57,8 @@ export default PresentationPage = ()=> (
                     <div className="logos">
                         <ul className="list-unstyled">
                             <li><img src={'/images/logopoliblack.png'}/></li>
+                            <li><img src={'/images/logojku_black.png'}/></li>
+                            <li><img src={'/images/logoupb.png'}/></li>
                             {/*<li><img src={'/img-h/logos/react2.png'}/></li>
                              <li><img src={'/img-h/logos/meteor2.png'}/></li>*/}
                         </ul>
@@ -82,10 +85,10 @@ export default PresentationPage = ()=> (
                                         semiotic and expressive point of view, in the theory and practice of
                                         movie making.
                                         The features taken into account in our algorithm are:<br />
-                                        1. Corner Motion <br />
-                                        2. Color variance <br />
-                                        3. Object Motion <br />
-                                        4. Lightening Key <br />
+                                        1. Audio Features based on Block-Level Features <br />
+                                        2. Audio Features based on i-vectors <br />
+                                        3. Aesthetic Visual Features <br />
+                                        4. Visual Features based on Deep-Learning <br />
                                     </p>
                                 </div>
                             </div>

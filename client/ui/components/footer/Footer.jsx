@@ -66,6 +66,9 @@ export default class Footer extends React.Component {
                        <a href="http://ydeldjoo.me/">
                           <li>Yashar Deldjoo</li>
                        </a>
+		       <li>Markus Schedl</li>
+                       <li>Bogdan Ionescu</li>
+                       <li>Mihai Gabriel Constantin</li>
                     </ul>
                  </div>
                  <div className="col-xs-6 col-sm-4 col-md-2">
@@ -75,6 +78,7 @@ export default class Footer extends React.Component {
                        <li>Paladini Antonio </li>
                        <li>Donini Alessandro </li>
                        <li>Chiap Gianluca </li>
+                       <li>Stefano Cereda</li>
                     </ul>
                  </div>
                  <div className="col-xs-6 col-sm-4 col-md-2">
@@ -99,6 +103,12 @@ export default class Footer extends React.Component {
                     <div className="polilogo">
                        <a href="http://www.polimi.it"><img id="polilogo" src={'/images/logopoli.png'} /></a>
                     </div>
+                    <div className="jkulogo">
+                        <a href="http://http://www.jku.at"><img id="jkulogo" src={'images/logojku.png'} /></a>
+                    </div>
+                    <div className="upblogo">
+                        <a href="http://www.upb.ro"><img id="upblogo" src={'images/logoupb.png'} /></a>
+                    </div>
                  </div>
               </div>
 
@@ -108,3 +118,4 @@ export default class Footer extends React.Component {
    }
 
 };
+

@@ -72,7 +72,7 @@ export default class SingleMovieToRate extends React.Component {
                             <ul className="dropdown-menu" id="dropdown-menu1" aria-labelledby="dropdownMenu1">
                                 <li>
                                     <a>
-                                        If you note any problem with the video, please click the Report button!
+                                        If you note any problem with the video, please click the Report button! You will skip this video and go on to the next one.
                          </a>
                                 </li>
                             </ul>
