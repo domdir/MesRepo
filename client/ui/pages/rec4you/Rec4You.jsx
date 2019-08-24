@@ -10,6 +10,9 @@ import InfoFeatures from '/client/ui/components/info_features/InfoFeatures.jsx'
 import Modal from 'react-modal';
 import MovieThumbnail from '/client/ui/components/thumb_trailer/MovieThumbnail.jsx'
 
+const rec_type_default = 0;
+const rec_type_users = 1;
+const rec_type_movie_personality = 2;
 
 class Rec4You extends Component {
   constructor(props) {
@@ -23,7 +26,9 @@ class Rec4You extends Component {
       modalIsOpen: false,
       movie_selected: null,
       alreadyVoted: [],
-	  date_load: null
+      date_load: null,
+      rec_type: rec_type_default,
+      skip: 0
     };
   }
 
@@ -37,13 +42,32 @@ Meteor.call( "s_get_n_final_movies",
     this.setState({
       is_loading:true
     });
-      Meteor.call( "s_get_n_final_movies",
-            5, ( err, res ) => {
-				location.reload()
-				this.setState({
-          is_loading:false
-        });
-            } );
+    if (this.state.rec_type == rec_type_default) {
+      Meteor.call(
+        "s_get_n_final_movies",
+        5,
+        ( err, res ) => {
+          location.reload()
+          this.setState({
+            is_loading:false
+          });
+        }
+      );
+    } else {
+      Meteor.call(
+        "s_get_n_movie_rec_from_pers",
+        5,
+        skip + 5,
+        this.state.rec_type == rec_type_users ? "users" : "movies",
+        ( err, res ) => {
+          location.reload()
+          this.setState({
+            is_loading: false,
+            skip: skip + 5
+          });
+        }
+      );
+    }
   }
 
   onHandleRecVote(rate, startDate, callBack) {
@@ -74,6 +98,17 @@ Meteor.call( "s_get_n_final_movies",
       )
       ;
     }
+  }
+
+  onHandleTypeChange(event) {
+    console.log('changed select');
+    console.log(event);
+    console.log(event.target.value);
+    this.setState({
+      rec_type: event.target.value,
+      skip: 0
+    });
+    setTimeout(this.getOtherMovies.bind(this));
   }
 
   renderMovies() {
@@ -162,6 +197,14 @@ Meteor.call( "s_get_n_final_movies",
       <div>
         <div className="rec-list_4you">
           <h1>R E C O M M E N D A T I O N S &nbsp; F O R &nbsp; Y O U</h1>
+          <div className="container type_select">
+            <label>Type:</label>
+            <select defaultValue={this.state.rec_type} onChange={this.onHandleTypeChange.bind(this)}>
+              <option value={rec_type_default}>Default</option>
+              <option value={rec_type_users}>Based on other users</option>
+              <option value={rec_type_movie_personality}>Based on movie personality</option>
+            </select>
+          </div>
           <div className="movieContainer">
 
             <div className="container" id="container_mes">

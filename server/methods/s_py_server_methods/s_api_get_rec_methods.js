@@ -7,6 +7,43 @@ import { errors } from '/both/errors/ErrorList'
 import { throwError } from '/both/errors/ErrorManager'
 
 Meteor.methods({
+  s_get_n_movie_rec_from_pers: function (num_of_rec, num_of_skip, type) {
+    console.log('calling pers');
+    Meteor.http.call("GET", "http://localhost:8052/get_pers_rec?" +
+      "num_of_rec=" + num_of_rec +
+      "&for_who=" + this.userId +
+      "&num_of_skip=" + num_of_skip +
+      "&type=" + type,
+		      (error, result) => {
+		        if (error) {
+		        	console.log(error)
+		          //myFuture.throw("could not contact the server");
+		        } else {
+
+
+		          const movies = [];
+		          for (let key in result.data) {
+		            if (result.data.hasOwnProperty(key)) {
+		              movies.push(JSON.parse(result.data[key]))
+		            }
+		          }
+
+		          Meteor.users.update(
+		            {
+		              _id: this.userId
+		            },
+		            {
+		              $set: {
+		            	  final_list: "PERS",
+		                final_rec: movies
+		              }
+		            }
+		          )
+		        }
+
+		      });
+  },
+
   s_get_n_final_movies: function(num_of_rec, recType="NONE"){
 	  if(recType=="NONE"){
 		  recType=currentUser.final_list
