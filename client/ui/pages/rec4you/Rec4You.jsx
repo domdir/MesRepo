@@ -57,13 +57,13 @@ Meteor.call( "s_get_n_final_movies",
       Meteor.call(
         "s_get_n_movie_rec_from_pers",
         5,
-        skip + 5,
+        this.state.skip,
         this.state.rec_type == rec_type_users ? "users" : "movies",
         ( err, res ) => {
-          location.reload()
+          // location.reload()
           this.setState({
             is_loading: false,
-            skip: skip + 5
+            skip: this.state.skip + 5
           });
         }
       );

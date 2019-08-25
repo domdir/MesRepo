@@ -8,7 +8,6 @@ import { throwError } from '/both/errors/ErrorManager'
 
 Meteor.methods({
   s_get_n_movie_rec_from_pers: function (num_of_rec, num_of_skip, type) {
-    console.log('calling pers');
     Meteor.http.call("GET", "http://localhost:8052/get_pers_rec?" +
       "num_of_rec=" + num_of_rec +
       "&for_who=" + this.userId +
