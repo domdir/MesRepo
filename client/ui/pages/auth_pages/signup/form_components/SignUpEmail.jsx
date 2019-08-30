@@ -54,10 +54,9 @@ export default class  extends React.Component {
     render() {
         return (
             <div>
-			<a href="" title="You will not receive any email from us,
-			neither your email-adress will be shared with anyone">
                 <input type="email" placeholder="Email" ref="ref_email"
-                       className="form-control"/></a>
+                       className="form-control" title="You will not receive any email from us,
+                       neither your email-adress will be shared with anyone"/>
                 <div className="colorError">
                     {(this.state.email_error_message && !this.state.is_valid_mail)
                         ? this.state.email_error_message

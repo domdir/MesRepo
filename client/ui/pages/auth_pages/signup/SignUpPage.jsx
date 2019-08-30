@@ -28,7 +28,8 @@ export default class SignUpPage extends React.Component {
 	this.setState({
 		date_load: (new Date).getTime()
 	});
-  }
+  }
+
 
     onFormSignUpSubmit(event) {
         event.preventDefault();
@@ -79,9 +80,9 @@ export default class SignUpPage extends React.Component {
                     error_message: error.reason
                 });
             } else {
-				Meteor.call( "s_set_ini_step", "demographic",pageTime, err => {
+				Meteor.call( "s_set_ini_step", "personality_questionnaire",pageTime, err => {
             if ( !err ) {
-                FlowRouter.go(routesPath.INI_BASE_ROUTE + routesPath.DEM_ROUTE);
+                FlowRouter.go(routesPath.INI_BASE_ROUTE + routesPath.PERSONALITY_QUEST_ROUTE);
 			}} )
             }
         });
