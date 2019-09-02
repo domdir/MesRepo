@@ -98,6 +98,14 @@ export default class DemographicPage extends React.Component {
 
     }
 
+    onSkipForm() {
+        Meteor.call( "s_set_ini_step", "personality_questionnaire", err => {
+            if ( !err )
+                FlowRouter.setParams( { ini_step: "personality_questionnaire" } );
+            }
+        )
+    }
+
     render() {
 
 
@@ -120,7 +128,12 @@ export default class DemographicPage extends React.Component {
                             <Nationality ref="nationality" />
                             <Questions ref="questions" />
                             <LoadingWrapper loading_style="loader-bars" is_processing={this.state.is_processing}>
-                                <div className="center_button"><input className="btn-questionnaire btn-default" type="submit" value="FINISH" /></div>
+                                <div className="center_button">
+                                    <input className="btn-questionnaire btn-default" type="submit" value="FINISH" />
+                                    <input className="btn-questionnaire btn-default" type="button" value="SKIP" style={{
+                                        'margin-left': '20px'
+                                    }} onClick={this.onSkipForm.bind(this)} />
+                                </div>
                             </LoadingWrapper>
 
                             <div className="colorError">

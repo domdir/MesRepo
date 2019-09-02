@@ -23,6 +23,8 @@ Accounts.onCreateUser( function( options, user ) {
     user.audio_blf_rec = null;
     user.video_avf_rec = null;
     user.video_deep_rec = null;
+    user.personality_rec = null;
+    user.merged_rec = null;
     /*
     user.feature_rec = null;
     user.audio_rec = null;*/

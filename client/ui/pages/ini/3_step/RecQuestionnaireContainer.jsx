@@ -25,37 +25,38 @@ export default class RecQuestionnaireContainer extends Component {
 
     componentDidMount() {
     // create an array with 3 random recommenders. 1 from baseline, 1 from audio, 1 from video
-    str_baseline_rec = ['tag', 'genre']
-    str_audio_rec = ['audio_ivec', 'audio_blf']
-    str_video_rec = ['video_avf', 'video_deep']
-    var arr = Array.from({length: 3}, () => Math.round(Math.random() * 1))
-    // take the selected recommenders
-    str_rec = ['', '', '']
-    str_rec[0] = str_baseline_rec[arr[0]];
-    str_rec[1] = str_audio_rec[arr[1]];
-    str_rec[2] = str_video_rec[arr[2]];
-    // shuffle the recommendations
-    for (let i = str_rec.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1));
-        [str_rec[i], str_rec[j]] = [str_rec[j], str_rec[i]];
-    }
-    
+    // str_baseline_rec = ['tag', 'genre']
+    // str_audio_rec = ['audio_ivec', 'audio_blf']
+    // str_video_rec = ['video_avf', 'video_deep']
+    // var arr = Array.from({length: 3}, () => Math.round(Math.random() * 1))
+    // // take the selected recommenders
+    // str_rec = ['', '', '']
+    // str_rec[0] = str_baseline_rec[arr[0]];
+    // str_rec[1] = str_audio_rec[arr[1]];
+    // str_rec[2] = str_video_rec[arr[2]];
+    // // shuffle the recommendations
+    // for (let i = str_rec.length - 1; i > 0; i--) {
+    //         let j = Math.floor(Math.random() * (i + 1));
+    //     [str_rec[i], str_rec[j]] = [str_rec[j], str_rec[i]];
+    // }
+    var str_rec = ['genre', 'merged', 'personality'];
+
         //set the recs name in the state
         this.setState( {
             list_order: str_rec
         } )
 
-    // and call the recommenders
-    for (let rec of str_rec){
-        method = "s_get_n_" + rec + "_rec";
-        Meteor.call(method, 4, (err,res) => {
+        // and call the recommenders
+        for (let rec of str_rec){
+            method = "s_get_n_" + rec + "_rec";
+            Meteor.call(method, 4, (err,res) => {
 
-        } );
-    };
+            } );
+        };
     }
 
     componentWillReceiveProps( nextProps ) {
-        rec=["","",""]
+        rec=["","",""];
     
         // if we have chosen the recommenders
         if (this.state.list_order) {
@@ -123,7 +124,7 @@ export default class RecQuestionnaireContainer extends Component {
         }
 		if ( !this.state.list1 || !this.state.list2 || !this.state.list3){
 			this.componentWillReceiveProps( this.props )
-		}
+        }
 
         return (
             <div className="container-fluid questionnaire-page">
@@ -158,27 +159,31 @@ export default createContainer(() => {
     let audio_blf_rec = null;
     let video_avf_rec = null;
     let video_deep_rec = null;
+    let personality_rec = null;
+    let merged_rec = null;
     if ( handleUser.ready() ) {
         currentUser = Meteor.user();
         if ( currentUser ) {
             tag_rec = currentUser.tag_rec;
-	    genre_rec = currentUser.genre_rec;
+	        genre_rec = currentUser.genre_rec;
             audio_ivec_rec = currentUser.audio_ivec_rec;
             audio_blf_rec = currentUser.audio_blf_rec;
-	    video_avf_rec = currentUser.video_avf_rec;
-	    video_deep_rec = currentUser.video_deep_rec;
+	        video_avf_rec = currentUser.video_avf_rec;
+            video_deep_rec = currentUser.video_deep_rec;
+            personality_rec = currentUser.personality_rec;
+            merged_rec = currentUser.merged_rec;
         }
-
-
     }
     return {
         currentUser,
         tag_rec,
-	genre_rec,
+	    genre_rec,
         audio_ivec_rec,
         audio_blf_rec,
-	video_avf_rec,
-	video_deep_rec
+        video_avf_rec,
+        video_deep_rec,
+        personality_rec,
+        merged_rec
     };
 }, RecQuestionnaireContainer )
 

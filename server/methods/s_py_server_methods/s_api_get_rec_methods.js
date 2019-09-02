@@ -581,6 +581,93 @@ Meteor.methods({
 
 	      }); 
 
-	  }
+    },
+    s_get_n_personality_rec: function(numOfRec) {
+
+
+      currentUser = Meteor.users.findOne({
+        _id: this.userId
+      });
+
+      if (currentUser.personality_rec) {
+	      if (currentUser.personality_rec.length) {
+	    	  
+	        return
+	      }
+	    }
+  
+      Meteor.http.call("GET", "http://localhost:8052/get_pers_rec?" +
+        "num_of_rec=" + numOfRec +
+        "&for_who=" + this.userId +
+        "&num_of_skip=" + (Math.round(Math.random() * numOfRec * 5)) +
+        "&type=movies",
+        (error, result) => {
+          if (error) {
+          } else {
+            const movies = [];
+            for (let key in result.data) {
+              if (result.data.hasOwnProperty(key)) {
+                movies.push(JSON.parse(result.data[key]))
+              }
+            }
+  
+            Meteor.users.update(
+              {
+                _id: this.userId
+              },
+              {
+                $set: {
+                  personality_rec: movies
+                }
+              }
+            )
+          }
+  
+        });
+    },
+    s_get_n_merged_rec: function(numOfRec) {
+
+	    currentUser = Meteor.users.findOne({
+	      _id: this.userId
+      });
+      
+	    if (currentUser.merged_rec) {
+	      if (currentUser.merged_rec.length) {
+	    	  
+	        return
+	      }
+	    }
+	    
+	    Meteor.http.call("GET", "http://localhost:8052/get_merged_rec?" +
+	      "num_of_rec=" + numOfRec +
+	      "&for_who=" + this.userId,
+	      (error, result) => {
+	        if (error) {
+	        } else {
+	          const movies = [];
+	          for (let key in result.data) {
+
+	            if (result.data.hasOwnProperty(key)) {
+	              movies.push(JSON.parse(result.data[key]))
+	            }
+	          }
+
+	          
+	          Meteor.users.update(
+	            {
+	              _id: this.userId
+	            },
+	            {
+	              $set: {
+	                merged_rec: movies
+	              }
+	            }
+	          )
+
+	        }
+
+	      }); 
+
+    }
 });
 

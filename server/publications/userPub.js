@@ -29,7 +29,9 @@ Meteor.publish('pub_myself', function () {
 	   'audio_ivec_rec':1,
 	   'audio_blf_rec':1,
 	   'video_avf_rec':1,
-	   'video_deep_rec':1,
+      'video_deep_rec':1,
+      'personality_rec':1,
+      'merged_rec':1,
            /*
            'feature_rec':1,
            'audio_rec':1,*/

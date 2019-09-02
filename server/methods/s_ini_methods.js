@@ -166,11 +166,13 @@ Meteor.methods({
         {
            $set: {
               tag_rec: null,
-	      genre_rec: null,
+	           genre_rec: null,
               audio_ivec_rec: null,
-	      audio_blf_rec: null,
-	      video_avf_rec: null,
-	      video_deep_rec: null
+              audio_blf_rec: null,
+              video_avf_rec: null,
+              video_deep_rec: null,
+              personality_rec: null,
+              merged_rec: null
               /*genre_rec:null,
               feature_rec:[],
               audio_rec:null*/
